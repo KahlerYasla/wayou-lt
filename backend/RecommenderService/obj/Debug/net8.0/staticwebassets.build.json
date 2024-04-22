@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "8QCZ1RbOZvMhocIMkxcGQFTy6vg5L/WszFDY67uGX1M=",
+  "Source": "RecommenderService",
+  "BasePath": "_content/RecommenderService",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
