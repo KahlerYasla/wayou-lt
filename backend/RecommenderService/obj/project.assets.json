@@ -631,19 +631,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\User\\.nuget\\packages\\": {}
+    "/Users/kahler/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\Desktop\\dotnetExample\\wayou-lt\\backend\\RecommenderService\\RecommenderService.csproj",
+      "projectUniqueName": "/Users/kahler/Projects/Dotnet/wayou-lt/backend/RecommenderService/RecommenderService.csproj",
       "projectName": "RecommenderService",
-      "projectPath": "C:\\Users\\User\\Desktop\\dotnetExample\\wayou-lt\\backend\\RecommenderService\\RecommenderService.csproj",
-      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Desktop\\dotnetExample\\wayou-lt\\backend\\RecommenderService\\obj\\",
+      "projectPath": "/Users/kahler/Projects/Dotnet/wayou-lt/backend/RecommenderService/RecommenderService.csproj",
+      "packagesPath": "/Users/kahler/.nuget/packages/",
+      "outputPath": "/Users/kahler/Projects/Dotnet/wayou-lt/backend/RecommenderService/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/Users/kahler/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -704,7 +704,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.204/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

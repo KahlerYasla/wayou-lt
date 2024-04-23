@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Desktop\\dotnetExample\\wayou-lt\\backend\\TripGeneratorService\\TripGeneratorService.csproj": {}
+    "/Users/kahler/Projects/Dotnet/wayou-lt/backend/TripGeneratorService/TripGeneratorService.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Desktop\\dotnetExample\\wayou-lt\\backend\\TripGeneratorService\\TripGeneratorService.csproj": {
+    "/Users/kahler/Projects/Dotnet/wayou-lt/backend/TripGeneratorService/TripGeneratorService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Desktop\\dotnetExample\\wayou-lt\\backend\\TripGeneratorService\\TripGeneratorService.csproj",
+        "projectUniqueName": "/Users/kahler/Projects/Dotnet/wayou-lt/backend/TripGeneratorService/TripGeneratorService.csproj",
         "projectName": "TripGeneratorService",
-        "projectPath": "C:\\Users\\User\\Desktop\\dotnetExample\\wayou-lt\\backend\\TripGeneratorService\\TripGeneratorService.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Desktop\\dotnetExample\\wayou-lt\\backend\\TripGeneratorService\\obj\\",
+        "projectPath": "/Users/kahler/Projects/Dotnet/wayou-lt/backend/TripGeneratorService/TripGeneratorService.csproj",
+        "packagesPath": "/Users/kahler/.nuget/packages/",
+        "outputPath": "/Users/kahler/Projects/Dotnet/wayou-lt/backend/TripGeneratorService/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/kahler/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -71,7 +71,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
