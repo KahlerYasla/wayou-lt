@@ -465,11 +465,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/kahler/Projects/Dotnet/wayou-lt/backend/TripGeneratorService/TripGeneratorService.csproj",
+      "projectUniqueName": "/Users/kahler/Projects/Full-Stack/wayou-lt/backend/TripGeneratorService/TripGeneratorService.csproj",
       "projectName": "TripGeneratorService",
-      "projectPath": "/Users/kahler/Projects/Dotnet/wayou-lt/backend/TripGeneratorService/TripGeneratorService.csproj",
+      "projectPath": "/Users/kahler/Projects/Full-Stack/wayou-lt/backend/TripGeneratorService/TripGeneratorService.csproj",
       "packagesPath": "/Users/kahler/.nuget/packages/",
-      "outputPath": "/Users/kahler/Projects/Dotnet/wayou-lt/backend/TripGeneratorService/obj/",
+      "outputPath": "/Users/kahler/Projects/Full-Stack/wayou-lt/backend/TripGeneratorService/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/kahler/.nuget/NuGet/NuGet.Config"

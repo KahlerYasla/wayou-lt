@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "igkZh2xLY5RpJiCeh6GBvyHLvvSRGORMoxAi4DVxDqTLLs55EpAmIPIapDury8KYqWPGVV3Zcg66U+3J8ZHbuA==",
+  "dgSpecHash": "YKhEOHCGAHalW1oqYlWWuF8/C6UsOXrcJaXn4s6vRZT+VZvJdQUhhUy0VrjlGI7GPmYM7PQoj07JW84L8Hnz+w==",
   "success": true,
-  "projectFilePath": "/Users/kahler/Projects/Dotnet/wayou-lt/backend/TripGeneratorService/TripGeneratorService.csproj",
+  "projectFilePath": "/Users/kahler/Projects/Full-Stack/wayou-lt/backend/TripGeneratorService/TripGeneratorService.csproj",
   "expectedPackageFiles": [
     "/Users/kahler/.nuget/packages/microsoft.aspnetcore.openapi/8.0.4/microsoft.aspnetcore.openapi.8.0.4.nupkg.sha512",
     "/Users/kahler/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",

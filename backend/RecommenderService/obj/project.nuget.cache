@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "urskyi9KR8gbe6ZvGYFPornWEBqY+KfUHb4IJHFrIa8zBRDhADsOfrMZU68id8LinfZx2CBrMlcj4xGCBAiH9Q==",
+  "dgSpecHash": "Yh0CisKB2n5Whlag9NzF5M8Q/avCMZ8AlIumoEBbOOMnLYx4PAwaihPCfgESvI9a0VJyjAoZ2KBcCNeGCS7qPg==",
   "success": true,
-  "projectFilePath": "/Users/kahler/Projects/Dotnet/wayou-lt/backend/RecommenderService/RecommenderService.csproj",
+  "projectFilePath": "/Users/kahler/Projects/Full-Stack/wayou-lt/backend/RecommenderService/RecommenderService.csproj",
   "expectedPackageFiles": [
     "/Users/kahler/.nuget/packages/autofac/8.0.0/autofac.8.0.0.nupkg.sha512",
     "/Users/kahler/.nuget/packages/autofac.extensions.dependencyinjection/9.0.0/autofac.extensions.dependencyinjection.9.0.0.nupkg.sha512",

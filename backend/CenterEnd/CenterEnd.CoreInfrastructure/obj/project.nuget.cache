@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jIUFBzR4KGmAK0aj2gvwcT40U5kL1+8Iovkk77z0+dKoTO7sW2saT8Zebw8z+k+rydFp0rE9j3sgNXegn+z8iA==",
+  "dgSpecHash": "uaDqd8BNCmf34DUUek130NuL1K0mVet6/VUg30wotIHgqT+u5il6JYngSLCR1c8n8dGQu06FkRcZKj9jP/FXow==",
   "success": true,
-  "projectFilePath": "/Users/kahler/Projects/Dotnet/wayou-lt/backend/CenterEnd/CenterEnd.CoreInfrastructure/CenterEnd.CoreInfrastructure.csproj",
+  "projectFilePath": "/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.CoreInfrastructure/CenterEnd.CoreInfrastructure.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

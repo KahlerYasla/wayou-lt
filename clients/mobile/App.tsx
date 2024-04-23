@@ -1,7 +1,7 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import HomeScreen from './screens/MainScreen/HomeScreen';
+import HomeScreen from './screens/HomeScreen';
 
 const picsumUrl = 'https://picsum.photos/200/300';
 

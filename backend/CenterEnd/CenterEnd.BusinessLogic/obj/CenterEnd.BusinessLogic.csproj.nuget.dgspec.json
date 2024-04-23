@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/kahler/Projects/Dotnet/wayou-lt/backend/CenterEnd/CenterEnd.BusinessLogic/CenterEnd.BusinessLogic.csproj": {}
+    "/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.BusinessLogic/CenterEnd.BusinessLogic.csproj": {}
   },
   "projects": {
-    "/Users/kahler/Projects/Dotnet/wayou-lt/backend/CenterEnd/CenterEnd.BusinessLogic/CenterEnd.BusinessLogic.csproj": {
+    "/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.BusinessLogic/CenterEnd.BusinessLogic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/kahler/Projects/Dotnet/wayou-lt/backend/CenterEnd/CenterEnd.BusinessLogic/CenterEnd.BusinessLogic.csproj",
+        "projectUniqueName": "/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.BusinessLogic/CenterEnd.BusinessLogic.csproj",
         "projectName": "CenterEnd.BusinessLogic",
-        "projectPath": "/Users/kahler/Projects/Dotnet/wayou-lt/backend/CenterEnd/CenterEnd.BusinessLogic/CenterEnd.BusinessLogic.csproj",
+        "projectPath": "/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.BusinessLogic/CenterEnd.BusinessLogic.csproj",
         "packagesPath": "/Users/kahler/.nuget/packages/",
-        "outputPath": "/Users/kahler/Projects/Dotnet/wayou-lt/backend/CenterEnd/CenterEnd.BusinessLogic/obj/",
+        "outputPath": "/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.BusinessLogic/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/kahler/.nuget/NuGet/NuGet.Config"
