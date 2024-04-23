@@ -1,0 +1,6 @@
+@CenterEnd.GatewayApi_HostAddress = http://localhost:5296
+
+GET {{CenterEnd.GatewayApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
