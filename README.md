@@ -1,9 +1,11 @@
 <body style="background: #fff;">
 
 # Wayou
-## Backend Class Diagram
-![backend_class_diagram](./backend_class_diagram.svg)
+## CenterEnd Project 
+![center-end-structure](./center-end-structure.svg)
 ## Software Architecture
-![software_architecture](./software_architecture.svg)
+![software-architecture](./software-architecture.svg)
+## Request-Response Flow
+![request-response](./request-response.svg)
 
 </body>
