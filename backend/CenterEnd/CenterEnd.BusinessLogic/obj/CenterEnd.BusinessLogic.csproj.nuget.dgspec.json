@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/berkesiranur/Desktop/berkayporno/wayou-lt/backend/CenterEnd/CenterEnd.BusinessLogic/CenterEnd.BusinessLogic.csproj": {}
+    "/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.BusinessLogic/CenterEnd.BusinessLogic.csproj": {}
   },
   "projects": {
-    "/Users/berkesiranur/Desktop/berkayporno/wayou-lt/backend/CenterEnd/CenterEnd.BusinessLogic/CenterEnd.BusinessLogic.csproj": {
+    "/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.BusinessLogic/CenterEnd.BusinessLogic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/berkesiranur/Desktop/berkayporno/wayou-lt/backend/CenterEnd/CenterEnd.BusinessLogic/CenterEnd.BusinessLogic.csproj",
+        "projectUniqueName": "/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.BusinessLogic/CenterEnd.BusinessLogic.csproj",
         "projectName": "CenterEnd.BusinessLogic",
-        "projectPath": "/Users/berkesiranur/Desktop/berkayporno/wayou-lt/backend/CenterEnd/CenterEnd.BusinessLogic/CenterEnd.BusinessLogic.csproj",
-        "packagesPath": "/Users/berkesiranur/.nuget/packages/",
-        "outputPath": "/Users/berkesiranur/Desktop/berkayporno/wayou-lt/backend/CenterEnd/CenterEnd.BusinessLogic/obj/",
+        "projectPath": "/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.BusinessLogic/CenterEnd.BusinessLogic.csproj",
+        "packagesPath": "/Users/kahler/.nuget/packages/",
+        "outputPath": "/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.BusinessLogic/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/berkesiranur/.nuget/NuGet/NuGet.Config"
+          "/Users/kahler/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
