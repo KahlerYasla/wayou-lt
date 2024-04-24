@@ -5,8 +5,6 @@ import { SwipeCardChildren } from '../../ui-modules/SwipeCardModule/SwipeCardChi
 import { DiscoverStyleSheet } from '../../ui-modules/SwipeCardModule/SwipeCardChildrenModule/styles';
 import Choice from './ChoiseModule/Choice';
 import { UserActions } from './UserActionsModule/UserActions';
-import { useUsersDiscover } from '../../../hooks/useUsersDiscover';
-import { useInteractWithPeopleMutation } from '../../rtk-query';
 import { IUser } from './types/IUser';
 
 export interface IRecommendation {
@@ -14,10 +12,6 @@ export interface IRecommendation {
   refetch: () => void;
 }
 export const Recommendation = ({ peopleToDiscover, refetch }: IRecommendation) => {
-  const [interact] = useInteractWithPeopleMutation({
-    fixedCacheKey: 'interactWithPeople',
-  });
-  const { users, setUsers } = useUsersDiscover({ peopleToDiscover, refetch });
 
   const likeOpacity = (swipe: any) =>
     swipe.x.interpolate({
@@ -64,18 +58,11 @@ export const Recommendation = ({ peopleToDiscover, refetch }: IRecommendation) =
     const isLike = Number(JSON.stringify(swipe.x)) > 0;
     const userIdReceiver = prevState?.[0]?.id;
 
-    interact({
-      interaction: isLike ? 'like' : 'reject',
-      userIdReceiver,
-      userIdTransmitter: 1,
-    });
   };
 
   return (
     <SwipeCard<IUser>
       onSwipeUser={handleSwipeUserMatching}
-      items={users}
-      setItems={setUsers}
       renderActionBar={handleChoice => (
         <UserActions
           onLike={() => handleChoice(1)}

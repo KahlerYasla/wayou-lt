@@ -19,8 +19,6 @@ export interface ISwipeCard<T> {
 
 export const SwipeCard = <T,>({
     children,
-    items,
-    setItems,
     renderActionBar,
     onSwipeUser,
 }: ISwipeCard<T>) => {

@@ -1,34 +1,41 @@
-import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import HomeScreen from './screens/HomeScreen';
-
-const picsumUrl = 'https://picsum.photos/200/300';
+import React, { useRef } from "react";
+import { StyleSheet, View, Animated, Text, PanResponder } from "react-native";
+import FadeInView from "./components/FadeInView";
 
 export default function App() {
+  const pan = useRef(new Animated.ValueXY()).current;
+
+  const panResponder = useRef(
+    PanResponder.create(
+      {
+        onMoveShouldSetPanResponder: () => true,
+        onPanResponderMove: Animated.event([null, { dx: pan.x, dy: pan.y }]),
+        onPanResponderRelease: () => {
+          pan.extractOffset();
+        },
+      },
+    ),
+  ).current;
+
   return (
     <View style={styles.container}>
-      <StatusBar style="light" />
-      <HomeScreen />
-    </View>
+      <Animated.View
+        style={{ transform: [{ translateX: pan.x }, { translateY: pan.y }], }}
+        {...panResponder.panHandlers}>
+        <View style={{ backgroundColor: 'yellow', height: 50, width: 50 }} >
+          <Text>
+            Drag This!
+          </Text>
+        </View>
+      </Animated.View>
+    </View >
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    gap: 50,
     flex: 1,
-    backgroundColor: '#101114',
-    alignItems: 'center',
-    paddingVertical: 100,
-  },
-  text: {
-    color: '#fff',
-  },
-  scrollView: {
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: '#fff',
+    justifyContent: 'center',
     alignItems: 'center',
   },
 });
