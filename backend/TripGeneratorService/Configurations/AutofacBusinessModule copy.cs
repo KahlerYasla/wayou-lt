@@ -5,7 +5,7 @@ using RecommenderService.Services.Abstract;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using RecommenderService.Services.Concrete;
 
-namespace RecommenderService.Configuations
+namespace CoreInfrastructureLayer.Configuations
 {
     public class AutofacBusinessModule : Module
     {
