@@ -1,6 +1,6 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
-using RecommenderService.Services.Abstract;
+using RecommenderService.Services.Interfaces;
 
 namespace RecommenderService.Controllers;
 
@@ -21,7 +21,13 @@ public class MatchesController : ControllerBase
     public string Get(int kacKisi)
     {
         var result = _matchesService.GetRecommendationsAsync(kacKisi.ToString()).Result!;
-        return result.Items.Select(x => x.ToString()).ToString()!;
+        return result.Items!.Select(x => x.ToString()).ToString()!;
+    }
+
+    [HttpGet("test")]
+    public string Test(int kacKisi)
+    {
+        return "test";
     }
 }
 

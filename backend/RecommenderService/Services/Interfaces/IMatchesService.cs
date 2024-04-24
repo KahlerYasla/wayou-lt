@@ -1,6 +1,6 @@
 using RecommenderService.Models;
 
-namespace RecommenderService.Services.Abstract;
+namespace RecommenderService.Services.Interfaces;
 
 public interface IMatchesService
 {

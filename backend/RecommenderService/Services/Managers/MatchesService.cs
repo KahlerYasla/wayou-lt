@@ -1,15 +1,16 @@
 using RecommenderService.Models;
-using RecommenderService.Services.Abstract;
+using RecommenderService.Services.Interfaces;
 
-namespace RecommenderService.Services.Concrete;
+namespace RecommenderService.Services.Managers;
 
 public class MatchesService : IMatchesService
 {
     public Task<Recommendation> GetRecommendationsAsync(string kacKisi)
     {
-        Recommendation recommendation = new();
-
-        recommendation.Items = new List<string>();
+        Recommendation recommendation = new()
+        {
+            Items = []
+        };
 
         for (int i = 0; i < int.Parse(kacKisi); i++)
         {

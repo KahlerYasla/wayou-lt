@@ -1,9 +1,9 @@
 using Autofac;
 using Microsoft.Extensions.Options;
 using RecommenderService.Configurations;
-using RecommenderService.Services.Abstract;
+using RecommenderService.Services.Managers;
+using RecommenderService.Services.Interfaces;
 using Swashbuckle.AspNetCore.SwaggerGen;
-using RecommenderService.Services.Concrete;
 
 namespace RecommenderService.Configuations
 {
