@@ -6,6 +6,6 @@
 ## Software Architecture
 ![software-architecture](./software-architecture.svg)
 ## Request-Response Flow
-![request-response](./request-response.svg)
+![request-response](./request-response.drawio.svg)
 
 </body>
