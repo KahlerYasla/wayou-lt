@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { StyleSheet, View, Animated, Text, PanResponder } from "react-native";
-import FadeInView from "./components/shared-components/FadeInView";
+import FadeInView from "./components/home-screen-components/FadeInView";
 
 export default function App() {
   const pan = useRef(new Animated.ValueXY()).current;
