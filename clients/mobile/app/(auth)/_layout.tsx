@@ -11,16 +11,6 @@ export const unstable_settings = {
 };
 
 const Layout = () => {
-    // const [fontsLoaded] = useFonts({
-    //     UbuntuMonoRegular: require("../assets/fonts/UbuntuMono-Regular.ttf"),
-    //     UbuntuMonoBold: require("../assets/fonts/UbuntuMono-Bold.ttf"),
-    //     UbuntuMonoItalic: require("../assets/fonts/UbuntuMono-Italic.ttf"),
-    //     UbuntuMonoBoldItalic: require("../assets/fonts/UbuntuMono-BoldItalic.ttf"),
-    // });
-
-    // if (!fontsLoaded) {
-    //     return null;
-    // }
 
     return (
         <Stack />
