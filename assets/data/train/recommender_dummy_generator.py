@@ -5,7 +5,7 @@ import random
 def generate_random_row():
     genders = ['f', 'm']
     tag_ids = list(range(48))
-    territories = list(range(11))
+    territories = list(range(4))
     places = list(range(300))
 
     user_gender = random.choice(genders)
@@ -25,6 +25,8 @@ def append_to_csv(filename, num_rows):
             writer.writerow(row)
 
 # Add 1000 random rows to the CSV file
-filename = 'recommender_traing_new.csv'
+filename = 'recommender_historical_new.csv'
 num_rows_to_add = 1000
 append_to_csv(filename, num_rows_to_add)
+
+# userGender,tagIds,terittoryId,placeId,score
