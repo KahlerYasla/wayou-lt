@@ -1,0 +1,16 @@
+/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.Database/bin/Debug/net8.0/CenterEnd.Database.deps.json
+/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.Database/bin/Debug/net8.0/CenterEnd.Database.dll
+/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.Database/bin/Debug/net8.0/CenterEnd.Database.pdb
+/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.Database/bin/Debug/net8.0/CenterEnd.CoreInfrastructure.dll
+/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.Database/bin/Debug/net8.0/CenterEnd.CoreInfrastructure.pdb
+/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.Database/obj/Debug/net8.0/CenterEnd.Database.csproj.AssemblyReference.cache
+/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.Database/obj/Debug/net8.0/CenterEnd.Database.GeneratedMSBuildEditorConfig.editorconfig
+/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.Database/obj/Debug/net8.0/CenterEnd.Database.AssemblyInfoInputs.cache
+/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.Database/obj/Debug/net8.0/CenterEnd.Database.AssemblyInfo.cs
+/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.Database/obj/Debug/net8.0/CenterEnd.Database.csproj.CoreCompileInputs.cache
+/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.Database/obj/Debug/net8.0/CenterEnd.Database.sourcelink.json
+/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.Database/obj/Debug/net8.0/CenterEn.2E93251D.Up2Date
+/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.Database/obj/Debug/net8.0/CenterEnd.Database.dll
+/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.Database/obj/Debug/net8.0/refint/CenterEnd.Database.dll
+/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.Database/obj/Debug/net8.0/CenterEnd.Database.pdb
+/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.Database/obj/Debug/net8.0/ref/CenterEnd.Database.dll

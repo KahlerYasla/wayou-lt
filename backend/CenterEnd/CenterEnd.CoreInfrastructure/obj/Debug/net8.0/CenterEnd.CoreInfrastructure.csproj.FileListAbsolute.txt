@@ -1,0 +1,13 @@
+/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.CoreInfrastructure/bin/Debug/net8.0/CenterEnd.CoreInfrastructure.deps.json
+/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.CoreInfrastructure/bin/Debug/net8.0/CenterEnd.CoreInfrastructure.dll
+/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.CoreInfrastructure/bin/Debug/net8.0/CenterEnd.CoreInfrastructure.pdb
+/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.CoreInfrastructure/obj/Debug/net8.0/CenterEnd.CoreInfrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.CoreInfrastructure/obj/Debug/net8.0/CenterEnd.CoreInfrastructure.AssemblyInfoInputs.cache
+/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.CoreInfrastructure/obj/Debug/net8.0/CenterEnd.CoreInfrastructure.AssemblyInfo.cs
+/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.CoreInfrastructure/obj/Debug/net8.0/CenterEnd.CoreInfrastructure.csproj.CoreCompileInputs.cache
+/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.CoreInfrastructure/obj/Debug/net8.0/CenterEnd.CoreInfrastructure.sourcelink.json
+/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.CoreInfrastructure/obj/Debug/net8.0/CenterEnd.CoreInfrastructure.dll
+/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.CoreInfrastructure/obj/Debug/net8.0/refint/CenterEnd.CoreInfrastructure.dll
+/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.CoreInfrastructure/obj/Debug/net8.0/CenterEnd.CoreInfrastructure.pdb
+/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.CoreInfrastructure/obj/Debug/net8.0/ref/CenterEnd.CoreInfrastructure.dll
+/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.CoreInfrastructure/obj/Debug/net8.0/CenterEnd.CoreInfrastructure.csproj.AssemblyReference.cache

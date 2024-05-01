@@ -1,5 +1,5 @@
-id,name,originXY
-0,besiktas
-1,karakoy
-2,kadikoy
-3,uskudar
+id,name,originYX
+0,besiktas,"41.046321,29.003509"
+1,uskudar,"41.016763,29.027233"
+2,kadikoy,"40.987722,29.036974"
+3,karakoy,"41.024691,28.976928"

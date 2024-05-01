@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "33Srxn4IXJRRA/lOLmeQqRDZMabeXiNPYQO1bKoNZik=",
+  "Source": "CenterEnd.GatewayApi",
+  "BasePath": "_content/CenterEnd.GatewayApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
