@@ -1,5 +1,4 @@
 using Grpc.Core;
-using MicroServices.TripGenerator;
 
 namespace MicroServices.TripGenerator.Services;
 

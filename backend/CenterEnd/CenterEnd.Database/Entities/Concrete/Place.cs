@@ -13,4 +13,6 @@ public class Place : BaseEntity
     public string? ImagePath { get; set; }
     public float? Rating { get; set; }
     public required Territory Territory { get; set; }
+    public List<UserInteraction>? LikedUserInteraction { get; set; }
+    public List<UserInteraction>? PassedUserInteraction { get; set; }
 }

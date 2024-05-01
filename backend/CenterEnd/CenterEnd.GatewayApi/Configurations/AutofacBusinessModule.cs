@@ -3,7 +3,6 @@ using Autofac;
 // using CenterEnd.BusinessLogic.Implementations;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
-using CenterEnd.GatewayApi.Configurations;
 
 namespace CenterEnd.GatewayApi.Configurations;
 

@@ -102,12 +102,6 @@ namespace CenterEnd.DataAccess.Migrations
                     b.Property<int>("TerritoryId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("UserInteractionId")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("UserInteractionId1")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Website")
                         .HasColumnType("text");
 
@@ -116,10 +110,6 @@ namespace CenterEnd.DataAccess.Migrations
                     b.HasIndex("DeckId");
 
                     b.HasIndex("TerritoryId");
-
-                    b.HasIndex("UserInteractionId");
-
-                    b.HasIndex("UserInteractionId1");
 
                     b.ToTable("Places");
                 });
@@ -145,15 +135,10 @@ namespace CenterEnd.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int?>("PlaceId")
-                        .HasColumnType("integer");
-
                     b.Property<int?>("Status")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PlaceId");
 
                     b.ToTable("Tags");
                 });
@@ -258,6 +243,51 @@ namespace CenterEnd.DataAccess.Migrations
                     b.ToTable("UserInteractions");
                 });
 
+            modelBuilder.Entity("PlaceTag", b =>
+                {
+                    b.Property<int>("PlacesId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TagsId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("PlacesId", "TagsId");
+
+                    b.HasIndex("TagsId");
+
+                    b.ToTable("PlaceTag");
+                });
+
+            modelBuilder.Entity("PlaceUserInteraction", b =>
+                {
+                    b.Property<int>("LikedPlacesId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("LikedUserInteractionId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("LikedPlacesId", "LikedUserInteractionId");
+
+                    b.HasIndex("LikedUserInteractionId");
+
+                    b.ToTable("LikedPlaces", (string)null);
+                });
+
+            modelBuilder.Entity("PlaceUserInteraction1", b =>
+                {
+                    b.Property<int>("PassedPlacesId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("PassedUserInteractionId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("PassedPlacesId", "PassedUserInteractionId");
+
+                    b.HasIndex("PassedUserInteractionId");
+
+                    b.ToTable("PassedPlaces", (string)null);
+                });
+
             modelBuilder.Entity("CenterEnd.Database.Entities.Concrete.Deck", b =>
                 {
                     b.HasOne("CenterEnd.Database.Entities.Concrete.User", "OwnerUser")
@@ -281,22 +311,7 @@ namespace CenterEnd.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CenterEnd.Database.Entities.Concrete.UserInteraction", null)
-                        .WithMany("LikedPlaces")
-                        .HasForeignKey("UserInteractionId");
-
-                    b.HasOne("CenterEnd.Database.Entities.Concrete.UserInteraction", null)
-                        .WithMany("PassedPlaces")
-                        .HasForeignKey("UserInteractionId1");
-
                     b.Navigation("Territory");
-                });
-
-            modelBuilder.Entity("CenterEnd.Database.Entities.Concrete.Tag", b =>
-                {
-                    b.HasOne("CenterEnd.Database.Entities.Concrete.Place", null)
-                        .WithMany("Tags")
-                        .HasForeignKey("PlaceId");
                 });
 
             modelBuilder.Entity("CenterEnd.Database.Entities.Concrete.User", b =>
@@ -310,26 +325,59 @@ namespace CenterEnd.DataAccess.Migrations
                     b.Navigation("UserInteraction");
                 });
 
+            modelBuilder.Entity("PlaceTag", b =>
+                {
+                    b.HasOne("CenterEnd.Database.Entities.Concrete.Place", null)
+                        .WithMany()
+                        .HasForeignKey("PlacesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CenterEnd.Database.Entities.Concrete.Tag", null)
+                        .WithMany()
+                        .HasForeignKey("TagsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("PlaceUserInteraction", b =>
+                {
+                    b.HasOne("CenterEnd.Database.Entities.Concrete.Place", null)
+                        .WithMany()
+                        .HasForeignKey("LikedPlacesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CenterEnd.Database.Entities.Concrete.UserInteraction", null)
+                        .WithMany()
+                        .HasForeignKey("LikedUserInteractionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("PlaceUserInteraction1", b =>
+                {
+                    b.HasOne("CenterEnd.Database.Entities.Concrete.Place", null)
+                        .WithMany()
+                        .HasForeignKey("PassedPlacesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CenterEnd.Database.Entities.Concrete.UserInteraction", null)
+                        .WithMany()
+                        .HasForeignKey("PassedUserInteractionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("CenterEnd.Database.Entities.Concrete.Deck", b =>
                 {
                     b.Navigation("PlacesOfDeck");
                 });
 
-            modelBuilder.Entity("CenterEnd.Database.Entities.Concrete.Place", b =>
-                {
-                    b.Navigation("Tags");
-                });
-
             modelBuilder.Entity("CenterEnd.Database.Entities.Concrete.User", b =>
                 {
                     b.Navigation("OwnedDecks");
-                });
-
-            modelBuilder.Entity("CenterEnd.Database.Entities.Concrete.UserInteraction", b =>
-                {
-                    b.Navigation("LikedPlaces");
-
-                    b.Navigation("PassedPlaces");
                 });
 #pragma warning restore 612, 618
         }

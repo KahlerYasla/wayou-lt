@@ -1,5 +1,4 @@
 using Grpc.Core;
-using MicroServices.PlaceRecommender;
 
 namespace MicroServices.PlaceRecommender.Services;
 

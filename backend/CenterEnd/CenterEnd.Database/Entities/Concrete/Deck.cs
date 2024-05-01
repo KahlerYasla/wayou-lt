@@ -1,5 +1,4 @@
 using CenterEnd.Database.Entities.Abstract;
-using CenterEnd.Database.Entities.Concrete;
 
 namespace CenterEnd.Database.Entities.Concrete;
 
