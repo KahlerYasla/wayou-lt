@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CenterEnd.DataAccess")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fd3cc31cd9d685a518e3c2b308528486b0aaee96")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a519139af19225446b7c0c0e3357d76e693d4350")]
 [assembly: System.Reflection.AssemblyProductAttribute("CenterEnd.DataAccess")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CenterEnd.DataAccess")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

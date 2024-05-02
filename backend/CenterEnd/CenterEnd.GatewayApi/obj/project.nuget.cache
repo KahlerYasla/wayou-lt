@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "lduDFNhTiJtRq4q0zuvV5/4HOwJDJ1/HPYCtsS6Y+DbG09xLNGcUEEVPjA/URFyW0j7Yf1rZh/HeLfHFF8VhmA==",
+  "dgSpecHash": "5cvOcLgpn0Cz35J0n9htrqI+pRK9o4dBghiWMTiqtRd0DLtpmx8WPfA7AU/ULot3hIbDX4l/1GN1N9E+bJUCfw==",
   "success": true,
   "projectFilePath": "/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.GatewayApi/CenterEnd.GatewayApi.csproj",
   "expectedPackageFiles": [
@@ -41,12 +41,14 @@
     "/Users/kahler/.nuget/packages/mono.texttemplating/2.2.1/mono.texttemplating.2.2.1.nupkg.sha512",
     "/Users/kahler/.nuget/packages/npgsql/8.0.2/npgsql.8.0.2.nupkg.sha512",
     "/Users/kahler/.nuget/packages/npgsql.entityframeworkcore.postgresql/8.0.2/npgsql.entityframeworkcore.postgresql.8.0.2.nupkg.sha512",
+    "/Users/kahler/.nuget/packages/protobuf-net/3.2.30/protobuf-net.3.2.30.nupkg.sha512",
+    "/Users/kahler/.nuget/packages/protobuf-net.core/3.2.30/protobuf-net.core.3.2.30.nupkg.sha512",
     "/Users/kahler/.nuget/packages/swashbuckle.aspnetcore/6.4.0/swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
     "/Users/kahler/.nuget/packages/swashbuckle.aspnetcore.swagger/6.4.0/swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
     "/Users/kahler/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.4.0/swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
     "/Users/kahler/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.4.0/swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512",
     "/Users/kahler/.nuget/packages/system.codedom/4.4.0/system.codedom.4.4.0.nupkg.sha512",
-    "/Users/kahler/.nuget/packages/system.collections.immutable/6.0.0/system.collections.immutable.6.0.0.nupkg.sha512",
+    "/Users/kahler/.nuget/packages/system.collections.immutable/7.0.0/system.collections.immutable.7.0.0.nupkg.sha512",
     "/Users/kahler/.nuget/packages/system.composition/6.0.0/system.composition.6.0.0.nupkg.sha512",
     "/Users/kahler/.nuget/packages/system.composition.attributedmodel/6.0.0/system.composition.attributedmodel.6.0.0.nupkg.sha512",
     "/Users/kahler/.nuget/packages/system.composition.convention/6.0.0/system.composition.convention.6.0.0.nupkg.sha512",
