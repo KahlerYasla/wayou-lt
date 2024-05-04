@@ -2,8 +2,8 @@ import requests
 import csv
 
 # Define coordinates
-coordinateY = 41.024691
-coordinateX = 28.976928
+coordinateY = 41.046321
+coordinateX = 29.003509
 
 # Define headers
 headers = {"accept": "application/json"}
@@ -12,7 +12,7 @@ headers = {"accept": "application/json"}
 api_key = input("Enter your Tripadvisor API key: ")
 
 # Open CSV file for appending
-with open("search_nearby_karakoy.csv", mode="a", newline="", encoding="utf-8") as csvfile:
+with open("search_nearby_besiktas_attractions.csv", mode="a", newline="", encoding="utf-8") as csvfile:
     fieldnames = ["location_id", "name"]
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
@@ -22,7 +22,7 @@ with open("search_nearby_karakoy.csv", mode="a", newline="", encoding="utf-8") a
         coordinateY += 0.001
         coordinateX -= 0.001
 
-        url = f"https://api.content.tripadvisor.com/api/v1/location/nearby_search?latLong={coordinateY},{coordinateX}&key=url%20%3D%20%22https%3A%2F%2Fapi.content.tripadvisor.com%2Fapi%2Fv1%2Flocation%2Fnearby_search%3Flanguage%3Den%26key%3D{api_key}%22&key={api_key}&radius=3&radiusUnit=km&language=en"
+        url = f"https://api.content.tripadvisor.com/api/v1/location/nearby_search?latLong={coordinateY},{coordinateX}&key=url%20%3D%20%22https%3A%2F%2Fapi.content.tripadvisor.com%2Fapi%2Fv1%2Flocation%2Fnearby_search%3Flanguage%3Den%26key%3D{api_key}%22&key={api_key}&category=attractions&radius=3&radiusUnit=km&language=en"
 
         print("Fetching data from: ", url)
         print("Coordinates:", coordinateY,",", coordinateX)
@@ -45,7 +45,7 @@ with open("search_nearby_karakoy.csv", mode="a", newline="", encoding="utf-8") a
             print(f"An error occurred: {err}")
 
 # Reopen CSV file to remove duplicates
-with open("search_nearby_karakoy.csv", mode="r", encoding="utf-8") as csvfile:
+with open("search_nearby_besiktas_attractions.csv", mode="r", encoding="utf-8") as csvfile:
     reader = csv.DictReader(csvfile)
     rows = list(reader)
 
@@ -53,7 +53,7 @@ with open("search_nearby_karakoy.csv", mode="r", encoding="utf-8") as csvfile:
 unique_rows = [dict(t) for t in {tuple(d.items()) for d in rows}]
 
 # Write unique data back to the CSV file
-with open("search_nearby_karakoy.csv", mode="w", newline="", encoding="utf-8") as csvfile:
+with open("search_nearby_besiktas_attractions.csv", mode="w", newline="", encoding="utf-8") as csvfile:
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
     writer.writeheader()
     writer.writerows(unique_rows)
