@@ -10,4 +10,9 @@ public class User : BaseEntity
     public List<Deck>? OwnedDecks { get; set; }
     public required UserInteraction UserInteraction { get; set; }
 
+    public User()
+    {
+        OwnedDecks = [];
+        UserInteraction = new UserInteraction();
+    }
 }

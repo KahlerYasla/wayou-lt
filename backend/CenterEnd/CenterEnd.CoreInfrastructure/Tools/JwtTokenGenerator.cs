@@ -3,7 +3,7 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 
-namespace CenterEnd.CoreInfrastructure.Helpers;
+namespace CenterEnd.CoreInfrastructure.Tools;
 
 public static class JwtTokenGenerator
 {

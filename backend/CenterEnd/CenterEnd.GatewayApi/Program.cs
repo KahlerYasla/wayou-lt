@@ -11,6 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 
 using CenterEnd.CoreInfrastructure.Utils;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -19,12 +20,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddControllers();
+
+// Add Autofac as DI container for the project
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
     .ConfigureContainer<ContainerBuilder>(builder =>
     {
         builder.RegisterModule(new AutofacBusinessModule());
         builder.RegisterType<HttpContextAccessor>().As<IHttpContextAccessor>().SingleInstance();
-
     });
 
 builder.Services.AddDbContext<DataContext>(options =>

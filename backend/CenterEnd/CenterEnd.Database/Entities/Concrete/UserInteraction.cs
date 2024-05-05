@@ -6,4 +6,10 @@ public class UserInteraction : BaseEntity
 {
     public List<Place>? LikedPlaces { get; set; }
     public List<Place>? PassedPlaces { get; set; }
+
+    public UserInteraction()
+    {
+        LikedPlaces = [];
+        PassedPlaces = [];
+    }
 }
