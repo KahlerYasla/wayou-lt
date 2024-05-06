@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
 using CenterEnd.Database.Entities.Concrete;
 
-namespace CenterEnd.GatewayApi.DTOs.Mobile.Responses;
+namespace CenterEnd.BusinessLogic.DTOs.Mobile.Responses;
 
 public class RecommendPlacesResponse
 {

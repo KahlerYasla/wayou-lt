@@ -108,6 +108,10 @@
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[8.0.4, )"
+            },
+            "protobuf-net": {
+              "target": "Package",
+              "version": "[3.2.30, )"
             }
           },
           "imports": [
@@ -330,10 +334,6 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.4.0, )"
-            },
-            "protobuf-net": {
-              "target": "Package",
-              "version": "[3.2.30, )"
             }
           },
           "imports": [

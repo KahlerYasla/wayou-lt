@@ -1,7 +1,7 @@
 
 using System.Text.Json.Serialization;
 
-namespace CenterEnd.CoreInfrastructure.CommonDTOs;
+namespace CenterEnd.BusinessLogic.DTOs;
 
 public class Configuration
 {

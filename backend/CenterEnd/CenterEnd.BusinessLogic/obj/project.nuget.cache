@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "C0JrIkdcXY01OTJRFmcGTXxlUpHKmyHSQ4TNmK/VcX3JrGqFrXojokBbvs9RKxA7k/2NHmxz4wxySxxnuB30KQ==",
+  "dgSpecHash": "Z5TTW+h3jGa75nylliQTYnZNupoCIB108QZz3VkpHQPymX2Ne0NXSEQegrHj85XpQzQppvceY5wStSjjauckow==",
   "success": true,
   "projectFilePath": "/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.BusinessLogic/CenterEnd.BusinessLogic.csproj",
   "expectedPackageFiles": [
@@ -26,6 +26,9 @@
     "/Users/kahler/.nuget/packages/microsoft.identitymodel.tokens/7.1.2/microsoft.identitymodel.tokens.7.1.2.nupkg.sha512",
     "/Users/kahler/.nuget/packages/npgsql/8.0.2/npgsql.8.0.2.nupkg.sha512",
     "/Users/kahler/.nuget/packages/npgsql.entityframeworkcore.postgresql/8.0.2/npgsql.entityframeworkcore.postgresql.8.0.2.nupkg.sha512",
+    "/Users/kahler/.nuget/packages/protobuf-net/3.2.30/protobuf-net.3.2.30.nupkg.sha512",
+    "/Users/kahler/.nuget/packages/protobuf-net.core/3.2.30/protobuf-net.core.3.2.30.nupkg.sha512",
+    "/Users/kahler/.nuget/packages/system.collections.immutable/7.0.0/system.collections.immutable.7.0.0.nupkg.sha512",
     "/Users/kahler/.nuget/packages/system.identitymodel.tokens.jwt/7.1.2/system.identitymodel.tokens.jwt.7.1.2.nupkg.sha512"
   ],
   "logs": []

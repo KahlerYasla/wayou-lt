@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "qjACZo4AQU5zXdu8Yw2MVQyjZ+Rp9ESLKnFIjmaS0SppWwY+SrRdUTZ+pdbu40tIsZ7lLsVMLS0P9fzsFmuqMg==",
+  "dgSpecHash": "VsaiGAs7bypywhhiTwis2M7kDwWp2lFnZz4RvOV5+VaJ9O06wU4wznIIXfYnp/vIsWL4GV0n1h4bVTyAG7TBtw==",
   "success": true,
   "projectFilePath": "/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.DataAccess/CenterEnd.DataAccess.csproj",
   "expectedPackageFiles": [
@@ -37,8 +37,10 @@
     "/Users/kahler/.nuget/packages/mono.texttemplating/2.2.1/mono.texttemplating.2.2.1.nupkg.sha512",
     "/Users/kahler/.nuget/packages/npgsql/8.0.2/npgsql.8.0.2.nupkg.sha512",
     "/Users/kahler/.nuget/packages/npgsql.entityframeworkcore.postgresql/8.0.2/npgsql.entityframeworkcore.postgresql.8.0.2.nupkg.sha512",
+    "/Users/kahler/.nuget/packages/protobuf-net/3.2.30/protobuf-net.3.2.30.nupkg.sha512",
+    "/Users/kahler/.nuget/packages/protobuf-net.core/3.2.30/protobuf-net.core.3.2.30.nupkg.sha512",
     "/Users/kahler/.nuget/packages/system.codedom/4.4.0/system.codedom.4.4.0.nupkg.sha512",
-    "/Users/kahler/.nuget/packages/system.collections.immutable/6.0.0/system.collections.immutable.6.0.0.nupkg.sha512",
+    "/Users/kahler/.nuget/packages/system.collections.immutable/7.0.0/system.collections.immutable.7.0.0.nupkg.sha512",
     "/Users/kahler/.nuget/packages/system.composition/6.0.0/system.composition.6.0.0.nupkg.sha512",
     "/Users/kahler/.nuget/packages/system.composition.attributedmodel/6.0.0/system.composition.attributedmodel.6.0.0.nupkg.sha512",
     "/Users/kahler/.nuget/packages/system.composition.convention/6.0.0/system.composition.convention.6.0.0.nupkg.sha512",

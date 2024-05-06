@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace CenterEnd.GatewayApi.DTOs.Mobile.Requests;
+namespace CenterEnd.BusinessLogic.DTOs.Mobile.Requests;
 
 public class GenerateTripRequest
 {

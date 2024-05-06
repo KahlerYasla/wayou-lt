@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "5cvOcLgpn0Cz35J0n9htrqI+pRK9o4dBghiWMTiqtRd0DLtpmx8WPfA7AU/ULot3hIbDX4l/1GN1N9E+bJUCfw==",
+  "dgSpecHash": "Ht3rN1Bfc/N7iGwU58T9drS1qS5fE+BtVATOb4k9xPKydUwf7TiDkqBMqmVisy3Ev8oiFHjMPh7MzADKy9z9WA==",
   "success": true,
   "projectFilePath": "/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.GatewayApi/CenterEnd.GatewayApi.csproj",
   "expectedPackageFiles": [

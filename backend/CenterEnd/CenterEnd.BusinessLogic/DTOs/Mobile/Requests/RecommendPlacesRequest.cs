@@ -1,7 +1,6 @@
 using System.Text.Json.Serialization;
-using CenterEnd.CoreInfrastructure.CommonDTOs;
 
-namespace CenterEnd.GatewayApi.DTOs.Mobile.Requests;
+namespace CenterEnd.BusinessLogic.DTOs.Mobile.Requests;
 
 public class RecommendPlacesRequest
 {
