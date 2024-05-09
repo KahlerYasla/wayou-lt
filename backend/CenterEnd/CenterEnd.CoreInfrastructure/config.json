@@ -2,7 +2,7 @@
     "TokenOptions": {
         "Audience": "wayou_team_3755",
         "Issuer": "wayou_team_3755",
-        "TokenExpiration": 7,
-        "SecretKey": "EPhY83w5on"
+        "TokenExpiration": "7",
+        "SecretKey": "g9rCOY6YwMg9rCOY6YwMg9rCOY6YwMg9rCOY6YwMg9rCOY6YwMg9rCOY6YwMg9rCOY6YwMg9rCOY6YwMg9rCOY6YwMg9rCOY6YwM"
     }
 }

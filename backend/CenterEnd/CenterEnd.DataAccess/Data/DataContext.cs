@@ -1,4 +1,5 @@
 using System.Text.Json;
+using CenterEnd.CoreInfrastructure.Utils;
 using CenterEnd.Database.Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,18 +8,11 @@ namespace CenterEnd.DataAccess.Data;
 public class DataContext : DbContext
 {
     private readonly string? _dbPath;
-    private readonly bool _isStartupProject = false;
-
-    // Default constructor for startup project (GatewayApi). It provides connection string from appsettings.json
-    public DataContext(DbContextOptions<DataContext> options) : base(options)
-    {
-        _isStartupProject = true;
-    }
 
     // Constructor for repositories. It provides connection string from ../configs.json
     public DataContext()
     {
-        var jsonConfigPath = "../configs.json"; // Path to your configs.json file
+        var jsonConfigPath = "../CenterEnd.DataAccess/config.json"; // Path to your configs.json file
         var jsonString = File.ReadAllText(jsonConfigPath);
         var configurations = JsonSerializer.Deserialize<Configurations>(jsonString);
 
@@ -27,7 +21,11 @@ public class DataContext : DbContext
 
         if (_dbPath == null)
         {
-            throw new ArgumentNullException("Connection string is not provided in configs.json");
+            throw new ArgumentNullException("Connection string is not provided in config.json");
+        }
+        else
+        {
+            WConsole.PrintResponse($"Connection string: {_dbPath}");
         }
     }
 
@@ -40,8 +38,9 @@ public class DataContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        if (_isStartupProject) return;
-        optionsBuilder.UseNpgsql($"Data Source={_dbPath}");
+        WConsole.PrintFunction("OnConfiguring");
+
+        optionsBuilder.UseNpgsql(_dbPath);
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -19,6 +19,14 @@ public class AuthManager(IGenericRepository<User> userRepository) : IAuthService
             Password = PasswordHasher.HashPassword(request.Password)
         };
 
+        if (await _userRepository.SingleOrDefaultAsync(u => u.Name == user.Name) != null)
+        {
+            return new RegisterResponse
+            {
+                Token = "User already exists"
+            };
+        }
+
         await _userRepository.AddAsync(user);
         await _userRepository.SaveChangesAsync();
 

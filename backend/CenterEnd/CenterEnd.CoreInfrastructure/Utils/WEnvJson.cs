@@ -8,12 +8,13 @@ namespace CenterEnd.CoreInfrastructure.Utils;
 /// </summary>
 public static class WEnvJson
 {
-    public static string? GetEnvJson(string key, string path = "../config.json")
+    public static string? GetEnvJson(string key, string path = "../CenterEnd.CoreInfrastructure/config.json", string section = "TokenOptions")
     {
         string configFile = File.ReadAllText(path);
         JsonDocument jsonDocument = JsonDocument.Parse(configFile);
         JsonElement root = jsonDocument.RootElement;
-        JsonElement value = root.GetProperty(key);
+        JsonElement sectionElement = root.GetProperty(section);
+        JsonElement value = sectionElement.GetProperty(key);
         return value.GetString() ?? null;
     }
 }

@@ -12,7 +12,7 @@ public abstract class BaseEntity
 
     public BaseEntity()
     {
-        CreatedDate = DateTime.Now;
+        CreatedDate = DateTime.Now.ToUniversalTime();
         Status = DataStatus.Active;
     }
 }

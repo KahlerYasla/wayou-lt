@@ -13,9 +13,13 @@ public static class PasswordHasher
     public static string HashPassword(string password)
     {
         byte[] salt;
+#pragma warning disable SYSLIB0023 // Type or member is obsolete
         new RNGCryptoServiceProvider().GetBytes(salt = new byte[SaltSize]);
+#pragma warning restore SYSLIB0023 // Type or member is obsolete
 
+#pragma warning disable SYSLIB0041 // Type or member is obsolete
         var pbkdf2 = new Rfc2898DeriveBytes(password, salt, Iterations);
+#pragma warning restore SYSLIB0041 // Type or member is obsolete
         byte[] hash = pbkdf2.GetBytes(HashSize);
 
         byte[] hashBytes = new byte[SaltSize + HashSize];
@@ -33,7 +37,9 @@ public static class PasswordHasher
         byte[] salt = new byte[SaltSize];
         Array.Copy(hashBytes, 0, salt, 0, SaltSize);
 
+#pragma warning disable SYSLIB0041 // Type or member is obsolete
         var pbkdf2 = new Rfc2898DeriveBytes(password, salt, Iterations);
+#pragma warning restore SYSLIB0041 // Type or member is obsolete
         byte[] hash = pbkdf2.GetBytes(HashSize);
 
         for (int i = 0; i < HashSize; i++)

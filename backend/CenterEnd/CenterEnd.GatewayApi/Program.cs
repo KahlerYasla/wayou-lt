@@ -8,6 +8,7 @@ using CenterEnd.GatewayApi.Configurations;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 
 using CenterEnd.CoreInfrastructure.Utils;
 
@@ -29,13 +30,16 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
         builder.RegisterType<HttpContextAccessor>().As<IHttpContextAccessor>().SingleInstance();
     });
 
-builder.Services.AddDbContext<DataContext>(options =>
+// Add JWT Authentication to swagger
+builder.Services.AddSwaggerGen(options =>
 {
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
+    options.EnableAnnotations();
+    options.SwaggerDoc("v1", new OpenApiInfo { Title = "wayou/api", Version = "v1" });
+    options.OperationFilter<AuthorizeCheckOperationFilter>();
 });
 
 // Add JWT Authentication
-var tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<TokenOptions>()!;
+var tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
     options.TokenValidationParameters = new TokenValidationParameters
@@ -43,10 +47,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         ValidateIssuer = true,
         ValidateAudience = true,
         ValidateLifetime = true,
-        ValidIssuer = tokenOptions.Issuer,
-        ValidAudience = tokenOptions.Audience,
+        ValidIssuer = tokenOptions?.Issuer,
+        ValidAudience = tokenOptions?.Audience,
         ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenOptions.SecurityKey)),
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenOptions!.SecretKey)),
     };
 });
 
@@ -63,6 +67,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.MapControllers();
 
 WConsole.PrintNormal("Wayou Let's Goooooo mrrrrr 🦔...");
 

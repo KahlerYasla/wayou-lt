@@ -32,7 +32,7 @@ public static class JwtTokenGenerator
             Expires = DateTime.UtcNow + TokenExpiration,
             Audience = "temp",
             Issuer = "temp",
-            SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.Sha256)
+            SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
         };
 
         var token = tokenHandler.CreateToken(tokenDescriptor);
