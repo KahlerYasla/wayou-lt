@@ -33,10 +33,10 @@ public class AuthController(IAuthService authService) : ControllerBase
     //     return Ok(response);
     // }
 
-    [HttpPost("revoke-token")]
-    public async Task<IActionResult> RevokeTokenAsync(RevokeTokenRequest request)
-    {
-        var response = await _authService.RevokeTokenAsync(request);
-        return Ok(response);
-    }
+    // [HttpPost("revoke-token")]
+    // public async Task<IActionResult> RevokeTokenAsync(RevokeTokenRequest request)
+    // {
+    //     var response = await _authService.RevokeTokenAsync(request);
+    //     return Ok(response);
+    // }
 }
