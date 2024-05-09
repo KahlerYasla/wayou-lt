@@ -1,37 +1,40 @@
+using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using CenterEnd.Database.Entities.Abstract;
 
-namespace CenterEnd.DataAccess.Generic;
-
-public interface IGenericRepository<T> where T : BaseEntity
+namespace CenterEnd.DataAccess.Generic
 {
-    // Create
-    void Add(T entity);
-    void AddRange(IEnumerable<T> entities);
+    public interface IGenericRepository<T> where T : BaseEntity
+    {
+        // Create
+        Task AddAsync(T entity);
+        Task AddRangeAsync(IEnumerable<T> entities);
 
-    // Read
-    T? GetById(int id);
-    IEnumerable<T> GetAll();
-    IEnumerable<T> Find(Expression<Func<T, bool>> predicate);
+        // Read
+        Task<T?> GetByIdAsync(int id);
+        Task<IEnumerable<T>> GetAllAsync();
+        Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate);
 
-    // Update
-    void Update(T entity);
-    void UpdateRange(IEnumerable<T> entities);
+        // Update
+        Task UpdateAsync(T entity);
+        Task UpdateRangeAsync(IEnumerable<T> entities);
 
-    // Delete
-    void Remove(T entity);
-    void RemoveRange(IEnumerable<T> entities);
+        // Delete
+        Task RemoveAsync(T entity);
+        Task RemoveRangeAsync(IEnumerable<T> entities);
 
-    // Additional functions
-    int Count();
-    bool Any(Expression<Func<T, bool>> predicate);
-    T? FirstOrDefault(Expression<Func<T, bool>> predicate);
-    T? SingleOrDefault(Expression<Func<T, bool>> predicate);
+        // Additional functions
+        Task<int> CountAsync();
+        Task<bool> AnyAsync(Expression<Func<T, bool>> predicate);
+        Task<T?> FirstOrDefaultAsync(Expression<Func<T, bool>> predicate);
+        Task<T?> SingleOrDefaultAsync(Expression<Func<T, bool>> predicate);
 
-    // Save changes
-    void SaveChanges();
+        // Save changes
+        Task SaveChangesAsync();
 
-    // Dispose
-    void Dispose();
+        // Dispose
+        void Dispose();
+    }
 }
-

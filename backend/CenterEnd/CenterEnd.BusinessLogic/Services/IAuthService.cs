@@ -1,9 +1,11 @@
+using CenterEnd.BusinessLogic.DTOs.Mobile.Requests;
+using CenterEnd.BusinessLogic.DTOs.Mobile.Responses;
+
 namespace CenterEnd.BusinessLogic.Services;
 
 public interface IAuthService
 {
-    Task<AuthResponse> RegisterAsync(RegisterRequest request);
-    Task<AuthResponse> LoginAsync(LoginRequest request);
-    Task<AuthResponse> RefreshTokenAsync(RefreshTokenRequest request);
-    Task<AuthResponse> RevokeTokenAsync(RevokeTokenRequest request);
+    Task<RegisterResponse> RegisterAsync(RegisterRequest request);
+    Task<LoginResponse> LoginAsync(LoginRequest request);
+    Task<RevokeTokenResponse> RevokeTokenAsync(RevokeTokenRequest request);
 }

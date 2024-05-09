@@ -1,96 +1,104 @@
+using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using CenterEnd.DataAccess.Data;
 using CenterEnd.DataAccess.Generic;
 using CenterEnd.Database.Entities.Abstract;
 
-namespace CenterEnd.DataAccess.Repositories;
-
-public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
+namespace CenterEnd.DataAccess.Repositories
 {
-    private readonly DataContext _context;
-
-    public GenericRepository()
+    public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     {
-        _context = new DataContext();
-    }
+        private readonly DataContext _context;
 
-    // Create
-    public void Add(T entity)
-    {
-        _context.Set<T>().Add(entity);
-    }
+        public GenericRepository()
+        {
+            _context = new DataContext();
+        }
 
-    public void AddRange(IEnumerable<T> entities)
-    {
-        _context.Set<T>().AddRange(entities);
-    }
+        // Create
+        public async Task AddAsync(T entity)
+        {
+            await _context.Set<T>().AddAsync(entity);
+        }
 
-    // Read
-    public T? GetById(int id)
-    {
-        return _context.Set<T>().Find(id) ?? null;
-    }
+        public async Task AddRangeAsync(IEnumerable<T> entities)
+        {
+            await _context.Set<T>().AddRangeAsync(entities);
+        }
 
-    public IEnumerable<T> GetAll()
-    {
-        return [.. _context.Set<T>()];
-    }
+        // Read
+        public async Task<T?> GetByIdAsync(int id)
+        {
+            return await _context.Set<T>().FindAsync(id);
+        }
 
-    public IEnumerable<T> Find(Expression<Func<T, bool>> predicate)
-    {
-        return _context.Set<T>().Where(predicate);
-    }
+        public async Task<IEnumerable<T>> GetAllAsync()
+        {
+            return await Task.FromResult(_context.Set<T>());
+        }
 
-    // Update
-    public void Update(T entity)
-    {
-        _context.Set<T>().Update(entity);
-    }
+        public async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate)
+        {
+            return await Task.FromResult(_context.Set<T>().Where(predicate));
+        }
 
-    public void UpdateRange(IEnumerable<T> entities)
-    {
-        _context.Set<T>().UpdateRange(entities);
-    }
+        // Update
+        public async Task UpdateAsync(T entity)
+        {
+            _context.Set<T>().Update(entity);
+            await Task.CompletedTask;
+        }
 
-    // Delete
-    public void Remove(T entity)
-    {
-        _context.Set<T>().Remove(entity);
-    }
+        public async Task UpdateRangeAsync(IEnumerable<T> entities)
+        {
+            _context.Set<T>().UpdateRange(entities);
+            await Task.CompletedTask;
+        }
 
-    public void RemoveRange(IEnumerable<T> entities)
-    {
-        _context.Set<T>().RemoveRange(entities);
-    }
+        // Delete
+        public async Task RemoveAsync(T entity)
+        {
+            _context.Set<T>().Remove(entity);
+            await Task.CompletedTask;
+        }
 
-    // Additional functions
-    public int Count()
-    {
-        return _context.Set<T>().Count();
-    }
+        public async Task RemoveRangeAsync(IEnumerable<T> entities)
+        {
+            _context.Set<T>().RemoveRange(entities);
+            await Task.CompletedTask;
+        }
 
-    public bool Any(Expression<Func<T, bool>> predicate)
-    {
-        return _context.Set<T>().Any(predicate);
-    }
+        // Additional functions
+        public async Task<int> CountAsync()
+        {
+            return await Task.FromResult(_context.Set<T>().Count());
+        }
 
-    public T? FirstOrDefault(Expression<Func<T, bool>> predicate)
-    {
-        return _context.Set<T>().FirstOrDefault(predicate);
-    }
+        public async Task<bool> AnyAsync(Expression<Func<T, bool>> predicate)
+        {
+            return await Task.FromResult(_context.Set<T>().Any(predicate));
+        }
 
-    public T? SingleOrDefault(Expression<Func<T, bool>> predicate)
-    {
-        return _context.Set<T>().SingleOrDefault(predicate);
-    }
+        public async Task<T?> FirstOrDefaultAsync(Expression<Func<T, bool>> predicate)
+        {
+            return await Task.FromResult(_context.Set<T>().FirstOrDefault(predicate));
+        }
 
-    public void SaveChanges()
-    {
-        _context.SaveChanges();
-    }
+        public async Task<T?> SingleOrDefaultAsync(Expression<Func<T, bool>> predicate)
+        {
+            return await Task.FromResult(_context.Set<T>().SingleOrDefault(predicate));
+        }
 
-    public void Dispose()
-    {
-        _context.Dispose();
+        public async Task SaveChangesAsync()
+        {
+            await _context.SaveChangesAsync();
+        }
+
+        public void Dispose()
+        {
+            _context.Dispose();
+        }
     }
 }

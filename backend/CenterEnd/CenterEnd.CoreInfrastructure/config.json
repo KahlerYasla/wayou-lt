@@ -1,0 +1,8 @@
+{
+    "TokenOptions": {
+        "Audience": "wayou_team_3755",
+        "Issuer": "wayou_team_3755",
+        "TokenExpiration": 7,
+        "SecretKey": "EPhY83w5on"
+    }
+}

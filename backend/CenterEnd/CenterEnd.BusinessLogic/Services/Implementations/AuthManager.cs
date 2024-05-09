@@ -1,3 +1,6 @@
+using CenterEnd.BusinessLogic.DTOs.Mobile.Requests;
+using CenterEnd.BusinessLogic.DTOs.Mobile.Responses;
+using CenterEnd.CoreInfrastructure.Tools;
 using CenterEnd.DataAccess.Generic;
 using CenterEnd.Database.Entities.Concrete;
 
@@ -7,25 +10,21 @@ public class AuthManager(IGenericRepository<User> userRepository) : IAuthService
 {
     private readonly IGenericRepository<User> _userRepository = userRepository;
 
-    public async Task<AuthResponse> RegisterAsync(RegisterRequest request)
+    public async Task<RegisterResponse> RegisterAsync(RegisterRequest request)
     {
-        bool isUserExists = await _userRepository.Any(u => u.Email == request.Email);
-        if (isUserExists)
+        var user = new User
         {
-            return new AuthResponse { Message = "User with this email already exists" };
-        }
-
-        var newUser = new User
-        {
-            Name = request.Name,
+            Name = request.Username,
             Email = request.Email,
-            Password = BCrypt.Net.BCrypt.HashPassword(request.Password)
+            Password = PasswordHasher.HashPassword(request.Password)
         };
 
-        _userRepository.Add(newUser);
+        await _userRepository.Add(user);
+        await _userRepository.SaveChanges();
 
-        _userRepository.SaveChanges();
-
-        return new AuthResponse { Message = "User registered successfully" };
+        return new RegisterResponse
+        {
+            Token = JwtTokenGenerator.GenerateToken(user.Name, user.Email)
+        };
     }
 }

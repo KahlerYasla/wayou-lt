@@ -1,6 +1,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using CenterEnd.CoreInfrastructure.Utils;
 using Microsoft.IdentityModel.Tokens;
 
 namespace CenterEnd.CoreInfrastructure.Tools;
@@ -9,11 +10,14 @@ public static class JwtTokenGenerator
 {
     static TimeSpan TokenExpiration;
 
-    public static string GenerateToken(string username, string email, string secretRaw, TimeSpan tokenExpiration)
+    public static string GenerateToken(string username, string email)
     {
+        var secretRaw = WEnvJson.GetEnvJson("SecretKey")!;
+
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.UTF8.GetBytes(secretRaw);
-        TokenExpiration = tokenExpiration;
+
+        TokenExpiration = TimeSpan.FromDays(int.Parse(WEnvJson.GetEnvJson("TokenExpiration")!));
 
         var claims = new List<Claim>
             {
@@ -26,8 +30,8 @@ public static class JwtTokenGenerator
         {
             Subject = new ClaimsIdentity(claims),
             Expires = DateTime.UtcNow + TokenExpiration,
-            Audience = "berkay_aslan",
-            Issuer = "berkay_aslan",
+            Audience = "temp",
+            Issuer = "temp",
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.Sha256)
         };
 

@@ -8,7 +8,7 @@ public class User : BaseEntity
     public required string Email { get; set; }
     public required string Password { get; set; }
     public List<Deck>? OwnedDecks { get; set; }
-    public required UserInteraction UserInteraction { get; set; }
+    public UserInteraction? UserInteraction { get; set; }
 
     public User()
     {

@@ -1,14 +1,17 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using CenterEnd.CoreInfrastructure.Utils;
 using Microsoft.IdentityModel.Tokens;
 
 namespace CenterEnd.CoreInfrastructure.Tools;
 
 public static class JwtTokenResolver
 {
-    public static ClaimsPrincipal? ResolveToken(string token, string secretRaw)
+    public static ClaimsPrincipal? ResolveToken(string token)
     {
+        string secretRaw = WEnvJson.GetEnvJson("SecretKey")!;
+
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.UTF8.GetBytes(secretRaw);
 

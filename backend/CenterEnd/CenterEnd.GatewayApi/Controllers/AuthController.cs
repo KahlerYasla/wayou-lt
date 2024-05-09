@@ -26,12 +26,12 @@ public class AuthController(IAuthService authService) : ControllerBase
         return Ok(response);
     }
 
-    [HttpPost("refresh-token")]
-    public async Task<IActionResult> RefreshTokenAsync(RefreshTokenRequest request)
-    {
-        var response = await _authService.RefreshTokenAsync(request);
-        return Ok(response);
-    }
+    // [HttpPost("refresh-token")]
+    // public async Task<IActionResult> RefreshTokenAsync(RefreshTokenRequest request)
+    // {
+    //     var response = await _authService.RefreshTokenAsync(request);
+    //     return Ok(response);
+    // }
 
     [HttpPost("revoke-token")]
     public async Task<IActionResult> RevokeTokenAsync(RevokeTokenRequest request)
