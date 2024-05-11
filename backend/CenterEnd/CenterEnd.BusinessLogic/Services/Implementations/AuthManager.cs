@@ -14,12 +14,12 @@ public class AuthManager(IGenericRepository<User> userRepository) : IAuthService
     {
         var user = new User
         {
-            Name = request.Username,
+            UserName = request.Username,
             Email = request.Email,
             Password = PasswordHasher.HashPassword(request.Password)
         };
 
-        if (await _userRepository.SingleOrDefaultAsync(u => u.Name == user.Name) != null)
+        if (await _userRepository.SingleOrDefaultAsync(u => u.UserName == user.UserName) != null)
         {
             return new RegisterResponse
             {
@@ -32,13 +32,13 @@ public class AuthManager(IGenericRepository<User> userRepository) : IAuthService
 
         return new RegisterResponse
         {
-            Token = JwtTokenGenerator.GenerateToken(user.Name, user.Email)
+            Token = JwtTokenGenerator.GenerateToken(user.UserName, user.Email)
         };
     }
 
     public async Task<LoginResponse> LoginAsync(LoginRequest request)
     {
-        User? user = await _userRepository.SingleOrDefaultAsync(u => u.Name == request.Username) ?? null;
+        User? user = await _userRepository.SingleOrDefaultAsync(u => u.UserName == request.Username) ?? null;
 
         if (user == null)
         {
@@ -58,7 +58,7 @@ public class AuthManager(IGenericRepository<User> userRepository) : IAuthService
 
         return new LoginResponse
         {
-            Token = JwtTokenGenerator.GenerateToken(user.Name, user.Email)
+            Token = JwtTokenGenerator.GenerateToken(user.UserName, user.Email)
         };
     }
 
