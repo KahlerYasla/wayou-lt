@@ -1,0 +1,2 @@
+- CenterEnd.GatewayApi % dotnet ef migrations add Initial --project ../CenterEnd.DataAccess --startup-project ./
+- CenterEnd.GatewayApi % dotnet ef database update --project ../CenterEnd.DataAccess

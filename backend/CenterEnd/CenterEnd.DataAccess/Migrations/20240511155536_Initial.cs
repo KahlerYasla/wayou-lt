@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
@@ -68,10 +69,10 @@ namespace CenterEnd.DataAccess.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: false),
+                    UserName = table.Column<string>(type: "text", nullable: false),
                     Email = table.Column<string>(type: "text", nullable: false),
                     Password = table.Column<string>(type: "text", nullable: false),
-                    UserInteractionId = table.Column<int>(type: "integer", nullable: false),
+                    UserInteractionId = table.Column<int>(type: "integer", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     DeletedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
@@ -84,8 +85,7 @@ namespace CenterEnd.DataAccess.Migrations
                         name: "FK_Users_UserInteractions_UserInteractionId",
                         column: x => x.UserInteractionId,
                         principalTable: "UserInteractions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -113,6 +113,33 @@ namespace CenterEnd.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Trips",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    TripName = table.Column<string>(type: "text", nullable: false),
+                    OwnerUserId = table.Column<int>(type: "integer", nullable: false),
+                    TripDescription = table.Column<string>(type: "text", nullable: true),
+                    PlaceSeperatorsByDay = table.Column<int[]>(type: "integer[]", nullable: true),
+                    TextByDay = table.Column<string[]>(type: "text[]", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    DeletedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    Status = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Trips", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Trips_Users_OwnerUserId",
+                        column: x => x.OwnerUserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Places",
                 columns: table => new
                 {
@@ -127,6 +154,7 @@ namespace CenterEnd.DataAccess.Migrations
                     Rating = table.Column<float>(type: "real", nullable: true),
                     TerritoryId = table.Column<int>(type: "integer", nullable: false),
                     DeckId = table.Column<int>(type: "integer", nullable: true),
+                    TripId = table.Column<int>(type: "integer", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     DeletedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
@@ -146,6 +174,11 @@ namespace CenterEnd.DataAccess.Migrations
                         principalTable: "Territories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Places_Trips_TripId",
+                        column: x => x.TripId,
+                        principalTable: "Trips",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -246,9 +279,19 @@ namespace CenterEnd.DataAccess.Migrations
                 column: "TerritoryId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Places_TripId",
+                table: "Places",
+                column: "TripId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PlaceTag_TagsId",
                 table: "PlaceTag",
                 column: "TagsId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Trips_OwnerUserId",
+                table: "Trips",
+                column: "OwnerUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_UserInteractionId",
@@ -279,6 +322,9 @@ namespace CenterEnd.DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "Territories");
+
+            migrationBuilder.DropTable(
+                name: "Trips");
 
             migrationBuilder.DropTable(
                 name: "Users");

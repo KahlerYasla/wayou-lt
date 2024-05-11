@@ -102,6 +102,9 @@ namespace CenterEnd.DataAccess.Migrations
                     b.Property<int>("TerritoryId")
                         .HasColumnType("integer");
 
+                    b.Property<int?>("TripId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Website")
                         .HasColumnType("text");
 
@@ -110,6 +113,8 @@ namespace CenterEnd.DataAccess.Migrations
                     b.HasIndex("DeckId");
 
                     b.HasIndex("TerritoryId");
+
+                    b.HasIndex("TripId");
 
                     b.ToTable("Places");
                 });
@@ -176,6 +181,49 @@ namespace CenterEnd.DataAccess.Migrations
                     b.ToTable("Territories");
                 });
 
+            modelBuilder.Entity("CenterEnd.Database.Entities.Concrete.Trip", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("OwnerUserId")
+                        .HasColumnType("integer");
+
+                    b.Property<int[]>("PlaceSeperatorsByDay")
+                        .HasColumnType("integer[]");
+
+                    b.Property<int?>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<string[]>("TextByDay")
+                        .HasColumnType("text[]");
+
+                    b.Property<string>("TripDescription")
+                        .HasColumnType("text");
+
+                    b.Property<string>("TripName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OwnerUserId");
+
+                    b.ToTable("Trips");
+                });
+
             modelBuilder.Entity("CenterEnd.Database.Entities.Concrete.User", b =>
                 {
                     b.Property<int>("Id")
@@ -197,10 +245,6 @@ namespace CenterEnd.DataAccess.Migrations
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("text");
@@ -208,8 +252,12 @@ namespace CenterEnd.DataAccess.Migrations
                     b.Property<int?>("Status")
                         .HasColumnType("integer");
 
-                    b.Property<int>("UserInteractionId")
+                    b.Property<int?>("UserInteractionId")
                         .HasColumnType("integer");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -311,16 +359,29 @@ namespace CenterEnd.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("CenterEnd.Database.Entities.Concrete.Trip", null)
+                        .WithMany("Places")
+                        .HasForeignKey("TripId");
+
                     b.Navigation("Territory");
+                });
+
+            modelBuilder.Entity("CenterEnd.Database.Entities.Concrete.Trip", b =>
+                {
+                    b.HasOne("CenterEnd.Database.Entities.Concrete.User", "OwnerUser")
+                        .WithMany("OwnedTrips")
+                        .HasForeignKey("OwnerUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("OwnerUser");
                 });
 
             modelBuilder.Entity("CenterEnd.Database.Entities.Concrete.User", b =>
                 {
                     b.HasOne("CenterEnd.Database.Entities.Concrete.UserInteraction", "UserInteraction")
                         .WithMany()
-                        .HasForeignKey("UserInteractionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserInteractionId");
 
                     b.Navigation("UserInteraction");
                 });
@@ -375,9 +436,16 @@ namespace CenterEnd.DataAccess.Migrations
                     b.Navigation("PlacesOfDeck");
                 });
 
+            modelBuilder.Entity("CenterEnd.Database.Entities.Concrete.Trip", b =>
+                {
+                    b.Navigation("Places");
+                });
+
             modelBuilder.Entity("CenterEnd.Database.Entities.Concrete.User", b =>
                 {
                     b.Navigation("OwnedDecks");
+
+                    b.Navigation("OwnedTrips");
                 });
 #pragma warning restore 612, 618
         }
