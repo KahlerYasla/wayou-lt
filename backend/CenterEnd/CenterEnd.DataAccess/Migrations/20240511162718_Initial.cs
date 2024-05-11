@@ -154,7 +154,6 @@ namespace CenterEnd.DataAccess.Migrations
                     Rating = table.Column<float>(type: "real", nullable: true),
                     TerritoryId = table.Column<int>(type: "integer", nullable: false),
                     DeckId = table.Column<int>(type: "integer", nullable: true),
-                    TripId = table.Column<int>(type: "integer", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     DeletedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
@@ -174,11 +173,6 @@ namespace CenterEnd.DataAccess.Migrations
                         principalTable: "Territories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Places_Trips_TripId",
-                        column: x => x.TripId,
-                        principalTable: "Trips",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -253,6 +247,30 @@ namespace CenterEnd.DataAccess.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "PlaceTrip",
+                columns: table => new
+                {
+                    PlacesId = table.Column<int>(type: "integer", nullable: false),
+                    TripsId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PlaceTrip", x => new { x.PlacesId, x.TripsId });
+                    table.ForeignKey(
+                        name: "FK_PlaceTrip_Places_PlacesId",
+                        column: x => x.PlacesId,
+                        principalTable: "Places",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PlaceTrip_Trips_TripsId",
+                        column: x => x.TripsId,
+                        principalTable: "Trips",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Decks_OwnerUserId",
                 table: "Decks",
@@ -279,14 +297,14 @@ namespace CenterEnd.DataAccess.Migrations
                 column: "TerritoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Places_TripId",
-                table: "Places",
-                column: "TripId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_PlaceTag_TagsId",
                 table: "PlaceTag",
                 column: "TagsId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PlaceTrip_TripsId",
+                table: "PlaceTrip",
+                column: "TripsId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Trips_OwnerUserId",
@@ -312,19 +330,22 @@ namespace CenterEnd.DataAccess.Migrations
                 name: "PlaceTag");
 
             migrationBuilder.DropTable(
-                name: "Places");
+                name: "PlaceTrip");
 
             migrationBuilder.DropTable(
                 name: "Tags");
+
+            migrationBuilder.DropTable(
+                name: "Places");
+
+            migrationBuilder.DropTable(
+                name: "Trips");
 
             migrationBuilder.DropTable(
                 name: "Decks");
 
             migrationBuilder.DropTable(
                 name: "Territories");
-
-            migrationBuilder.DropTable(
-                name: "Trips");
 
             migrationBuilder.DropTable(
                 name: "Users");

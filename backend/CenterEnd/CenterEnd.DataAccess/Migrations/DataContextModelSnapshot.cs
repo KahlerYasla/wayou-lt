@@ -102,9 +102,6 @@ namespace CenterEnd.DataAccess.Migrations
                     b.Property<int>("TerritoryId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("TripId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Website")
                         .HasColumnType("text");
 
@@ -113,8 +110,6 @@ namespace CenterEnd.DataAccess.Migrations
                     b.HasIndex("DeckId");
 
                     b.HasIndex("TerritoryId");
-
-                    b.HasIndex("TripId");
 
                     b.ToTable("Places");
                 });
@@ -306,6 +301,21 @@ namespace CenterEnd.DataAccess.Migrations
                     b.ToTable("PlaceTag");
                 });
 
+            modelBuilder.Entity("PlaceTrip", b =>
+                {
+                    b.Property<int>("PlacesId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TripsId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("PlacesId", "TripsId");
+
+                    b.HasIndex("TripsId");
+
+                    b.ToTable("PlaceTrip");
+                });
+
             modelBuilder.Entity("PlaceUserInteraction", b =>
                 {
                     b.Property<int>("LikedPlacesId")
@@ -359,10 +369,6 @@ namespace CenterEnd.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CenterEnd.Database.Entities.Concrete.Trip", null)
-                        .WithMany("Places")
-                        .HasForeignKey("TripId");
-
                     b.Navigation("Territory");
                 });
 
@@ -401,6 +407,21 @@ namespace CenterEnd.DataAccess.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("PlaceTrip", b =>
+                {
+                    b.HasOne("CenterEnd.Database.Entities.Concrete.Place", null)
+                        .WithMany()
+                        .HasForeignKey("PlacesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CenterEnd.Database.Entities.Concrete.Trip", null)
+                        .WithMany()
+                        .HasForeignKey("TripsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("PlaceUserInteraction", b =>
                 {
                     b.HasOne("CenterEnd.Database.Entities.Concrete.Place", null)
@@ -434,11 +455,6 @@ namespace CenterEnd.DataAccess.Migrations
             modelBuilder.Entity("CenterEnd.Database.Entities.Concrete.Deck", b =>
                 {
                     b.Navigation("PlacesOfDeck");
-                });
-
-            modelBuilder.Entity("CenterEnd.Database.Entities.Concrete.Trip", b =>
-                {
-                    b.Navigation("Places");
                 });
 
             modelBuilder.Entity("CenterEnd.Database.Entities.Concrete.User", b =>
