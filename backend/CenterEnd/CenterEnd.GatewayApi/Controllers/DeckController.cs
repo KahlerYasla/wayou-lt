@@ -32,17 +32,17 @@ public class DeckController(IDeckService deckService) : ControllerBase
         return Ok(response);
     }
 
-    [HttpGet("get-all")]
-    public async Task<IActionResult> GetAllDecksAsync()
+    [HttpGet("get-all-by-user-id")]
+    public async Task<IActionResult> GetAllDecksByUserIdAsync(int userId)
     {
-        var response = await _deckService.GetAllDecksAsync();
+        var response = await _deckService.GetAllDecksByUserIdAsync(userId);
         return Ok(response);
     }
 
     [HttpGet("get-by-id")]
-    public async Task<IActionResult> GetDeckByIdAsync(Guid id)
+    public async Task<IActionResult> GetDeckByIdAsync(int deckId)
     {
-        var response = await _deckService.GetDeckByIdAsync(id);
+        var response = await _deckService.GetDeckByIdAsync(deckId);
         return Ok(response);
     }
 }

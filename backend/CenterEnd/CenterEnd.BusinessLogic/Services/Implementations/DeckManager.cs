@@ -105,32 +105,54 @@ public class DeckManager(IGenericRepository<Deck> deckRepository, IGenericReposi
             };
         }
 
-        _deckRepository.Remove(deck);
+        await _deckRepository.RemoveAsync(deck);
         await _deckRepository.SaveChangesAsync();
 
         return new DeleteDeckResponse
         {
-            Deck = deck
+            Success = true,
+            Message = "Deck has been deleted"
         };
     }
 
-    public async Task<GetAllDecksResponse> GetAllDecksAsync()
+    public async Task<GetAllDecksByUserIdResponse> GetAllDecksByUserIdAsync(int userId)
     {
-        var decks = await _deckRepository.GetAllAsync();
+        User? user = await _userRepository.SingleOrDefaultAsync(u => u.Id == userId);
 
-        return new GetAllDecksResponse
+        if (user == null)
         {
-            Decks = decks
+            return new GetAllDecksByUserIdResponse
+            {
+                Success = false,
+                Message = "The userId can not be matched. Send me a vaild userId"
+            };
+        }
+
+        List<Deck> decks = (await _deckRepository.FindAsync(d => d.OwnerUser == user)).ToList();
+
+        if (decks == null)
+        {
+            return new GetAllDecksByUserIdResponse
+            {
+                Success = false,
+                Message = "The user has no decks initialized in the database. It is a server error"
+            };
+        }
+
+        return new GetAllDecksByUserIdResponse
+        {
+            DeckList = decks,
+            Success = true
         };
     }
 
-    public async Task<GetDeckByIdResponse> GetDeckByIdAsync(Guid id)
+    public async Task<GetDeckByIdResponse> GetDeckByIdAsync(int deckId)
     {
-        var deck = await _deckRepository.SingleOrDefaultAsync(d => d.Id == id);
+        var deck = await _deckRepository.SingleOrDefaultAsync(d => d.Id == deckId);
 
         return new GetDeckByIdResponse
         {
-            Deck = deck
+            RequestedDeck = deck,
         };
     }
 }
