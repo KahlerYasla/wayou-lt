@@ -8,6 +8,4 @@
 ## Request-Response Flow
 ![request-response](./request-response.drawio.svg)
 
-Bist du ein Faschist? cause I am
-
 </body>
