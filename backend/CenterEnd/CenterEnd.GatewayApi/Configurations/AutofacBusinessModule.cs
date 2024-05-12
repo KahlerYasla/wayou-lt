@@ -31,6 +31,9 @@ public class AutofacBusinessModule : Module
         builder.RegisterType<UserInteractionManager>().As<IUserInteractionService>();
         builder.RegisterType<GenericRepository<UserInteraction>>().As<IGenericRepository<UserInteraction>>();
 
+        builder.RegisterType<TripManager>().As<ITripService>();
+        builder.RegisterType<GenericRepository<Trip>>().As<IGenericRepository<Trip>>();
+
         // Registering the options
         builder.RegisterType<ConfigureSwaggerOptions>().As<IConfigureOptions<SwaggerGenOptions>>();
     }
