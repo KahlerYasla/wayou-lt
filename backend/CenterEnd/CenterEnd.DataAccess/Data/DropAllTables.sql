@@ -1,3 +1,12 @@
-DROP TABLE "Decks", "LikedPlaces", "PassedPlaces", "PlaceTag",
-	"Places", "Tags", "Territories", "Trips", "UserInteractions", "Users",
-	"__EFMigrationsHistory" CASCADE;
+DROP TABLE "Decks",
+"LikedPlaces",
+"PassedPlaces",
+"PlaceTag",
+"Places",
+"Tags",
+"Territories",
+"Trips",
+"UserInteractions",
+"Users",
+"PlaceTrip",
+"__EFMigrationsHistory" CASCADE;

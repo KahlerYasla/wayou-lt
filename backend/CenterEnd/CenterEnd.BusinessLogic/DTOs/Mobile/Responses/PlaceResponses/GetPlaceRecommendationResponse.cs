@@ -3,8 +3,8 @@ using CenterEnd.Database.Entities.Concrete;
 
 namespace CenterEnd.BusinessLogic.DTOs.Mobile.Responses;
 
-public class RecommendPlacesResponse
+public class GetPlaceRecommendationResponse
 {
-    [JsonPropertyName("places")]
+    [JsonPropertyName("placeList")]
     public List<Place>? Places { get; set; }
 }

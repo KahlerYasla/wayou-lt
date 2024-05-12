@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CenterEnd.DataAccess.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240511162718_Initial")]
-    partial class Initial
+    [Migration("20240512162413_0")]
+    partial class _0
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -193,6 +193,12 @@ namespace CenterEnd.DataAccess.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("text");
+
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("timestamp with time zone");
 
@@ -201,6 +207,9 @@ namespace CenterEnd.DataAccess.Migrations
 
                     b.Property<int[]>("PlaceSeperatorsByDay")
                         .HasColumnType("integer[]");
+
+                    b.Property<DateTime?>("StartDate")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<int?>("Status")
                         .HasColumnType("integer");
