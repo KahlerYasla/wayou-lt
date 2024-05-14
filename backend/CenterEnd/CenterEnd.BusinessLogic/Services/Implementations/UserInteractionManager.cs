@@ -1,3 +1,4 @@
+using CenterEnd.BusinessLogic.DTOs;
 using CenterEnd.BusinessLogic.DTOs.Mobile.Requests;
 using CenterEnd.BusinessLogic.DTOs.Mobile.Responses;
 using CenterEnd.DataAccess.Generic;
@@ -14,19 +15,12 @@ public class UserInteractionManager(
     private readonly IGenericRepository<UserInteraction> _userInteractionRepository = userInteractionRepository;
     private readonly IGenericRepository<User> _userRepository = userRepository;
     private readonly IGenericRepository<Place> _placeRepository = placeRepository;
-
-    public async Task<UserInteractionResponse> UpdateOrCreateUserInteractionAsync(UserInteractionRequest request)
+    //=======================================================================================================
+    public async Task<BaseResponse<UserInteractionResponse>> UpdateOrCreateUserInteractionAsync(UserInteractionRequest request)
     {
         User? user = await _userRepository.GetByIdAsync(request.UserId);
 
-        if (user == null)
-        {
-            return new UserInteractionResponse
-            {
-                Success = false,
-                Message = "User not found"
-            };
-        }
+        if (user == null) return new BaseResponse<UserInteractionResponse>(success: false, message: "The userId can not be matched. Send me a vaild userId", data: null);
 
         UserInteraction? userInteraction = user.UserInteraction;
 
@@ -40,57 +34,29 @@ public class UserInteractionManager(
         {
             Place? place = await _placeRepository.GetByIdAsync(request.PlaceId);
 
-            if (place == null)
-            {
-                return new UserInteractionResponse
-                {
-                    Success = false,
-                    Message = "Place with id:" + request.PlaceId + "not found"
-                };
-            }
+            if (place == null) return new BaseResponse<UserInteractionResponse>(success: false, message: "The placeId can not be matched. Send me a vaild placeId", data: null);
 
-            if (request.IsLikedNorPassed)
-            {
-                userInteraction.LikedPlaces!.Add(place);
-            }
-            else
-            {
-                userInteraction.PassedPlaces!.Add(place);
-            }
+            if (request.IsLikedNorPassed) userInteraction.LikedPlaces!.Add(place);
+
+            else userInteraction.PassedPlaces!.Add(place);
 
             await _userInteractionRepository.UpdateAsync(userInteraction);
-            return new UserInteractionResponse
-            {
-                Success = true
-            };
+
+            return new BaseResponse<UserInteractionResponse>(success: true, message: "The place is liked", data: null);
         }
         else // Passed
         {
             Place? place = await _placeRepository.GetByIdAsync(request.PlaceId);
 
-            if (place == null)
-            {
-                return new UserInteractionResponse
-                {
-                    Success = false,
-                    Message = "Place with id:" + request.PlaceId + "not found"
-                };
-            }
+            if (place == null) return new BaseResponse<UserInteractionResponse>(success: false, message: "The placeId can not be matched. Send me a vaild placeId", data: null);
 
-            if (request.IsLikedNorPassed)
-            {
-                userInteraction.LikedPlaces!.Add(place);
-            }
-            else
-            {
-                userInteraction.PassedPlaces!.Add(place);
-            }
+            if (request.IsLikedNorPassed) userInteraction.LikedPlaces!.Add(place);
+
+            else userInteraction.PassedPlaces!.Add(place);
 
             await _userInteractionRepository.UpdateAsync(userInteraction);
-            return new UserInteractionResponse
-            {
-                Success = true
-            };
+
+            return new BaseResponse<UserInteractionResponse>(success: true, message: "The place is passed", data: null);
         }
     }
 

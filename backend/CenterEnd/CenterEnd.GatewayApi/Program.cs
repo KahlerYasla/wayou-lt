@@ -2,11 +2,9 @@ using System.Text;
 
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using CenterEnd.DataAccess.Data;
 using CenterEnd.GatewayApi.Configurations;
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 

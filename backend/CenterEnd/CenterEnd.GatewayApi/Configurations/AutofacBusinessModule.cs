@@ -2,7 +2,6 @@ using Autofac;
 using CenterEnd.BusinessLogic.Services;
 using CenterEnd.DataAccess.Generic;
 using CenterEnd.DataAccess.Repositories;
-using CenterEnd.Database.Entities.Abstract;
 using CenterEnd.Database.Entities.Concrete;
 
 

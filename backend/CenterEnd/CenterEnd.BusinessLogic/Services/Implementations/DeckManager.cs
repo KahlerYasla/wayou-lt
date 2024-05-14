@@ -2,7 +2,7 @@ using CenterEnd.DataAccess.Generic;
 using CenterEnd.Database.Entities.Concrete;
 using CenterEnd.BusinessLogic.DTOs.Mobile.Requests;
 using CenterEnd.BusinessLogic.DTOs.Mobile.Responses;
-using System.Linq.Expressions;
+using CenterEnd.BusinessLogic.DTOs;
 
 namespace CenterEnd.BusinessLogic.Services;
 public class DeckManager(IGenericRepository<Deck> deckRepository, IGenericRepository<User> userRepository, IGenericRepository<Place> placeRepository) : IDeckService
@@ -10,8 +10,8 @@ public class DeckManager(IGenericRepository<Deck> deckRepository, IGenericReposi
     private readonly IGenericRepository<Deck> _deckRepository = deckRepository;
     private readonly IGenericRepository<User> _userRepository = userRepository;
     private readonly IGenericRepository<Place> _placeRepository = placeRepository;
-
-    public async Task<CreateDeckResponse> CreateDeckAsync(CreateDeckRequest request)
+    //=======================================================================================================
+    public async Task<BaseResponse<CreateDeckResponse>> CreateDeckAsync(CreateDeckRequest request)
     {
         User? user = await _userRepository.SingleOrDefaultAsync(u => u.Id == request.OwnerUserId) ?? null;
         List<Place>? places = [];
@@ -26,48 +26,25 @@ public class DeckManager(IGenericRepository<Deck> deckRepository, IGenericReposi
             }
         }
 
-        if (user == null)
-        {
-            return new CreateDeckResponse
-            {
-                Success = false,
-                Message = "How the fuck did you get here without the user"
-            };
-        }
+        if (user == null) return new BaseResponse<CreateDeckResponse>(success: false, message: "The userId can not be matched. Send me a vaild userId", data: null);
 
-        Deck deck = new()
-        {
-            DeckName = request.Name,
-            OwnerUser = user,
-            PlacesOfDeck = places
-        };
+        Deck deck = new() { DeckName = request.Name, OwnerUser = user, PlacesOfDeck = places };
 
         await _deckRepository.AddAsync(deck);
         await _deckRepository.SaveChangesAsync();
 
-        return new CreateDeckResponse
-        {
-            Success = true,
-            Message = "Nailed it bitch!"
-        };
+        return new BaseResponse<CreateDeckResponse>(success: true, message: "Deck has been created", data: null);
     }
-
-    public async Task<UpdateDeckResponse> UpdateDeckAsync(UpdateDeckRequest request)
+    //=======================================================================================================
+    public async Task<BaseResponse<UpdateDeckResponse>> UpdateDeckAsync(UpdateDeckRequest request)
     {
         Deck? deck = await _deckRepository.SingleOrDefaultAsync(d => d.Id == request.Id);
 
-        if (deck == null)
-        {
-            return new UpdateDeckResponse
-            {
-                Success = false,
-                Message = "The deckId can not be matched. Send me a vaild deckId Nigga!"
-            };
-        }
+        if (deck == null) return new BaseResponse<UpdateDeckResponse>(success: false, message: "The deckId can not be matched. Send me a vaild deck", data: null);
 
         deck.DeckName = request.Name ?? deck.DeckName;
 
-        if (request.PlacesByIds == null) return new UpdateDeckResponse { Success = true };
+        if (request.PlacesByIds == null) return new BaseResponse<UpdateDeckResponse>(success: false, message: "The placesByIds can not be null. Send me a vaild placesByIds", data: null);
 
         switch (request.WhatToDoWithPlaces)
         {
@@ -89,70 +66,44 @@ public class DeckManager(IGenericRepository<Deck> deckRepository, IGenericReposi
         await _deckRepository.UpdateAsync(deck);
         await _deckRepository.SaveChangesAsync();
 
-        return new UpdateDeckResponse { Success = true, };
+        return new BaseResponse<UpdateDeckResponse>(success: true, message: "Deck has been updated", data: null);
     }
-
-    public async Task<DeleteDeckResponse> DeleteDeckAsync(DeleteDeckRequest request)
+    //=======================================================================================================
+    public async Task<BaseResponse<DeleteDeckResponse>> DeleteDeckAsync(DeleteDeckRequest request)
     {
         var deck = await _deckRepository.SingleOrDefaultAsync(d => d.Id == request.DeckId);
 
-        if (deck == null)
-        {
-            return new DeleteDeckResponse
-            {
-                Success = false,
-                Message = "The deckId can not be matched. Send me a vaild deck"
-            };
-        }
+        if (deck == null) return new BaseResponse<DeleteDeckResponse>(success: false, message: "The deckId can not be matched. Send me a vaild deckId", data: null);
 
         await _deckRepository.RemoveAsync(deck);
         await _deckRepository.SaveChangesAsync();
 
-        return new DeleteDeckResponse
-        {
-            Success = true,
-            Message = "Deck has been deleted"
-        };
+        return new BaseResponse<DeleteDeckResponse>(success: true, message: "Deck has been deleted", data: null);
     }
-
-    public async Task<GetAllDecksByUserIdResponse> GetAllDecksByUserIdAsync(int userId)
+    //=======================================================================================================
+    public async Task<BaseResponse<GetAllDecksByUserIdResponse>> GetAllDecksByUserIdAsync(int userId)
     {
         User? user = await _userRepository.SingleOrDefaultAsync(u => u.Id == userId);
 
-        if (user == null)
-        {
-            return new GetAllDecksByUserIdResponse
-            {
-                Success = false,
-                Message = "The userId can not be matched. Send me a vaild userId"
-            };
-        }
+        if (user == null) return new BaseResponse<GetAllDecksByUserIdResponse>(success: false, message: "The userId can not be matched. Send me a vaild userId", data: null);
 
         List<Deck> decks = (await _deckRepository.FindAsync(d => d.OwnerUser == user)).ToList();
 
-        if (decks == null)
-        {
-            return new GetAllDecksByUserIdResponse
-            {
-                Success = false,
-                Message = "The user has no decks initialized in the database. It is a server error"
-            };
-        }
+        if (decks == null) return new BaseResponse<GetAllDecksByUserIdResponse>(success: false, message: "The userId can not be matched. Send me a vaild userId", data: null);
 
-        return new GetAllDecksByUserIdResponse
-        {
-            DeckList = decks,
-            Success = true
-        };
+        GetAllDecksByUserIdResponse response = new() { DeckList = decks };
+
+        return new BaseResponse<GetAllDecksByUserIdResponse>(success: true, message: "Decks has been fetched", data: response);
     }
-
-    public async Task<GetDeckByIdResponse> GetDeckByIdAsync(int deckId)
+    //=======================================================================================================
+    public async Task<BaseResponse<GetDeckByIdResponse>> GetDeckByIdAsync(int deckId)
     {
-        var deck = await _deckRepository.SingleOrDefaultAsync(d => d.Id == deckId);
+        Deck? deck = await _deckRepository.SingleOrDefaultAsync(d => d.Id == deckId);
 
-        return new GetDeckByIdResponse
-        {
-            RequestedDeck = deck,
-        };
+        GetDeckByIdResponse response = new() { RequestedDeck = deck };
+
+        return deck == null ?
+        new BaseResponse<GetDeckByIdResponse>(success: false, message: "The deckId can not be matched. Send me a vaild deckId", data: null)
+        : new BaseResponse<GetDeckByIdResponse>(success: true, message: "Deck has been fetched", data: response);
     }
 }

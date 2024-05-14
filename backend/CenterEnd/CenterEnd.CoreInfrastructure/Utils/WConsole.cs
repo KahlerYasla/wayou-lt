@@ -1,5 +1,3 @@
-using System;
-
 namespace CenterEnd.CoreInfrastructure.Utils;
 
 public static class WConsole
