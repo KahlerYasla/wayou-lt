@@ -1,42 +1,112 @@
 import { useState } from "react";
-import { SafeAreaView, ScrollView, View, Text, Button, TouchableOpacity } from "react-native";
-import { Stack, useRouter } from "expo-router";
+import {FONT} from "../../constants/theme"
+import { Image } from "react-native";
+import images from "../../constants/images";
+import {
+  SafeAreaView,
+  ScrollView,
+  View,
+  Text,
+  Button,
+  TouchableOpacity,
+} from "react-native";
+import { Link, Stack, router, useRouter } from "expo-router";
 
 import { COLORS, SIZES } from "../../constants";
+import CustomButton from "../../components/CustomButton";
+import CustomFormField from "../../components/CustomFormField";
+
+const loginToHome=()=>
+  {
+    router.push("home")
+  }
 
 const Login = () => {
-    const router = useRouter()
-    const [searchTerm, setSearchTerm] = useState("");
+  const router = useRouter();
+  const [searchTerm, setSearchTerm] = useState("");
 
-    return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
-            <Stack.Screen
-                options={{
-                    headerShown: false,
-                }}
+  return (
+    <SafeAreaView style={{ backgroundColor : "#101114"}}>
+      <Stack.Screen
+        options={{
+          headerShown: false,
+        }}
+      />
+
+      <ScrollView showsVerticalScrollIndicator={false} style = {{ }} contentContainerStyle={{ height: '100%' }}>
+        <View
+          style={{
+            flex: 1,
+            padding: SIZES.medium,
+            justifyContent : "center",
+          }}
+        >
+            
+            {/* <Image 
+                style={{width:100,height:100}}
+                source={images.algotur}
+                resizeMode='contain'
+            />  */}
+
+            <CustomFormField 
+            label="" 
+            placeholder="Email"
+            otherStyles={{
+                borderBottomColor:"",
+                borderBottomWidth:1,
+                borderColor: 'rgba(255, 255, 255, 0.2)', // Beyazın %20'si
+              }}
+              inputTextStyle={{
+                color: 'rgba(255, 255, 255, 0.2)',
+                fontFamily:FONT.regular
+              }}
+              containerStyle={{
+                marginBottom: 0,
+              }}
+            ></CustomFormField>
+
+            <CustomFormField 
+            label="" 
+            placeholder="Password"
+            otherStyles={{
+                borderBottomColor:"",
+                borderBottomWidth:1,
+                borderColor: 'rgba(255, 255, 255, 0.2)', // Beyazın %20'si
+                marginTop: 1,
+                
+              }}
+              inputTextStyle={{
+                color: 'rgba(255, 255, 255, 0.2)',
+                fontFamily:FONT.regular
+              }}
+              labelStyle={{
+                margin:0,
+                fontSize:0,
+              }}
+              keyboardType={"visible-password"}
+            ></CustomFormField>
+            
+            <View style={{alignItems:"flex-end"}}>
+                <Link style={{marginBottom : 16 ,color: "white", fontFamily:FONT.regular}} href={"./ForgetPassword1"}>Forget Password</Link>
+            </View>
+
+            <CustomButton 
+            title="Log in" 
+            textStyle={{fontFamily:FONT.regular}}
+            onPress={() => loginToHome()}
             />
 
-            <ScrollView showsVerticalScrollIndicator={false}>
-                <View
-                    style={{
-                        flex: 1,
-                        padding: SIZES.medium,
-                    }}
-                >
-                    <Text>
-                        Login Screen
-                    </Text>
-                    <TouchableOpacity
-                        onPress={() => { }}
-                    >
-                        <Text>
-                            click to route login screen
-                        </Text>
-                    </TouchableOpacity>
-                </View>
-            </ScrollView>
-        </SafeAreaView>
-    );
+
+             <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center', marginBottom: 20 }}>
+                <TouchableOpacity onPress={() => {router.push("signUp")}} style={{ justifyContent: 'center', alignItems: 'center',  paddingVertical: 10, paddingHorizontal: 20 }}>
+                    <Text style={{ color: 'white', fontFamily: FONT.regular }}>Sign Up</Text>
+                </TouchableOpacity>
+            </View>
+
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  );
 };
 
 export default Login;
