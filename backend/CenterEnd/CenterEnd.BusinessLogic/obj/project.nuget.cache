@@ -1,9 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "Z5TTW+h3jGa75nylliQTYnZNupoCIB108QZz3VkpHQPymX2Ne0NXSEQegrHj85XpQzQppvceY5wStSjjauckow==",
+  "dgSpecHash": "ETPrepMnCj273TfXxz5oPA6vyV5mcPQzoPvM5XLJGFbrjMjrEW+1XifhDoxazvBLOlDonuJXL0VTvKtsZErqyg==",
   "success": true,
   "projectFilePath": "/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.BusinessLogic/CenterEnd.BusinessLogic.csproj",
   "expectedPackageFiles": [
+    "/Users/kahler/.nuget/packages/google.protobuf/3.26.1/google.protobuf.3.26.1.nupkg.sha512",
+    "/Users/kahler/.nuget/packages/grpc.core.api/2.62.0/grpc.core.api.2.62.0.nupkg.sha512",
+    "/Users/kahler/.nuget/packages/grpc.net.client/2.62.0/grpc.net.client.2.62.0.nupkg.sha512",
+    "/Users/kahler/.nuget/packages/grpc.net.common/2.62.0/grpc.net.common.2.62.0.nupkg.sha512",
+    "/Users/kahler/.nuget/packages/grpc.tools/2.63.0/grpc.tools.2.63.0.nupkg.sha512",
     "/Users/kahler/.nuget/packages/microsoft.aspnetcore.authentication.jwtbearer/8.0.4/microsoft.aspnetcore.authentication.jwtbearer.8.0.4.nupkg.sha512",
     "/Users/kahler/.nuget/packages/microsoft.entityframeworkcore/8.0.2/microsoft.entityframeworkcore.8.0.2.nupkg.sha512",
     "/Users/kahler/.nuget/packages/microsoft.entityframeworkcore.abstractions/8.0.2/microsoft.entityframeworkcore.abstractions.8.0.2.nupkg.sha512",

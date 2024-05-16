@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "aT9P4UyROLn49T3SftREdffM39dEPpnVvYUPhlCIimJHKAa2vyIezcnKeFK7lvHcqY2kPe6s5WFBrRCZZ6bjJQ==",
+  "dgSpecHash": "kAsOxY70WISTQE1Ja9WqAXQrjGP4hkSYTQU7Bgc4kMGf5cSFWyxL4HFs4pjgg/obIphINhVrm5jrskeeViUOzA==",
   "success": true,
   "projectFilePath": "/Users/kahler/Projects/Full-Stack/wayou-lt/backend/MicroServices/MicroServices.PlaceRecommender/MicroServices.PlaceRecommender.csproj",
   "expectedPackageFiles": [
@@ -20,6 +20,9 @@
     "/Users/kahler/.nuget/packages/microsoft.extensions.logging.abstractions/6.0.0/microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
     "/Users/kahler/.nuget/packages/microsoft.extensions.options/6.0.0/microsoft.extensions.options.6.0.0.nupkg.sha512",
     "/Users/kahler/.nuget/packages/microsoft.extensions.primitives/6.0.0/microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "/Users/kahler/.nuget/packages/protobuf-net/3.2.30/protobuf-net.3.2.30.nupkg.sha512",
+    "/Users/kahler/.nuget/packages/protobuf-net.core/3.2.30/protobuf-net.core.3.2.30.nupkg.sha512",
+    "/Users/kahler/.nuget/packages/system.collections.immutable/7.0.0/system.collections.immutable.7.0.0.nupkg.sha512",
     "/Users/kahler/.nuget/packages/system.diagnostics.diagnosticsource/6.0.0/system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
     "/Users/kahler/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
   ],

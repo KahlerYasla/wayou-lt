@@ -16,8 +16,8 @@ public class TripManager(
     //=======================================================================================================
     public async Task<BaseResponse<GenerateTripResponse>> GenerateTripAsync(GenerateTripRequest request)
     {
-        // Todo: Proto service will be called here
-        throw new NotImplementedException();
+        // Send request to the proto service    
+
     }
     //=======================================================================================================
     public async Task<BaseResponse<CreateTripResponse>> CreateTripAsync(CreateTripRequest request)

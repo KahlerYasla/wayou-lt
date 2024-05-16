@@ -46,6 +46,26 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Google.Protobuf": {
+              "target": "Package",
+              "version": "[3.26.1, )"
+            },
+            "Grpc.Net.Client": {
+              "target": "Package",
+              "version": "[2.62.0, )"
+            },
+            "Grpc.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.63.0, )"
+            },
+            "protobuf-net": {
+              "target": "Package",
+              "version": "[3.2.30, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -108,10 +128,6 @@
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[8.0.4, )"
-            },
-            "protobuf-net": {
-              "target": "Package",
-              "version": "[3.2.30, )"
             }
           },
           "imports": [

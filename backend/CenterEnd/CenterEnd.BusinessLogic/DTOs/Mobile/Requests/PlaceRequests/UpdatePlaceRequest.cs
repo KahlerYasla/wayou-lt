@@ -6,7 +6,7 @@ namespace CenterEnd.BusinessLogic.DTOs.Mobile.Requests
     public class UpdatePlaceRequest
     {
         [JsonPropertyName("placeId")]
-        public required int Id { get; set; }
+        public required int PlaceId { get; set; }
         [JsonPropertyName("placeName")]
         public string? PlaceName { get; set; }
         [JsonPropertyName("placeDescription")]

@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "Mzzi41l8EguDhSJyh0gyAOsrN3wN9q3qeA1d6pl3YPg=",
+  "Source": "MicroServices.PlaceRecommender",
+  "BasePath": "_content/MicroServices.PlaceRecommender",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ZhsKm3EgsJOiOarXHl4Oer4YZDXHkjIdT5wNtTh1Dd18UMMPlPnOVfv9o6Ho7UH6qHyUh06hK9LJ80MRGkz6Yw==",
+  "dgSpecHash": "M1CxkIR5nHUuihPQDCqflLXypI6z42pNgyjURzm1Njwj5LTCVSVzz1OtAOCDsEqBPhc62UVNx79hG/79AemeZQ==",
   "success": true,
   "projectFilePath": "/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.Database/CenterEnd.Database.csproj",
   "expectedPackageFiles": [
@@ -11,9 +11,6 @@
     "/Users/kahler/.nuget/packages/microsoft.identitymodel.protocols/7.1.2/microsoft.identitymodel.protocols.7.1.2.nupkg.sha512",
     "/Users/kahler/.nuget/packages/microsoft.identitymodel.protocols.openidconnect/7.1.2/microsoft.identitymodel.protocols.openidconnect.7.1.2.nupkg.sha512",
     "/Users/kahler/.nuget/packages/microsoft.identitymodel.tokens/7.1.2/microsoft.identitymodel.tokens.7.1.2.nupkg.sha512",
-    "/Users/kahler/.nuget/packages/protobuf-net/3.2.30/protobuf-net.3.2.30.nupkg.sha512",
-    "/Users/kahler/.nuget/packages/protobuf-net.core/3.2.30/protobuf-net.core.3.2.30.nupkg.sha512",
-    "/Users/kahler/.nuget/packages/system.collections.immutable/7.0.0/system.collections.immutable.7.0.0.nupkg.sha512",
     "/Users/kahler/.nuget/packages/system.identitymodel.tokens.jwt/7.1.2/system.identitymodel.tokens.jwt.7.1.2.nupkg.sha512"
   ],
   "logs": []
