@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "kAsOxY70WISTQE1Ja9WqAXQrjGP4hkSYTQU7Bgc4kMGf5cSFWyxL4HFs4pjgg/obIphINhVrm5jrskeeViUOzA==",
+  "dgSpecHash": "oS/HEI5jXR+KE4QyGPXrj5ZuaSwqL3s5/Y46Omzj8NZ4eT20FOCd8VJVaCZQOWK4dziRA2xkQR9sVyhG3j4jOw==",
   "success": true,
   "projectFilePath": "/Users/kahler/Projects/Full-Stack/wayou-lt/backend/MicroServices/MicroServices.PlaceRecommender/MicroServices.PlaceRecommender.csproj",
   "expectedPackageFiles": [
@@ -12,7 +12,7 @@
     "/Users/kahler/.nuget/packages/grpc.net.client/2.57.0/grpc.net.client.2.57.0.nupkg.sha512",
     "/Users/kahler/.nuget/packages/grpc.net.clientfactory/2.57.0/grpc.net.clientfactory.2.57.0.nupkg.sha512",
     "/Users/kahler/.nuget/packages/grpc.net.common/2.57.0/grpc.net.common.2.57.0.nupkg.sha512",
-    "/Users/kahler/.nuget/packages/grpc.tools/2.57.0/grpc.tools.2.57.0.nupkg.sha512",
+    "/Users/kahler/.nuget/packages/grpc.tools/2.63.0/grpc.tools.2.63.0.nupkg.sha512",
     "/Users/kahler/.nuget/packages/microsoft.extensions.dependencyinjection/6.0.0/microsoft.extensions.dependencyinjection.6.0.0.nupkg.sha512",
     "/Users/kahler/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/6.0.0/microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
     "/Users/kahler/.nuget/packages/microsoft.extensions.http/6.0.0/microsoft.extensions.http.6.0.0.nupkg.sha512",
@@ -20,9 +20,6 @@
     "/Users/kahler/.nuget/packages/microsoft.extensions.logging.abstractions/6.0.0/microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
     "/Users/kahler/.nuget/packages/microsoft.extensions.options/6.0.0/microsoft.extensions.options.6.0.0.nupkg.sha512",
     "/Users/kahler/.nuget/packages/microsoft.extensions.primitives/6.0.0/microsoft.extensions.primitives.6.0.0.nupkg.sha512",
-    "/Users/kahler/.nuget/packages/protobuf-net/3.2.30/protobuf-net.3.2.30.nupkg.sha512",
-    "/Users/kahler/.nuget/packages/protobuf-net.core/3.2.30/protobuf-net.core.3.2.30.nupkg.sha512",
-    "/Users/kahler/.nuget/packages/system.collections.immutable/7.0.0/system.collections.immutable.7.0.0.nupkg.sha512",
     "/Users/kahler/.nuget/packages/system.diagnostics.diagnosticsource/6.0.0/system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
     "/Users/kahler/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
   ],

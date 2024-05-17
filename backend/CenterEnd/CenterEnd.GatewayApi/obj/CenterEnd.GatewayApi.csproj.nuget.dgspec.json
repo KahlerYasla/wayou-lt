@@ -60,10 +60,6 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[2.63.0, )"
-            },
-            "protobuf-net": {
-              "target": "Package",
-              "version": "[3.2.30, )"
             }
           },
           "imports": [

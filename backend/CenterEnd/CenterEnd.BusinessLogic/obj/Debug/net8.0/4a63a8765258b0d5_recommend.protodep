@@ -1,0 +1,2 @@
+obj/Debug/net8.0/Recommend.cs \
+obj/Debug/net8.0/RecommendGrpc.cs: ../../MicroServices/Microservices.PlaceRecommender/Protos/recommend.proto

@@ -1,9 +1,11 @@
 using CenterEnd.BusinessLogic.DTOs;
 using CenterEnd.BusinessLogic.DTOs.Mobile.Requests;
 using CenterEnd.BusinessLogic.DTOs.Mobile.Responses;
+using CenterEnd.CoreInfrastructure.Utils;
 using CenterEnd.DataAccess.Generic;
 using CenterEnd.Database.Entities.Concrete;
 
+using CenterEnd.Protos;
 using Grpc.Net.Client;
 
 namespace CenterEnd.BusinessLogic.Services;
@@ -45,12 +47,48 @@ public class PlaceManager(IGenericRepository<Place> placeRepository) : IPlaceSer
         return new BaseResponse<GetPlaceByIdResponse>(success: true, message: "Place has been fetched", data: getPlaceByIdResponse);
     }
     //=======================================================================================================
-    public async Task<BaseResponse<GetPlaceRecommendationResponse>> GetPlaceRecommendationAsync(int userId)
+    public async Task<BaseResponse<GetPlaceRecommendationResponse>> GetPlaceRecommendationAsync(GetPlaceRecommendationRequest request)
     {
-        // Todo: Proto service will be called here
-        using var channel = GrpcChannel.ForAddress("https://localhost:5293");
-        var client = new CenterEnd.BusinessLogic.Services
+        // Proto service
+        using var channel = GrpcChannel.ForAddress("http://localhost:5293");
+        PlaceRecommender.PlaceRecommenderClient client = new(channel);
+
+        PlaceRecommenderConfiguration configuration = new()
+        {
+            Categories = { request.Configuration.Categories },
+            OriginYX = request.Configuration.OriginYX,
+            Radius = request.Configuration.Radius,
+            Keywords = { request.Configuration.Keywords },
+            PriceRange = request.Configuration.PriceRange,
+        };
+
+        RecommendPlacesResponse reply = client.Recommend(
+            new RecommendPlacesRequest
+            {
+                UserId = request.UserId,
+                Configuration = configuration
+            }
+            );
+
+        WConsole.PrintResponse("Fetched place count from gRPC service: " + reply.PlaceIds.Count.ToString());
+
+        List<Place> places = [];
+
+        foreach (int placeId in reply.PlaceIds)
+        {
+            Place place = (await _placeRepository.GetByIdAsync(placeId))!;
+            if (place != null) places.Add(place);
+        }
+
+        // You need to handle the response from the gRPC service and convert it to your application's response type
+        GetPlaceRecommendationResponse getPlaceRecommendationResponse = new()
+        {
+            Places = places,
+        };
+
+        return new BaseResponse<GetPlaceRecommendationResponse>(success: true, message: "Recommendation fetched", data: getPlaceRecommendationResponse);
     }
+
     //=======================================================================================================
     public async Task<BaseResponse<UpdatePlaceResponse>> UpdatePlaceAsync(UpdatePlaceRequest request)
     {

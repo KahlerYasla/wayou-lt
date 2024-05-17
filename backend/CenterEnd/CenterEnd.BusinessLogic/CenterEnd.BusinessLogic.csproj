@@ -9,7 +9,6 @@
   <ItemGroup>
     <ProjectReference Include="..\CenterEnd.DataAccess\CenterEnd.DataAccess.csproj" />
 
-    <PackageReference Include="protobuf-net" Version="3.2.30" />
     <PackageReference Include="Google.Protobuf" Version="3.26.1" />
     <PackageReference Include="Grpc.Net.Client" Version="2.62.0" />
     <PackageReference Include="Grpc.Tools" Version="2.63.0">
@@ -17,7 +16,9 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
 
-    <Protobuf Include="..\..\MicroServices.MicroservicesPlaceRecommender\Proto\recommend.proto" />
+    <!-- Protos -->
+    <Protobuf Include=".\Protos\place_recommender.proto" GrpcServices='Client'/>
+    <Protobuf Include=".\Protos\trip_generator.proto" GrpcServices='Client'/>
   </ItemGroup>
 
 </Project>

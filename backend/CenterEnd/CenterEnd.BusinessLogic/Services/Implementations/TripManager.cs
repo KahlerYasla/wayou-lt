@@ -4,6 +4,9 @@ using CenterEnd.BusinessLogic.DTOs.Mobile.Responses;
 using CenterEnd.DataAccess.Generic;
 using CenterEnd.Database.Entities.Concrete;
 
+using Grpc.Net.Client;
+using CenterEnd.Protos;
+
 namespace CenterEnd.BusinessLogic.Services;
 
 public class TripManager(
@@ -14,10 +17,29 @@ public class TripManager(
     private readonly IGenericRepository<Trip> _tripRepository = tripRepository;
     private readonly IGenericRepository<User> _userRepository = userRepository;
     //=======================================================================================================
-    public async Task<BaseResponse<GenerateTripResponse>> GenerateTripAsync(GenerateTripRequest request)
+    public async Task<BaseResponse<DTOs.Mobile.Responses.GenerateTripResponse>> GenerateTripAsync(DTOs.Mobile.Requests.GenerateTripRequest request)
     {
-        // Send request to the proto service    
+        // Proto service 
+        using var channel = GrpcChannel.ForAddress("http://localhost:5170");
+        TripGenerator.TripGeneratorClient client = new(channel);
 
+        Protos.GenerateTripResponse responseGRPC = await client.GenerateAsync(new Protos.GenerateTripRequest());
+
+        int tripId = responseGRPC.TripId;
+
+        Trip? trip = await _tripRepository.GetByIdAsync(tripId);
+
+        if (trip == null) return new BaseResponse<DTOs.Mobile.Responses.GenerateTripResponse>(success: false, message: "The tripId can not be matched. Send me a vaild tripId", data: null);
+
+        DTOs.Mobile.Responses.GenerateTripResponse response = new()
+        {
+            PlaceSeparatorsByDay = trip.PlaceSeperatorsByDay,
+            SortedPlaceList = trip.SortedPlaceList,
+            TextByDay = trip.TextByDay,
+            TripDescription = trip.TripDescription ?? "no description has been provided",
+        };
+
+        return new BaseResponse<DTOs.Mobile.Responses.GenerateTripResponse>(success: true, message: "Trip has been generated", data: response);
     }
     //=======================================================================================================
     public async Task<BaseResponse<CreateTripResponse>> CreateTripAsync(CreateTripRequest request)
