@@ -34,16 +34,21 @@ const Home = () => {
                     style={{
                         flex: 1,
                         padding: SIZES.medium,
-                        paddingRight:0,
+                        paddingRight: 0,
                     }}>
-                <TouchableOpacity onPress={openModal} style={{top:150,position :"absolute",marginEnd:0, paddingEnd:0, justifyContent:"center",alignItems:"center",backgroundColor:'rgba(19, 16, 20, 0.8)',alignSelf:"flex-end",borderBottomLeftRadius:20,borderTopLeftRadius:20, width:50,height:50,}}>
-                    <View style={{position :"absolute",marginEnd:0, paddingEnd:0, justifyContent:"center",alignItems:"center",backgroundColor:'rgba(19, 16, 20, 0.8)',alignSelf:"flex-end",borderBottomLeftRadius:20,borderTopLeftRadius:20, width:50,height:50,}}>
-                    <Image
-                        style ={{}}
-                            source={require("../../assets/images/burgerMenu.png")}
-                        />
-                    </View>
-                </TouchableOpacity>
+                    <TouchableOpacity onPress={openModal} style={{
+                        top: 150, position: "absolute",
+                        marginEnd: 0, paddingEnd: 0, justifyContent: "center", alignItems: "center",
+                        backgroundColor: 'rgba(0, 0, 0, 1)', alignSelf: "flex-end",
+                        borderBottomLeftRadius: 20, borderTopLeftRadius: 20, width: 50, height: 50,
+                    }}>
+                        <View style={{ position: "absolute", marginEnd: 0, paddingEnd: 0, justifyContent: "center", alignItems: "center", backgroundColor: 'rgba(19, 16, 20, 0.8)', alignSelf: "flex-end", borderBottomLeftRadius: 20, borderTopLeftRadius: 20, width: 50, height: 50, }}>
+                            <Image
+                                style={{}}
+                                source={require("../../assets/images/burgerMenu.png")}
+                            />
+                        </View>
+                    </TouchableOpacity>
                 </View>
             </ScrollView>
             <Modal
@@ -53,7 +58,7 @@ const Home = () => {
                 onRequestClose={closeModal}
             >
                 <TouchableWithoutFeedback onPress={closeModal}>
-                    <View/>
+                    <View />
                 </TouchableWithoutFeedback>
                 <ModalContent closeModal={closeModal} />
             </Modal>
