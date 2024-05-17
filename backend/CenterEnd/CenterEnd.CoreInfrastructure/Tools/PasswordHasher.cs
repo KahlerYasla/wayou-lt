@@ -1,52 +1,50 @@
 using System.Security.Cryptography;
+using CenterEnd.CoreInfrastructure.Utils;
 
 namespace CenterEnd.CoreInfrastructure.Tools;
 
 public static class PasswordHasher
 {
-    private const int SaltSize = 16; // 128 bits
-    private const int HashSize = 20; // 160 bits
-    private const int Iterations = 10000;
+    private const int _saltSize = 16; // 128 bits
+    private const int _keySize = 32; // 256 bits
+    private const int _iterations = 50000;
+    private static readonly HashAlgorithmName _algorithm = HashAlgorithmName.SHA256;
 
-    public static string HashPassword(string password)
+    private const char segmentDelimiter = ':';
+
+    public static string Hash(string input)
     {
-        byte[] salt;
-#pragma warning disable SYSLIB0023 // Type or member is obsolete
-        new RNGCryptoServiceProvider().GetBytes(salt = new byte[SaltSize]);
-#pragma warning restore SYSLIB0023 // Type or member is obsolete
-
-#pragma warning disable SYSLIB0041 // Type or member is obsolete
-        var pbkdf2 = new Rfc2898DeriveBytes(password, salt, Iterations);
-#pragma warning restore SYSLIB0041 // Type or member is obsolete
-        byte[] hash = pbkdf2.GetBytes(HashSize);
-
-        byte[] hashBytes = new byte[SaltSize + HashSize];
-        Array.Copy(salt, 0, hashBytes, 0, SaltSize);
-        Array.Copy(hash, 0, hashBytes, SaltSize, HashSize);
-
-        string hashedPassword = Convert.ToBase64String(hashBytes);
-        return hashedPassword;
+        byte[] salt = RandomNumberGenerator.GetBytes(_saltSize);
+        byte[] hash = Rfc2898DeriveBytes.Pbkdf2(
+            input,
+            salt,
+            _iterations,
+            _algorithm,
+            _keySize
+        );
+        return string.Join(
+            segmentDelimiter,
+            Convert.ToHexString(hash),
+            Convert.ToHexString(salt),
+            _iterations,
+            _algorithm
+        );
     }
 
-    public static bool VerifyPassword(string password, string hashedPassword)
+    public static bool Verify(string input, string hashString)
     {
-        byte[] hashBytes = Convert.FromBase64String(hashedPassword);
-
-        byte[] salt = new byte[SaltSize];
-        Array.Copy(hashBytes, 0, salt, 0, SaltSize);
-
-#pragma warning disable SYSLIB0041 // Type or member is obsolete
-        var pbkdf2 = new Rfc2898DeriveBytes(password, salt, Iterations);
-#pragma warning restore SYSLIB0041 // Type or member is obsolete
-        byte[] hash = pbkdf2.GetBytes(HashSize);
-
-        for (int i = 0; i < HashSize; i++)
-        {
-            if (hashBytes[i + SaltSize] != hash[i])
-            {
-                return false;
-            }
-        }
-        return true;
+        string[] segments = hashString.Split(segmentDelimiter);
+        byte[] hash = Convert.FromHexString(segments[0]);
+        byte[] salt = Convert.FromHexString(segments[1]);
+        int iterations = int.Parse(segments[2]);
+        HashAlgorithmName algorithm = new(segments[3]);
+        byte[] inputHash = Rfc2898DeriveBytes.Pbkdf2(
+            input,
+            salt,
+            iterations,
+            algorithm,
+            hash.Length
+        );
+        return CryptographicOperations.FixedTimeEquals(inputHash, hash);
     }
 }

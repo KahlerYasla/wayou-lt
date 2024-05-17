@@ -2,6 +2,7 @@ using CenterEnd.BusinessLogic.DTOs;
 using CenterEnd.BusinessLogic.DTOs.Mobile.Requests;
 using CenterEnd.BusinessLogic.DTOs.Mobile.Responses;
 using CenterEnd.CoreInfrastructure.Tools;
+using CenterEnd.CoreInfrastructure.Utils;
 using CenterEnd.DataAccess.Generic;
 using CenterEnd.Database.Entities.Concrete;
 
@@ -17,7 +18,7 @@ public class AuthManager(IGenericRepository<User> userRepository) : IAuthService
         {
             UserName = request.Username,
             Email = request.Email,
-            Password = PasswordHasher.HashPassword(request.Password)
+            Password = PasswordHasher.Hash(request.Password)
         };
 
         if (await _userRepository.SingleOrDefaultAsync(u => u.UserName == user.UserName) != null)
@@ -46,7 +47,9 @@ public class AuthManager(IGenericRepository<User> userRepository) : IAuthService
             return new BaseResponse<LoginResponse>(success: false, message: "User not found", data: null);
         }
 
-        if (!PasswordHasher.VerifyPassword(user.Password, request.Password))
+        WConsole.PrintNormal("checking password raw from database: " + user.Password);
+
+        if (!PasswordHasher.Verify(request.Password, user.Password))
         {
             return new BaseResponse<LoginResponse>(success: false, message: "Invalid password", data: null);
         }
