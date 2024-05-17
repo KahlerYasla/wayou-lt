@@ -82,7 +82,7 @@ const ModalContent: React.FC<ModalContentProps> = ({ closeModal }) => {
             </View>
             <View style ={{height:20,marginTop:0,flexDirection: 'row' ,flex:1,alignItems:"center",justifyContent:"space-around"}}>
                 <CustomFormField
-                placeholder="Keywords" 
+                placeholder="$ 0" 
                 placeholderTextColor={"gray"}
                 label=""
                 otherStyles={{
@@ -102,7 +102,7 @@ const ModalContent: React.FC<ModalContentProps> = ({ closeModal }) => {
                   }}
                 ></CustomFormField>
                 <CustomFormField 
-                placeholder="Keywords" 
+                placeholder="$ 0" 
                 placeholderTextColor={"gray"}
                 label=""
                 otherStyles={{
@@ -125,9 +125,12 @@ const ModalContent: React.FC<ModalContentProps> = ({ closeModal }) => {
                 router.push("MapSelection");
                 closeModal();
                  }}>
+                  <View style={{borderColor:"white",borderWidth:1,borderRadius:10,width :45,height:45,justifyContent:"center",alignItems:"center"}}>
                 <Image
-                    style ={{width :25,height:25}}source={require("../assets/images/LocationPinIcon.png")}
+                resizeMode="contain"
+                    style ={{ }}source={require("../assets/images/LocationPinIcon.png")}
                 ></Image>
+                </View>
                 </TouchableOpacity>
             </View>   
             <View style ={{flex:1,alignItems:"center"}}>

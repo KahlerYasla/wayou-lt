@@ -25,15 +25,57 @@ export default function App() {
               latitudeDelta: 0.0922,
               longitudeDelta: 0.0421,
             }}
-            onRegionChange={() => {setCenter}}
+            onRegionChangeComplete={(region) => {
+              setCenter({
+                latitude: region.latitude,
+                longitude: region.longitude,
+              });
+            }}
           >
             <Circle
               center={center}
               radius={circleRadius}
-              fillColor="rgba(255, 0, 0, 0.2)"
-              strokeColor="red"
+              fillColor="rgba(0, 0, 0, 0.5)"
+              strokeColor="black"
             />
           </MapView>
+      
+          <View style={{ position:'absolute',bottom:70,flex:1,flexDirection:'row',left:"10%", padding:10}}>
+      <TouchableOpacity
+        style={{
+          marginRight:5,
+          backgroundColor: 'rgba(255, 255, 255, 1)',
+          padding: 10,
+          borderRadius: 8,
+          }}
+        onPress={() => ""}
+      >
+        <Text style={{
+         fontFamily:FONT.regular,
+         backgroundColor: 'rgba(255, 255, 255, 1)',
+         padding: 10,
+         borderRadius: 8,
+         }}
+         >Mark As Origin</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={{
+         marginLeft:5,
+         backgroundColor: 'rgba(255, 255, 255, 1)',
+         padding: 10,
+         borderRadius: 8,
+         }}
+        onPress={() => ""}
+      >
+        <Text style={{
+          
+         fontFamily:FONT.regular,
+         backgroundColor: 'rgba(255, 255, 255, 1)',
+         padding: 10,
+         borderRadius: 8,
+         }}>Clear The Mark</Text>
+      </TouchableOpacity>
+      </View>
                 
       <View style={{ position:'absolute',bottom:0,flex:1,flexDirection:'row',left:"15%", padding:10}}>
       <TouchableOpacity
