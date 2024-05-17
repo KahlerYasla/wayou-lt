@@ -55,6 +55,13 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 // Add Authorization
 builder.Services.AddAuthorization();
 
+// Allow Kestrel to listen on any IP address
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(5296); // HTTP
+    options.ListenAnyIP(7217, listenOptions => listenOptions.UseHttps()); // HTTPS
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
