@@ -30,11 +30,11 @@ const addDeck = () => {
             <View style = {{flex:1}}>
             <Text style = {{marginTop:10,fontFamily:FONT.regular,color:"white",justifyContent:'center',alignSelf:"center",}}>Who Are You Going With</Text>
             <RNPickerSelect 
-                placeholder={{ label: "Alone", value: null ,}} // Placeholder öğesi
+                placeholder={{ label: "Alone", value: null ,}} 
                 style={{
-                    inputIOS: { color: 'white', textAlign: 'center' }, // iOS için giriş stili ve metni ortalamak için textAlign
-                    inputAndroid: {color: 'white', textAlign: 'center',justifyContent:"center" }, // Android için giriş stili ve metni ortalamak için textAlign
-                    iconContainer: { position: 'absolute', right: 0} // ikon container stili
+                    inputIOS: { color: 'white', textAlign: 'center' }, 
+                    inputAndroid: {color: 'white', textAlign: 'center',justifyContent:"center" }, 
+                    iconContainer: { position: 'absolute', right: 0} 
                 }}
                     onValueChange={(value) => console.log(value)}
                     items={[
@@ -71,6 +71,7 @@ const addDeck = () => {
                 onPress={()=>router.push("selectCoordinate")}
                 ></CustomButton>
                 <CustomButton title='Create Using AI'
+                onPress={()=>router.push("ResultOfAI")}
                 buttonStyle={{borderRadius:10, margin:5,padding:3,width:"80%"}}
                 ></CustomButton>
             </View>

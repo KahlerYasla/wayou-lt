@@ -7,6 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { Drawer } from 'expo-router/drawer';
 import { Modal } from "react-native";
 import ModalContent from "../../components/HomeScreenModal";
+import CustomButton from "../../components/CustomButton";
 
 const Home = () => {
     const router = useRouter()
@@ -36,6 +37,9 @@ const Home = () => {
                         padding: SIZES.medium,
                         paddingRight:0,
                     }}>
+                    <View>
+                        <CustomButton textStyle={{color:"white"}} onPress={()=>router.push("CardInfos")} title="go card infos"></CustomButton>
+                    </View>
                 <TouchableOpacity onPress={openModal} style={{top:150,position :"absolute",marginEnd:0, paddingEnd:0, justifyContent:"center",alignItems:"center",backgroundColor:'rgba(19, 16, 20, 0.8)',alignSelf:"flex-end",borderBottomLeftRadius:20,borderTopLeftRadius:20, width:50,height:50,}}>
                     <View style={{position :"absolute",marginEnd:0, paddingEnd:0, justifyContent:"center",alignItems:"center",backgroundColor:'rgba(19, 16, 20, 0.8)',alignSelf:"flex-end",borderBottomLeftRadius:20,borderTopLeftRadius:20, width:50,height:50,}}>
                     <Image
