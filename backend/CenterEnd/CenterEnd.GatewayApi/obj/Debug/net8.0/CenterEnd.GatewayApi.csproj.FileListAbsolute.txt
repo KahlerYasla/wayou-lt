@@ -122,6 +122,8 @@
 /Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.GatewayApi/bin/Debug/net8.0/tr/Microsoft.CodeAnalysis.Workspaces.resources.dll
 /Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.GatewayApi/bin/Debug/net8.0/zh-Hans/Microsoft.CodeAnalysis.Workspaces.resources.dll
 /Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.GatewayApi/bin/Debug/net8.0/zh-Hant/Microsoft.CodeAnalysis.Workspaces.resources.dll
-/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.GatewayApi/bin/Debug/net8.0/protobuf-net.dll
-/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.GatewayApi/bin/Debug/net8.0/protobuf-net.Core.dll
 /Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.GatewayApi/bin/Debug/net8.0/Swashbuckle.AspNetCore.Annotations.dll
+/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.GatewayApi/bin/Debug/net8.0/Google.Protobuf.dll
+/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.GatewayApi/bin/Debug/net8.0/Grpc.Core.Api.dll
+/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.GatewayApi/bin/Debug/net8.0/Grpc.Net.Client.dll
+/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.GatewayApi/bin/Debug/net8.0/Grpc.Net.Common.dll

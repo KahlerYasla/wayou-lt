@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+option csharp_namespace = "MicroServices.TripGenerator";
+
+package trip_generator;
+
+// The greeting service definition.
+service TripGenerator {
+  // Sends a greeting
+  rpc Generate (GenerateTripRequest) returns (GenerateTripResponse);
+}
+
+// The request message containing the user's name.
+message GenerateTripRequest {
+    int32 user_id = 1;
+    TripGeneratorConfiguration configuration = 2;
+}
+
+// The response message containing the greetings.
+message GenerateTripResponse {
+    int32 trip_id = 1;
+}
+
+// The Configuration message definition.
+message TripGeneratorConfiguration {
+    repeated string categories = 1;
+    string originYX = 2;
+    float radius = 3;
+    repeated string keywords = 4;
+    string price_range = 5;
+  }

@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 
 using CenterEnd.BusinessLogic.Services;
 using CenterEnd.BusinessLogic.DTOs.Mobile.Requests;
+using CenterEnd.CoreInfrastructure.Utils;
+using CenterEnd.BusinessLogic.DTOs.Mobile.Responses;
 
 namespace CenterEnd.GatewayApi.Controllers;
 
@@ -51,10 +53,14 @@ public class PlaceController : ControllerBase
         return Ok(response);
     }
     //=======================================================================================================
-    [HttpGet("get-place-recommendation")]
-    public async Task<IActionResult> GetPlaceRecommendationAsync(int userId)
+    [HttpPost("get-place-recommendation")]
+    public async Task<IActionResult> GetPlaceRecommendationAsync(GetPlaceRecommendationRequest request)
     {
-        // TODO: Proto to PlaceRecommender microservice
-        return Ok("response from PlaceRecommender microservice");
+        BusinessLogic.DTOs.BaseResponse<GetPlaceRecommendationResponse> response =
+        await _placeService.GetPlaceRecommendationAsync(request);
+
+        WConsole.PrintResponse(response.Data!.Places!.Count.ToString());
+
+        return Ok(response);
     }
 }

@@ -11,5 +11,5 @@ public interface IPlaceService
     Task<BaseResponse<DeletePlaceResponse>> DeletePlaceAsync(DeletePlaceRequest request);
     Task<BaseResponse<GetAllPlacesByUserIdResponse>> GetAllPlacesByUserIdAsync(int userId);
     Task<BaseResponse<GetPlaceByIdResponse>> GetPlaceByIdAsync(int placeId);
-    Task<BaseResponse<GetPlaceRecommendationResponse>> GetPlaceRecommendationAsync(int userId);
+    Task<BaseResponse<GetPlaceRecommendationResponse>> GetPlaceRecommendationAsync(GetPlaceRecommendationRequest request);
 }

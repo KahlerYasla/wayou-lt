@@ -8,7 +8,7 @@ namespace CenterEnd.Database.Entities.Concrete
         public required User OwnerUser { get; set; }
         public string? TripDescription { get; set; }
         public string? ImagePath { get; set; }
-        public List<Place>? Places { get; set; }
+        public List<Place>? SortedPlaceList { get; set; }
         public int[]? PlaceSeperatorsByDay { get; set; }
         public string[]? TextByDay { get; set; }
         public DateTime? StartDate { get; set; }

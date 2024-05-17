@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "aT9P4UyROLn49T3SftREdffM39dEPpnVvYUPhlCIimJHKAa2vyIezcnKeFK7lvHcqY2kPe6s5WFBrRCZZ6bjJQ==",
+  "dgSpecHash": "oS/HEI5jXR+KE4QyGPXrj5ZuaSwqL3s5/Y46Omzj8NZ4eT20FOCd8VJVaCZQOWK4dziRA2xkQR9sVyhG3j4jOw==",
   "success": true,
   "projectFilePath": "/Users/kahler/Projects/Full-Stack/wayou-lt/backend/MicroServices/MicroServices.PlaceRecommender/MicroServices.PlaceRecommender.csproj",
   "expectedPackageFiles": [
@@ -12,7 +12,7 @@
     "/Users/kahler/.nuget/packages/grpc.net.client/2.57.0/grpc.net.client.2.57.0.nupkg.sha512",
     "/Users/kahler/.nuget/packages/grpc.net.clientfactory/2.57.0/grpc.net.clientfactory.2.57.0.nupkg.sha512",
     "/Users/kahler/.nuget/packages/grpc.net.common/2.57.0/grpc.net.common.2.57.0.nupkg.sha512",
-    "/Users/kahler/.nuget/packages/grpc.tools/2.57.0/grpc.tools.2.57.0.nupkg.sha512",
+    "/Users/kahler/.nuget/packages/grpc.tools/2.63.0/grpc.tools.2.63.0.nupkg.sha512",
     "/Users/kahler/.nuget/packages/microsoft.extensions.dependencyinjection/6.0.0/microsoft.extensions.dependencyinjection.6.0.0.nupkg.sha512",
     "/Users/kahler/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/6.0.0/microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
     "/Users/kahler/.nuget/packages/microsoft.extensions.http/6.0.0/microsoft.extensions.http.6.0.0.nupkg.sha512",

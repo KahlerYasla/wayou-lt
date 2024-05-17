@@ -13,6 +13,6 @@ public class Configuration
     public float Radius { get; set; }
     [JsonPropertyName("keywords")]
     public List<string>? Keywords { get; set; }
-    [JsonPropertyName("price_range")]
+    [JsonPropertyName("priceRange")]
     public string? PriceRange { get; set; }
 }

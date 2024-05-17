@@ -131,7 +131,7 @@
           }
         }
       },
-      "Grpc.Tools/2.57.0": {
+      "Grpc.Tools/2.63.0": {
         "type": "package",
         "build": {
           "build/Grpc.Tools.props": {},
@@ -496,10 +496,10 @@
         "packageIcon.png"
       ]
     },
-    "Grpc.Tools/2.57.0": {
-      "sha512": "H/R3AqavrrWTPsKeEQjSlXFIkqaZ4gMVmtL6dzLg00xup1Fx9jZT9ACxGDv3t83HMmazJLM5rO3k2jfT4Ox58Q==",
+    "Grpc.Tools/2.63.0": {
+      "sha512": "kJ1+gtEmHQTG8AOtHQ1c/ScRihMijElYqylGGurraQP9yrl3paueI/iinsm6SOUjgOO3jjd3x3TmWNe8uvcRrw==",
       "type": "package",
-      "path": "grpc.tools/2.57.0",
+      "path": "grpc.tools/2.63.0",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
@@ -528,7 +528,7 @@
         "build/native/include/google/protobuf/timestamp.proto",
         "build/native/include/google/protobuf/type.proto",
         "build/native/include/google/protobuf/wrappers.proto",
-        "grpc.tools.2.57.0.nupkg.sha512",
+        "grpc.tools.2.63.0.nupkg.sha512",
         "grpc.tools.nuspec",
         "packageIcon.png",
         "tools/linux_arm64/grpc_csharp_plugin",
@@ -786,7 +786,8 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "Grpc.AspNetCore >= 2.57.0"
+      "Grpc.AspNetCore >= 2.57.0",
+      "Grpc.Tools >= 2.63.0"
     ]
   },
   "packageFolders": {
@@ -834,6 +835,12 @@
           "Grpc.AspNetCore": {
             "target": "Package",
             "version": "[2.57.0, )"
+          },
+          "Grpc.Tools": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[2.63.0, )"
           }
         },
         "imports": [

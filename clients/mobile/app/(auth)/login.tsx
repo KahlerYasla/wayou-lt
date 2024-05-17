@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FONT } from "../../constants/theme"
 import images from "../../constants/images";
 
+
 import {
   SafeAreaView,
   ScrollView,
@@ -11,6 +12,7 @@ import {
   TouchableOpacity,
   Image
 } from "react-native";
+
 
 import { Link, Stack, router, useRouter } from "expo-router";
 
@@ -41,20 +43,13 @@ const Login = () => {
             padding: SIZES.medium,
             justifyContent: "center",
           }}>
-        <View
-          style={{
-            flex: 1,
-            justifyContent:"center",
-            alignSelf:"center"
-          }}
-        >
+         <View>
 
           <Image
             style={{ width: 300, height: 100, alignSelf:"flex-end", marginRight:25}}
             source={images.logo}
             resizeMode='contain'
           />
-
           <CustomFormField
             label=""
             placeholder="Email"
@@ -71,7 +66,7 @@ const Login = () => {
               marginBottom: 0,
             }}
           ></CustomFormField>
-
+              
           <CustomFormField
             label=""
             placeholder="Password"
@@ -103,14 +98,13 @@ const Login = () => {
             onPress={() => loginToHome()}
           />
         </View>
-
+        </View>
           <View style={{  justifyContent: 'flex-end', alignItems: 'center', marginBottom: 20 }}>
             <TouchableOpacity onPress={() => { router.push("signUp") }} style={{ justifyContent: 'center', alignItems: 'center', paddingVertical: 10, paddingHorizontal: 20 }}>
               <Text style={{ color: 'white', fontFamily: FONT.regular }}>Sign Up</Text>
             </TouchableOpacity>
           </View>
-
-        </View>
+        
       </ScrollView>
     </SafeAreaView>
   );

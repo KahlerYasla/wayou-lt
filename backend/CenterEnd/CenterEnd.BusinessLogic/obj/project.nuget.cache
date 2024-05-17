@@ -1,9 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "Z5TTW+h3jGa75nylliQTYnZNupoCIB108QZz3VkpHQPymX2Ne0NXSEQegrHj85XpQzQppvceY5wStSjjauckow==",
+  "dgSpecHash": "7uigFLFUoFAsULobRnd4xgT1GXuuQlS/SR9NwumAy50SWvjHwZzV9yYH2o5dnHoVQWFH3c9UgfPS0qMTrjmYIA==",
   "success": true,
   "projectFilePath": "/Users/kahler/Projects/Full-Stack/wayou-lt/backend/CenterEnd/CenterEnd.BusinessLogic/CenterEnd.BusinessLogic.csproj",
   "expectedPackageFiles": [
+    "/Users/kahler/.nuget/packages/google.protobuf/3.26.1/google.protobuf.3.26.1.nupkg.sha512",
+    "/Users/kahler/.nuget/packages/grpc.core.api/2.62.0/grpc.core.api.2.62.0.nupkg.sha512",
+    "/Users/kahler/.nuget/packages/grpc.net.client/2.62.0/grpc.net.client.2.62.0.nupkg.sha512",
+    "/Users/kahler/.nuget/packages/grpc.net.common/2.62.0/grpc.net.common.2.62.0.nupkg.sha512",
+    "/Users/kahler/.nuget/packages/grpc.tools/2.63.0/grpc.tools.2.63.0.nupkg.sha512",
     "/Users/kahler/.nuget/packages/microsoft.aspnetcore.authentication.jwtbearer/8.0.4/microsoft.aspnetcore.authentication.jwtbearer.8.0.4.nupkg.sha512",
     "/Users/kahler/.nuget/packages/microsoft.entityframeworkcore/8.0.2/microsoft.entityframeworkcore.8.0.2.nupkg.sha512",
     "/Users/kahler/.nuget/packages/microsoft.entityframeworkcore.abstractions/8.0.2/microsoft.entityframeworkcore.abstractions.8.0.2.nupkg.sha512",
@@ -26,9 +31,6 @@
     "/Users/kahler/.nuget/packages/microsoft.identitymodel.tokens/7.1.2/microsoft.identitymodel.tokens.7.1.2.nupkg.sha512",
     "/Users/kahler/.nuget/packages/npgsql/8.0.2/npgsql.8.0.2.nupkg.sha512",
     "/Users/kahler/.nuget/packages/npgsql.entityframeworkcore.postgresql/8.0.2/npgsql.entityframeworkcore.postgresql.8.0.2.nupkg.sha512",
-    "/Users/kahler/.nuget/packages/protobuf-net/3.2.30/protobuf-net.3.2.30.nupkg.sha512",
-    "/Users/kahler/.nuget/packages/protobuf-net.core/3.2.30/protobuf-net.core.3.2.30.nupkg.sha512",
-    "/Users/kahler/.nuget/packages/system.collections.immutable/7.0.0/system.collections.immutable.7.0.0.nupkg.sha512",
     "/Users/kahler/.nuget/packages/system.identitymodel.tokens.jwt/7.1.2/system.identitymodel.tokens.jwt.7.1.2.nupkg.sha512"
   ],
   "logs": []
