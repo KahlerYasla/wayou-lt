@@ -8,7 +8,7 @@ const Decks = () => {
     const router = useRouter()
 
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: "#101114" }}>
             <Stack.Screen
                 options={{
                     headerShown: false,

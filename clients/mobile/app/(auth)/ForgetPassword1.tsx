@@ -1,15 +1,19 @@
-import { View, Text, ScrollView, SafeAreaView } from 'react-native'
+import { View, Text, ScrollView, SafeAreaView, Image } from 'react-native'
 import React from 'react'
 import CustomFormField from '../../components/CustomFormField'
 import { FONT, SIZES } from '../../constants'
 import CustomButton from '../../components/CustomButton'
 import { router } from 'expo-router'
+import images from '../../constants/images'
 
 const ForgetPassword1 = () => {
   return (
     
     <SafeAreaView style={{ flex : 1, backgroundColor : "#101114" }}>
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false} style={{}} contentContainerStyle={{ height: '100%' }}>
+      <View   style={{ flex:1,alignItems:"center"}}>
+
+      
       <View
       style={{
         flex: 1,
@@ -39,7 +43,12 @@ const ForgetPassword1 = () => {
             textStyle={{fontFamily:FONT.regular}}
             onPress={() => {router.push("ForgetPassword2")}}
             />
-
+             <Image
+            style={{ width: 300, height: 100, alignSelf:"flex-end", marginRight:25,marginTop:90}}
+            source={images.logo}
+            resizeMode='contain'
+          />
+      </View>
       </View>
     </ScrollView>
   </SafeAreaView>
