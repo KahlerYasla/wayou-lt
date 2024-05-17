@@ -35,7 +35,7 @@ const Home = () => {
                     style={{
                         flex: 1,
                         padding: SIZES.medium,
-                        paddingRight:0,
+                        paddingRight: 0,
                     }}>
                     <View>
                         <CustomButton textStyle={{color:"white"}} onPress={()=>router.push("CardInfos")} title="go card infos"></CustomButton>
@@ -57,7 +57,7 @@ const Home = () => {
                 onRequestClose={closeModal}
             >
                 <TouchableWithoutFeedback onPress={closeModal}>
-                    <View/>
+                    <View />
                 </TouchableWithoutFeedback>
                 <ModalContent closeModal={closeModal} />
             </Modal>

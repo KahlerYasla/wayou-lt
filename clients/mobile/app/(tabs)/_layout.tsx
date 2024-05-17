@@ -34,100 +34,99 @@ const TabIcon: React.FC<TabIconProps> = ({ icon, color, name, focused }) => {
 const TabLayout: React.FC = () => {
   return (
     <>
-    <Tabs
-      screenOptions={{
-        tabBarShowLabel: false,
-        tabBarActiveTintColor: '#FFA001',
-        tabBarInactiveTintColor: '#CDCDE0',
-        tabBarStyle: {
-          backgroundColor: 'rgba(0, 0, 0, 1)',
-          borderTopWidth: 1,
-          borderTopColor: '#101114',
-          height: 60
-        }
-      }}
-    >
+      <Tabs
+        screenOptions={{
+          tabBarShowLabel: false,
+          tabBarActiveTintColor: '#FCFF70',
+          tabBarInactiveTintColor: '#CDCDE0',
+          tabBarStyle: {
+            backgroundColor: 'rgba(0, 0, 0, 1)',
+            borderTopWidth: 1,
+            borderTopColor: 'black',
+          }
+        }}
+      >
         <Tabs.Screen
-        name="explorer"
-        options={{
-          title: 'Explorer',
-          headerShown: false,
-          tabBarIcon: ({ color, focused }) => (
-            <TabIcon
-              icon={icons.ExplorerIcon}
-              color={color}
-              name="Explorer"
-              focused={focused}
-            />
-          )
-        }}
-      />
-      
-      <Tabs.Screen
-        name="routes"
-        options={{
-          title: 'Routes',
-          headerShown: false,
-          tabBarIcon: ({ color, focused }) => (
-            <TabIcon
-              icon={icons.RoutesIcon}
-              color={color}
-              name="Routes"
-              focused={focused}
-            />
-          )
-        }}
-      />   
-      <Tabs.Screen
-        name="home"
-        options={{
-          title: 'Home',
-          headerShown: false,
-          tabBarIcon: ({ color, focused }) => (
-            <TabIcon
-              icon={icons.HomeIcon}
-              color={color}
-              name="Home"
-              focused={focused}
-            />
-          )
-        }}
-      />
-      <Tabs.Screen
-        name="decks"
-        options={{
-          title: 'Decks',
-          headerShown: false,
-          tabBarIcon: ({ color, focused }) => (
-            <TabIcon
-              icon={icons.DecksIcon}
-              color={color}
-              name="Decks"
-              focused={focused}
-            />
-          )
-        }}
-      />
-      <Tabs.Screen
-        name="profile"
-        options={{
-          title: 'Profile',
-          headerShown: false,
-          tabBarIcon: ({ color, focused }) => (
-            <TabIcon
-              icon={icons.ProfileIcon}
-              color={color}
-              name="Profile"
-              focused={focused}
-            />
-          )
-        }}
-      />
-      
-    </Tabs>
-    <StatusBar backgroundColor="#000" style="light" />
+          name="explorer"
+          options={{
+            title: 'Explorer',
+            headerShown: false,
+            tabBarIcon: ({ color, focused }) => (
+              <TabIcon
+                icon={icons.ExplorerIcon}
+                color={color}
+                name="Explorer"
+                focused={focused}
+              />
+            )
+          }}
+        />
+
+        <Tabs.Screen
+          name="routes"
+          options={{
+            title: 'Routes',
+            headerShown: false,
+            tabBarIcon: ({ color, focused }) => (
+              <TabIcon
+                icon={icons.RoutesIcon}
+                color={color}
+                name="Routes"
+                focused={focused}
+              />
+            )
+          }}
+        />
+        <Tabs.Screen
+          name="home"
+          options={{
+            title: 'Home',
+            headerShown: false,
+            tabBarIcon: ({ color, focused }) => (
+              <TabIcon
+                icon={icons.HomeIcon}
+                color={color}
+                name="Home"
+                focused={focused}
+              />
+            )
+          }}
+        />
+        <Tabs.Screen
+          name="decks"
+          options={{
+            title: 'Decks',
+            headerShown: false,
+            tabBarIcon: ({ color, focused }) => (
+              <TabIcon
+                icon={icons.DecksIcon}
+                color={color}
+                name="Decks"
+                focused={focused}
+              />
+            )
+          }}
+        />
+        <Tabs.Screen
+          name="profile"
+          options={{
+            title: 'Profile',
+            headerShown: false,
+            tabBarIcon: ({ color, focused }) => (
+              <TabIcon
+                icon={icons.ProfileIcon}
+                color={color}
+                name="Profile"
+                focused={focused}
+              />
+            )
+          }}
+        />
+
+      </Tabs>
+      <StatusBar backgroundColor="#000" style="light" />
     </>
-    
+
   );
 };
 
