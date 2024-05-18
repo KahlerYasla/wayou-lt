@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CenterEnd.BusinessLogic")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+041e2a6d7f98fb6d5a4baceffa13b4cbc9eeeaa5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ff548d9eaa8c0fc698f1eccd22e4c732c8a77899")]
 [assembly: System.Reflection.AssemblyProductAttribute("CenterEnd.BusinessLogic")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CenterEnd.BusinessLogic")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

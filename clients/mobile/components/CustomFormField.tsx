@@ -9,15 +9,15 @@ interface CustomFormFieldProps extends TextInputProps {
   inputTextStyle?: TextStyle;
 }
 
-const CustomFormField: React.FC<CustomFormFieldProps> = ({ 
-  label, 
-  value, 
-  onChangeText, 
-  placeholder, 
-  secureTextEntry, 
-  keyboardType, 
-  multiline, 
-  numberOfLines, 
+const CustomFormField: React.FC<CustomFormFieldProps> = ({
+  label,
+  value,
+  onChangeText,
+  placeholder,
+  secureTextEntry,
+  keyboardType,
+  multiline,
+  numberOfLines,
   otherStyles,
   labelStyle,
   containerStyle,
@@ -27,7 +27,7 @@ const CustomFormField: React.FC<CustomFormFieldProps> = ({
     <View style={[styles.container, containerStyle, otherStyles]}>
       <Text style={[styles.label, labelStyle]}>{label}</Text>
       <TextInput
-        style={[styles.input,inputTextStyle]}
+        style={[styles.input, inputTextStyle]}
         value={value}
         onChangeText={onChangeText}
         placeholder={placeholder}
@@ -46,8 +46,8 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   label: {
-    fontSize: 16,
-    marginBottom: 8,
+    fontSize: 12,
+    marginBottom: 4,
   },
   input: {
     borderWidth: 0,

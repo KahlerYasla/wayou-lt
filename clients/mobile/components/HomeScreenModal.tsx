@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { COLORS, FONT, SIZES } from "../constants";
 import CustomButton from "./CustomButton";
@@ -8,14 +8,23 @@ import images from "../constants/images";
 import CustomFormField from "./CustomFormField";
 import RNPickerSelect from 'react-native-picker-select';
 import { router } from "expo-router";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { Entypo } from '@expo/vector-icons';
+import { useConfigurationStore } from "../stores/ConfigurationStore";
+import { useIsModalOpenStore } from "../stores/BehavioursStore";
 
 interface ModalContentProps {
   closeModal: () => void;
 }
 
 const ModalContent: React.FC<ModalContentProps> = ({ closeModal }) => {
-
   const [isSecondModalVisible, setIsSecondModalVisible] = useState(false);
+
+  const configuration = useConfigurationStore((state) => state.configuration);
+  const saveConfiguration = useConfigurationStore((state) => state.saveConfiguration);
+  const loadConfiguration = useConfigurationStore((state) => state.loadConfiguration);
+
+  const setIsModalOpen = useIsModalOpenStore((state) => state.setIsModalOpen);
 
   const openSecondModal = () => {
     setIsSecondModalVisible(true);
@@ -26,29 +35,51 @@ const ModalContent: React.FC<ModalContentProps> = ({ closeModal }) => {
   };
 
   return (
-    <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)', width: "100%", height: "100%" }}>
-      <View style={{ flex: 1, flexDirection: 'row', justifyContent: "flex-start", alignItems: "flex-start", padding: SIZES.medium, marginBottom: 16 }}>
-        <Image style={{ width: 25, height: 25 }} source={require("../assets/images/burgerMenu.png")}></Image>
-        <Text style={{ marginLeft: 10, fontFamily: FONT.regular, fontSize: 25, height: 50, color: "white" }}>Confugurations</Text>
+    <SafeAreaView style={{
+      backgroundColor: 'rgba(0, 0, 0, 1)', flex: 1, paddingTop: 60,
+      paddingHorizontal: 20
+    }}>
+      <View style={{
+        flexDirection: 'row', justifyContent: "flex-start",
+        alignItems: "flex-start", marginBottom: 50,
+      }}>
+        <Image style={{ width: 25, height: 25 }}
+          source={require("../assets/images/burgerMenu.png")}>
+        </Image>
+        <Text style={{
+          marginLeft: 10, fontFamily: FONT.regular, fontSize: 16,
+          marginTop: 4, height: 25, textAlignVertical: "bottom", color: "white"
+        }}>
+          Configurations
+        </Text>
       </View>
-      <View style={{ flex: 1, alignItems: "center" }}>
-        <Text style={{ color: "white", height: 22, fontFamily: FONT.regular }}>Selected Deck</Text>
-        <RNPickerSelect
-          placeholder={{ label: "Default Deck", value: null, }} // Placeholder öğesi
-          style={{
-            inputIOS: { color: 'white', textAlign: 'center' }, // iOS için giriş stili ve metni ortalamak için textAlign
-            inputAndroid: { color: 'white', textAlign: 'center', justifyContent: "center" }, // Android için giriş stili ve metni ortalamak için textAlign
-            iconContainer: { position: 'absolute', right: 0 } // ikon container stili
-          }}
-          onValueChange={(value) => console.log(value)}
-          items={[
-            { label: 'Football', value: 'football' },
-            { label: 'Baseball', value: 'baseball' },
-            { label: 'Hockey', value: 'hockey' },
-          ]}
-        />
+      <View style={{
+        alignItems: "flex-start",
+        flexDirection: 'column', justifyContent: "space-between", marginBottom: 50
+      }}>
+        <Text style={{ color: "white", height: 30, fontFamily: FONT.regular }}>Selected Deck</Text>
+        <View style={{ flexDirection: 'row', justifyContent: "space-between", gap: 10, alignItems: "center" }}>
+          <RNPickerSelect
+            placeholder={{ label: "Default Deck", value: null, }} // Placeholder
+            style={{
+              inputIOS: { color: 'white', textAlign: 'left' }, // iOS için giriş stili ve metni ortalamak için textAlign
+              inputAndroid: { color: 'white', textAlign: 'left', justifyContent: "center" }, // Android için giriş stili ve metni ortalamak için textAlign
+              iconContainer: { position: 'absolute', right: 0 } // ikon container stili
+            }}
+            onValueChange={(value) => console.log(value)}
+            items={[
+              { label: 'Football', value: 'football' },
+              { label: 'Baseball', value: 'baseball' },
+              { label: 'Hockey', value: 'hockey' },
+            ]}
+          />
+          <Entypo name="chevron-down" size={24} color="white" style={{ position: 'absolute', right: -30 }} />
+        </View>
       </View>
-      <View style={{ flex: 1, alignItems: "center" }}>
+      <View style={{
+        alignItems: "flex-start",
+        marginBottom: 50
+      }}>
         <Text style={{ color: "white", height: 22, fontFamily: FONT.regular }}>Tags (or)</Text>
         <CustomFormField
           placeholder="Tags"
@@ -58,7 +89,7 @@ const ModalContent: React.FC<ModalContentProps> = ({ closeModal }) => {
             borderBottomColor: "",
             borderBottomWidth: 1,
             borderColor: 'rgba(255, 255, 255, 0.2)', // Beyazın %20'si
-            width: "80%",
+            width: "100%",
             marginTop: 1,
           }}
           inputTextStyle={{
@@ -70,15 +101,20 @@ const ModalContent: React.FC<ModalContentProps> = ({ closeModal }) => {
             fontSize: 0,
           }}
         >
-
         </CustomFormField>
       </View>
-      <View style={{ height: 20, marginBottom: 0, flexDirection: 'row', flex: 1, alignItems: "center", justifyContent: "space-around" }}>
+      <View style={{
+        marginTop: 0, flexDirection: 'row',
+        alignItems: "center", justifyContent: "flex-start", gap: 60
+      }}>
         <Text style={{ color: "white", height: 22, fontFamily: FONT.regular }}>Min Price</Text>
         <Text style={{ color: "white", height: 22, fontFamily: FONT.regular }}>Max Price</Text>
         <Text style={{ color: "white", height: 22, fontFamily: FONT.regular }}>Origin</Text>
       </View>
-      <View style={{ height: 20, marginTop: 0, flexDirection: 'row', flex: 1, alignItems: "center", justifyContent: "space-around" }}>
+      <View style={{
+        marginTop: 0, flexDirection: 'row', marginBottom: 50,
+        alignItems: "center", justifyContent: "flex-start", gap: 45
+      }}>
         <CustomFormField
           placeholder="$ 0"
           placeholderTextColor={"gray"}
@@ -120,8 +156,8 @@ const ModalContent: React.FC<ModalContentProps> = ({ closeModal }) => {
           }}
         ></CustomFormField>
         <TouchableOpacity onPress={() => {
+          setIsModalOpen(true);
           router.push("MapSelection");
-          closeModal();
         }}>
           <View style={{ borderColor: "white", borderWidth: 1, borderRadius: 10, width: 45, height: 45, justifyContent: "center", alignItems: "center" }}>
             <Image
@@ -131,8 +167,11 @@ const ModalContent: React.FC<ModalContentProps> = ({ closeModal }) => {
           </View>
         </TouchableOpacity>
       </View>
-      <View style={{ flex: 1, alignItems: "center" }}>
-        <Text style={{ color: "white", height: 22, fontFamily: FONT.regular, marginBottom: 5 }}>Keyword (Space Between Each)</Text>
+      <View style={{ alignItems: "flex-start" }}>
+        <Text style={{
+          color: "white", height: 22, fontFamily: FONT.regular,
+          marginBottom: 0
+        }}>Keyword (Space Between Each)</Text>
         <CustomFormField
           placeholder="Keywords"
           placeholderTextColor={"gray"}
@@ -141,7 +180,7 @@ const ModalContent: React.FC<ModalContentProps> = ({ closeModal }) => {
             borderBottomColor: "",
             borderBottomWidth: 1,
             borderColor: 'rgba(255, 255, 255, 0.2)', // Beyazın %20'si
-            width: "80%",
+            width: "100%",
             marginTop: 1,
           }}
           inputTextStyle={{
@@ -156,21 +195,35 @@ const ModalContent: React.FC<ModalContentProps> = ({ closeModal }) => {
 
         </CustomFormField>
       </View>
-      <View style={{ flex: 1, alignItems: "center" }}>
-        <CustomButton title="Save" onPress={closeModal}></CustomButton>
+      <View style={{
+        flex: 1, alignItems: "center",
+        justifyContent: "flex-end", marginBottom: 80,
+      }}>
+        <CustomButton
+          title="Save"
+          onPress={() => {
+            saveConfiguration(configuration);
+            closeModal();
+          }}
+          style={{
+            width: "100%",
+          }}
+        ></CustomButton>
       </View>
 
       {/* İkinci modalın içeriği */}
-      {isSecondModalVisible && (
-        <View>
-          <TouchableOpacity onPress={closeSecondModal}>
-            <Text>Kapat</Text>
-          </TouchableOpacity>
-          {/* İkinci modalın içeriği */}
-        </View>
-      )}
+      {
+        isSecondModalVisible && (
+          <View>
+            <TouchableOpacity onPress={closeSecondModal}>
+              <Text>Kapat</Text>
+            </TouchableOpacity>
+            {/* İkinci modalın içeriği */}
+          </View>
+        )
+      }
 
-    </View>
+    </SafeAreaView >
 
   );
 };

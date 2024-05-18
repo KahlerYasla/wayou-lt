@@ -9,6 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 using CenterEnd.CoreInfrastructure.Utils;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -60,6 +61,17 @@ builder.WebHost.ConfigureKestrel(options =>
 {
     options.ListenAnyIP(5296); // HTTP
     options.ListenAnyIP(7217, listenOptions => listenOptions.UseHttps()); // HTTPS
+});
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", builder =>
+    {
+        builder
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
 });
 
 var app = builder.Build();

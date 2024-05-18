@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SafeAreaView, ScrollView, View, TouchableOpacity, Image, TouchableWithoutFeedback } from "react-native";
 import { Stack, useRouter } from "expo-router";
 import { SIZES } from "../../constants";
@@ -6,19 +6,27 @@ import { Modal } from "react-native";
 import ModalContent from "../../components/HomeScreenModal";
 import TinderCard from 'react-tinder-card';
 import cards from "../../constants/Cards"; // Kartların bulunduğu dosya
+import { useIsModalOpenStore } from "../../stores/BehavioursStore";
 
 const Home = () => {
     const router = useRouter();
     const [searchTerm, setSearchTerm] = useState("");
     const [isModalVisible, setIsModalVisible] = useState(false);
-    
+
     type Direction = 'up' | 'down' | 'left' | 'right';
     type MyIdentifier = string;
     const [resetCard, setResetCard] = useState(false);
 
+    const isModalOpen = useIsModalOpenStore((state) => state.isModalOpen);
+
     // Kart dizisi ve mevcut kart indeksi
-    const cardArray = [cards.card1, cards.card2,cards.card3,cards.card4,cards.card5]; // Gerekli tüm kartları buraya ekleyin
+    const cardArray = [cards.card1, cards.card2, cards.card3, cards.card4, cards.card5]; // Gerekli tüm kartları buraya ekleyin
     const [cardIndex, setCardIndex] = useState(0);
+
+    useEffect(() => {
+
+        setIsModalVisible(isModalOpen);
+    }, [isModalOpen]);
 
     const openModal = () => {
         setIsModalVisible(true);
@@ -35,8 +43,8 @@ const Home = () => {
         } else if (direction === "right" || direction === "left") {
             // Mevcut kart indeksini artır
             if (cardIndex < cardArray.length - 1) {
-                
-                if(direction === "right" || direction === "left"){
+
+                if (direction === "right" || direction === "left") {
                     setCardIndex(cardIndex + 1);
                     setResetCard(true)
                 }
@@ -59,10 +67,10 @@ const Home = () => {
                     headerShown: false,
                 }}
             />
-            <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ height: '100%' }}>
+            <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ height: '100%', padding: 15 }}>
                 <View style={{ flex: 1, padding: 0, paddingRight: 0 }}>
-                    <TinderCard 
-                        onSwipe={onSwipe} 
+                    <TinderCard
+                        onSwipe={onSwipe}
                         key={resetCard ? "reset" : "notReset"}
                         onCardLeftScreen={handleCardReset}
                         preventSwipe={['down']}
@@ -75,7 +83,13 @@ const Home = () => {
                             />
                         </View>
                     </TinderCard>
-                    <TouchableOpacity onPress={openModal} style={{ top: 150, position: "absolute", marginEnd: 0, paddingEnd: 0, justifyContent: "center", alignItems: "center", backgroundColor: 'rgba(19, 16, 20, 0.8)', alignSelf: "flex-end", borderBottomLeftRadius: 20, borderTopLeftRadius: 20, width: 50, height: 50 }}>
+                    <TouchableOpacity onPress={openModal} style={{
+                        top: 150, position: "absolute", marginEnd: 0, paddingEnd: 0,
+                        justifyContent: "center", alignItems: "center",
+                        backgroundColor: 'rgba(19, 16, 20, 0.8)', right: -20,
+                        borderBottomLeftRadius: 20, borderTopLeftRadius: 20,
+                        width: 50, height: 50
+                    }}>
                         <View style={{ position: "absolute", marginEnd: 0, paddingEnd: 0, justifyContent: "center", alignItems: "center", backgroundColor: 'rgba(19, 16, 20, 0.8)', alignSelf: "flex-end", borderBottomLeftRadius: 20, borderTopLeftRadius: 20, width: 50, height: 50 }}>
                             <Image
                                 style={{}}
@@ -85,9 +99,9 @@ const Home = () => {
                     </TouchableOpacity>
                 </View>
             </ScrollView>
+
             <Modal
-                animationType="slide"
-                transparent={true}
+                animationType="fade"
                 visible={isModalVisible}
                 onRequestClose={closeModal}
             >
@@ -96,7 +110,8 @@ const Home = () => {
                 </TouchableWithoutFeedback>
                 <ModalContent closeModal={closeModal} />
             </Modal>
-        </SafeAreaView>
+
+        </SafeAreaView >
     );
 };
 

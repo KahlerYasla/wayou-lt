@@ -6,13 +6,6 @@ import { router } from 'expo-router';
 
 export default function App() {
   const [circleRadius, setCircleRadius] = useState(100); // Başlangıç yarıçapı
-  const [operatingSystem, setOperatingSystem] = useState('ios'); // [ios, android]
-
-  useEffect(() => {
-    if (Platform.OS === 'android') {
-      setOperatingSystem('android');
-    }
-  }, []);
 
   // Orta Noktanın Koordinatları
   const centerCoordinate = {
@@ -58,7 +51,7 @@ export default function App() {
           }}
           onPress={() => {
             // return to stack's previous screen
-
+            router.replace("home");
           }}
         >
           <Text style={{
