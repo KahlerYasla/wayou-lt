@@ -1,26 +1,17 @@
 import { useState } from "react";
-import { FONT } from "../../constants/theme"
+import { StyleSheet, SafeAreaView, ScrollView, View, Text, TouchableOpacity, Image } from "react-native";
+import { Link, useRouter } from "expo-router";
+import axios from "axios";
+
+// components
+import CustomButton from "../../components/shared/CustomButton";
+import CustomFormField from "../../components/shared/CustomFormField";
+
+// constants
+import { FONT } from "../../constants";
 import { API_BASE_URL } from "../../constants";
 import images from "../../constants/images";
-import axios from "axios";
-import { AntDesign } from '@expo/vector-icons';
-
-import {
-  SafeAreaView,
-  ScrollView,
-  View,
-  Text,
-  Button,
-  TouchableOpacity,
-  Image
-} from "react-native";
-
-
-import { Link, Stack, router, useRouter } from "expo-router";
-
-import { COLORS, SIZES } from "../../constants";
-import CustomButton from "../../components/CustomButton";
-import CustomFormField from "../../components/CustomFormField";
+import icons from "../../constants/icons";
 
 const Login = () => {
   const router = useRouter();
@@ -41,28 +32,11 @@ const Login = () => {
           if (response.status === 200) {
             alert("Login Successful");
 
-            // localStorage.setItem("token", response.data.token);
-
             router.push("home");
           }
         })
         .catch((error) => {
-          if (error.response) {
-            // The request was made and the server responded with a status code
-            // that falls out of the range of 2xx
-            console.log('Response data:', error.response.data);
-            console.log('Response status:', error.response.status);
-            console.log('Response headers:', error.response.headers);
-          } else if (error.request) {
-            // The request was made but no response was received
-            // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-            // http.ClientRequest in node.js
-            console.log('Request data:', error.request);
-          } else {
-            // Something happened in setting up the request that triggered an Error
-            console.log('Error message:', error.message);
-          }
-          console.log('Config:', error.config);
+          console.error('Error:', error);
           alert("Login Failed");
         });
     }
@@ -73,99 +47,138 @@ const Login = () => {
   }
 
   return (
-    <SafeAreaView style={{ backgroundColor: "#101114" }}>
-      <Stack.Screen
-        options={{
-          headerShown: false,
-        }}
-      />
-
-      <ScrollView showsVerticalScrollIndicator={false} style={{}} contentContainerStyle={{ height: '100%' }}>
-        <View style={{
-          flex: 1,
-          alignItems: "center",
-          padding: SIZES.medium,
-          justifyContent: "center",
-        }}>
-          <View>
-
-            <Image
-              style={{ width: 300, height: 100, alignSelf: "flex-end", marginRight: 25 }}
-              source={images.logo}
-              resizeMode='contain'
-            />
+    <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
+        <ScrollView contentContainerStyle={styles.scrollView}>
+          <View style={styles.content}>
+            <Image source={images.bannerLogo} style={styles.logo} />
+            <View style={{ height: 10 }} />
             <CustomFormField
               label=""
-              placeholder="Email"
+              placeholder="Email or Username"
               onChangeText={(text) => setUserName(text)}
-              otherStyles={{
-                borderBottomColor: "",
-                borderBottomWidth: .5,
-                borderColor: 'rgba(255, 255, 255, 0.2)', // Beyazın %20'si
-              }}
-              inputTextStyle={{
-                color: 'rgba(255, 255, 255, 0.2)',
-                fontFamily: FONT.regular
-              }}
-              containerStyle={{
-                marginBottom: 0,
-              }}
-            ></CustomFormField>
-
+              inputTextStyle={styles.inputText}
+              containerStyle={styles.inputContainer}
+            />
+            <View style={{ height: 20 }} />
             <CustomFormField
               label=""
               placeholder="Password"
               onChangeText={(text) => setPassword(text)}
-              otherStyles={{
-                borderBottomColor: "",
-                borderBottomWidth: .5,
-                borderColor: 'rgba(255, 255, 255, 0.2)', // Beyazın %20'si
-                marginTop: 1,
-
-              }}
-              inputTextStyle={{
-                color: 'rgba(255, 255, 255, 0.2)',
-                fontFamily: FONT.regular
-              }}
-              labelStyle={{
-                margin: 0,
-                fontSize: 0,
-              }}
+              otherStyles={{ marginTop: 1 }}
+              inputTextStyle={styles.inputText}
               keyboardType={"visible-password"}
-            ></CustomFormField>
-
-            <View style={{ alignItems: "flex-end" }}>
-              <Link style={{ marginBottom: 30, marginTop: 15, color: "white", fontFamily: FONT.regular }} href={"./ForgetPassword1"}>Forget Password</Link>
+              containerStyle={styles.inputContainer}
+            />
+            <View style={{ height: 20 }} />
+            <View style={styles.forgetPassword}>
+              <Link style={styles.forgetPasswordLink} href={"send-email"}>
+                Forget Password
+              </Link>
             </View>
-
+            <View style={{ height: 20 }} />
             <CustomButton
               title="Log in"
-              textStyle={{ fontFamily: FONT.regular }}
               onPress={() => validateLogin()}
+              style={{ width: "80%", maxWidth: 400 }}
             />
-
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20 }}>
-              <AntDesign name="google" size={24} color="white" />
-              <TouchableOpacity onPress={() => handleGoogleLogin()}
-                style={{
-                  justifyContent: 'center', alignItems: 'center',
-                  paddingVertical: 20, paddingHorizontal: 20, borderRadius: 5,
-                }}>
-                <Text style={{ color: 'white', fontFamily: FONT.regular }}>Login with Google</Text>
+            <View style={{ height: 10 }} />
+            <View style={styles.googleLogin}>
+              <Image source={icons.googleIcon} style={{ width: 20, height: 20, marginRight: 0 }} />
+              <TouchableOpacity onPress={() => handleGoogleLogin()} style={styles.googleLoginButton}>
+                <Text style={styles.googleLoginText}>
+                  Login with Google
+                </Text>
               </TouchableOpacity>
             </View>
 
           </View>
-        </View>
-        <View style={{ justifyContent: 'flex-end', alignItems: 'center', marginBottom: 20 }}>
-          <TouchableOpacity onPress={() => { router.push("signUp") }} style={{ justifyContent: 'center', alignItems: 'center', paddingVertical: 10, paddingHorizontal: 20 }}>
-            <Text style={{ color: 'white', fontFamily: FONT.regular }}>Sign Up</Text>
-          </TouchableOpacity>
-        </View>
-
-      </ScrollView>
-    </SafeAreaView>
+          <View style={styles.signUp}>
+            <TouchableOpacity onPress={() => { router.push("register") }} style={styles.signUpButton}>
+              <Text style={styles.signUpText}>
+                Sign Up
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "black",
+    flex: 1,
+  },
+  scrollView: {
+    flexGrow: 1,
+    width: "100%",
+    justifyContent: 'space-between',
+  },
+  content: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  logo: {
+    resizeMode: "contain",
+    width: 265,
+    marginRight: "10%",
+    alignSelf: "flex-end",
+  },
+  inputText: {
+  },
+  inputContainer: {
+    marginBottom: 0,
+    width: "80%",
+    maxWidth: 400,
+  },
+  forgetPassword: {
+    alignSelf: 'flex-end',
+    marginRight: "10%"
+  },
+  forgetPasswordLink: {
+    color: "white",
+    fontFamily: FONT.bold,
+  },
+  hiddenLabel: {
+    margin: 0,
+    fontSize: 0,
+  },
+  googleLogin: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingLeft: 10,
+  },
+  googleLoginButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 20,
+    paddingHorizontal: 15,
+    borderRadius: 5,
+  },
+  googleLoginText: {
+    fontFamily: FONT.bold,
+    color: 'white',
+  },
+  signUp: {
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  signUpButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+  },
+  signUpText: {
+    color: 'white',
+    fontFamily: FONT.bold,
+    fontSize: 14
+  },
+});
 
 export default Login;

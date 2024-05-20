@@ -1,5 +1,6 @@
 import { useFonts } from "expo-font";
 import { Redirect } from "expo-router";
+import { View } from "react-native";
 
 export default function Index() {
     const [fontsLoaded] = useFonts({
@@ -15,5 +16,7 @@ export default function Index() {
 
     // if logged in before redirect to "/home" otherwise "/login"
 
-    return <Redirect href="/login" />;
+    return (
+        <Redirect href="/login" />
+    );
 }

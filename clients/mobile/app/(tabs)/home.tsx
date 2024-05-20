@@ -3,10 +3,10 @@ import { SafeAreaView, ScrollView, View, TouchableOpacity, Image, TouchableWitho
 import { Stack, useRouter } from "expo-router";
 import { SIZES } from "../../constants";
 import { Modal } from "react-native";
-import ModalContent from "../../components/HomeScreenModal";
+import ModalContent from "../../components/home/HomeScreenModal";
 import TinderCard from 'react-tinder-card';
-import cards from "../../constants/Cards"; // Kartların bulunduğu dosya
 import { useIsModalOpenStore } from "../../stores/BehavioursStore";
+import images from "../../constants/images";
 
 const Home = () => {
     const router = useRouter();
@@ -20,7 +20,7 @@ const Home = () => {
     const isModalOpen = useIsModalOpenStore((state) => state.isModalOpen);
 
     // Kart dizisi ve mevcut kart indeksi
-    const cardArray = [cards.card1, cards.card2, cards.card3, cards.card4, cards.card5]; // Gerekli tüm kartları buraya ekleyin
+    const cardArray = [images.card1, images.card2, images.card3, images.card4, images.card5]; // Gerekli tüm kartları buraya ekleyin
     const [cardIndex, setCardIndex] = useState(0);
 
     useEffect(() => {
@@ -93,7 +93,7 @@ const Home = () => {
                         <View style={{ position: "absolute", marginEnd: 0, paddingEnd: 0, justifyContent: "center", alignItems: "center", backgroundColor: 'rgba(19, 16, 20, 0.8)', alignSelf: "flex-end", borderBottomLeftRadius: 20, borderTopLeftRadius: 20, width: 50, height: 50 }}>
                             <Image
                                 style={{}}
-                                source={require("../../assets/images/burgerMenu.png")}
+                                source={images.bannerLogo}
                             />
                         </View>
                     </TouchableOpacity>
