@@ -59,26 +59,32 @@ model.save('tag_embedding_model.h5')
 # Generate embeddings for all locations
 location_embeddings = model.predict(dummy_tags)
 
-# Function to generate recommendations for a specific tag
-def recommend_by_tag(tag_id, k=20):
-    # Find indices of places with the given tag
-    tagged_indices = whole_data[whole_data['tags'].apply(lambda x: tag_id in x)].index
+# Function to generate recommendations for a list of tags
+def recommend_by_tags(tag_ids, k=20):
+    # Find indices of places with any of the given tags
+    tagged_indices = set()
+    for tag_id in tag_ids:
+        tagged_indices.update(whole_data[whole_data['tags'].apply(lambda x: tag_id in x)].index)
+    tagged_indices = list(tagged_indices)
     
-    # Compute cosine similarity between the tag embedding and embeddings of places with the tag
-    tag_embedding = model.predict(mlb.transform([[tag_id]]))
-    similarities = cosine_similarity(tag_embedding, location_embeddings[tagged_indices])
+    if not tagged_indices:
+        return []  # No places found with the given tags
+    
+    # Compute cosine similarity between the tag embeddings and embeddings of places with the tags
+    tag_embeddings = np.mean([model.predict(mlb.transform([[tag_id]])) for tag_id in tag_ids], axis=0)
+    similarities = cosine_similarity(tag_embeddings.reshape(1, -1), location_embeddings[tagged_indices])
     
     # Get the indices of top-k most similar places
-    top_k_indices = tagged_indices[similarities.argsort(axis=1)[0][-k:]][::-1]
+    top_k_indices = np.array(tagged_indices)[similarities.argsort(axis=1)[0][-k:]][::-1]
     
     return top_k_indices
 
 # Example usage
-tag_input = 5
-recommendations = recommend_by_tag(tag_input, k=10)
+tag_inputs = [1,2,3,4,5,6,7,9,12]  # Example list of tags
+recommendations = recommend_by_tags(tag_inputs, k=20)
 
 # Sort recommendations based on rating
 recommended_items = whole_data.iloc[recommendations].sort_values(by='rating', ascending=False)
 
-print("Recommended items for tag", tag_input, ":")
+print("Recommended items for tags", tag_inputs, ":")
 print(recommended_items)
