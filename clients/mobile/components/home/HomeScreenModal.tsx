@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
-import { FONT } from "../../constants";
-import CustomButton from "../shared/CustomButton";
-import CustomFormField from "../shared/CustomFormField";
-import RNPickerSelect from 'react-native-picker-select';
+import { View, TouchableOpacity, StyleSheet, Image, SafeAreaView } from "react-native";
 import { router } from "expo-router";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { Entypo } from '@expo/vector-icons';
+
+import RNPickerSelect from 'react-native-picker-select';
+
 import { useConfigurationStore } from "../../stores/ConfigurationStore";
 import { useIsModalOpenStore } from "../../stores/BehavioursStore";
+
 import icons from "../../constants/icons";
+
+import CustomButton from "../shared/CustomButton";
+import CustomFormField from "../shared/CustomFormField";
 import CustomText from "../shared/CustomText";
 
 interface ModalContentProps {
@@ -35,119 +37,122 @@ const ModalContent: React.FC<ModalContentProps> = ({ closeModal }) => {
 
   return (
     <SafeAreaView style={styles.safeArea}>
+      <View style={styles.viewContent}>
 
-      <View style={styles.header}>
-        <Image style={styles.icon} source={icons.configurationIcon} />
-        <CustomText style={styles.headerText} boldness="bold">
-          Configurations
-        </CustomText>
-      </View>
-
-      <View style={{ height: 50 }} />
-
-      <View style={styles.section}>
-        <Text style={styles.label}>Selected Deck</Text>
-        <View style={styles.pickerContainer}>
-          <RNPickerSelect
-            placeholder={{ label: "Default Deck", value: null }}
-            style={{
-              inputIOS: styles.pickerInput,
-              inputAndroid: styles.pickerInput,
-              iconContainer: styles.pickerIconContainer,
-            }}
-            onValueChange={(value) => console.log(value)}
-            items={[
-              { label: 'Football', value: 'football' },
-              { label: 'Baseball', value: 'baseball' },
-              { label: 'Hockey', value: 'hockey' },
-            ]}
-          />
-          <Entypo name="chevron-down" size={20} color="white" style={styles.pickerIcon} />
+        <View style={styles.header}>
+          <Image style={styles.icon} source={icons.configurationIcon} />
+          <CustomText style={styles.headerText} boldness="bold">
+            Configurations
+          </CustomText>
         </View>
-      </View>
 
-      <View style={{ height: 50 }} />
+        <View style={{ height: 50 }} />
 
-      <View style={styles.section}>
-        <Text style={styles.label}>Tags (or)</Text>
-        <CustomFormField
-          placeholder="Tags"
-          placeholderTextColor={"gray"}
-          label=""
-          otherStyles={styles.inputField}
-          inputTextStyle={styles.inputText}
-          labelStyle={styles.hiddenLabel}
-        />
-      </View>
-
-      <View style={{ height: 50 }} />
-
-      <View style={styles.row}>
-        <Text style={styles.label}>Min Price</Text>
-        <Text style={styles.label}>Max Price</Text>
-        <Text style={styles.label}>
-          <View style={{ width: 30 }} />
-          Origin
-        </Text>
-      </View>
-      <View style={styles.row}>
-        <CustomFormField
-          placeholder="$ 0"
-          placeholderTextColor={"gray"}
-          label=""
-          otherStyles={styles.priceField}
-          inputTextStyle={styles.inputText}
-          labelStyle={styles.hiddenLabel}
-        />
-        <CustomFormField
-          placeholder="$ 0"
-          placeholderTextColor={"gray"}
-          label=""
-          otherStyles={styles.priceField}
-          inputTextStyle={styles.inputText}
-          labelStyle={styles.hiddenLabel}
-        />
-        <TouchableOpacity onPress={() => {
-          setIsModalOpen(true);
-          router.push("map-selection");
-        }}>
-          <View style={styles.iconButton}>
-            <Image resizeMode="contain" style={styles.iconImage} source={icons.crossIcon} />
+        <View style={styles.section}>
+          <CustomText style={styles.label}>Selected Deck</CustomText>
+          <View style={styles.pickerContainer}>
+            <RNPickerSelect
+              placeholder={{ label: "Default Deck", value: null }}
+              style={{
+                inputIOS: styles.pickerInput,
+                inputAndroid: styles.pickerInput,
+                iconContainer: styles.pickerIconContainer,
+              }}
+              onValueChange={(value) => console.log(value)}
+              items={[
+                { label: 'Football', value: 'football' },
+                { label: 'Baseball', value: 'baseball' },
+                { label: 'Hockey', value: 'hockey' },
+              ]}
+            />
+            <Entypo name="chevron-down" size={20} color="white" style={styles.pickerIcon} />
           </View>
-        </TouchableOpacity>
-      </View>
+        </View>
 
-      <View style={{ height: 50 }} />
+        <View style={{ height: 50 }} />
 
-      <View style={styles.section}>
-        <Text style={styles.label}>Keyword (Space Between Each)</Text>
-        <CustomFormField
-          placeholder="Keywords"
-          placeholderTextColor={"gray"}
-          label=""
-          otherStyles={styles.inputField}
-          inputTextStyle={styles.inputText}
-          labelStyle={styles.hiddenLabel}
-        />
-      </View>
-      <View style={styles.saveButtonContainer}>
-        <CustomButton
-          title="Save"
-          onPress={() => {
-            saveConfiguration(configuration);
-            closeModal();
-          }}
-          style={styles.saveButton}
-        />
-      </View>
+        <View style={styles.section}>
+          <CustomText style={styles.label}>Tags (or)</CustomText>
+          <CustomFormField
+            placeholder="Tags"
+            placeholderTextColor={"gray"}
+            label=""
+            otherStyles={styles.inputField}
+            inputTextStyle={styles.inputText}
+            labelStyle={styles.hiddenLabel}
+          />
+        </View>
 
-      {isSecondModalVisible && (
-        <View>
-          <TouchableOpacity onPress={closeSecondModal}>
-            <Text>Kapat</Text>
+        <View style={{ height: 50 }} />
+
+        <View style={styles.row}>
+          <CustomText style={styles.label}>Min Price</CustomText>
+          <CustomText style={styles.label}>Max Price</CustomText>
+          <CustomText style={styles.label}>
+            <View style={{ width: 30 }} />
+            Origin
+          </CustomText>
+        </View>
+        <View style={styles.row}>
+          <CustomFormField
+            placeholder="$ 0"
+            placeholderTextColor={"gray"}
+            label=""
+            otherStyles={styles.priceField}
+            inputTextStyle={styles.inputText}
+            labelStyle={styles.hiddenLabel}
+          />
+          <CustomFormField
+            placeholder="$ 0"
+            placeholderTextColor={"gray"}
+            label=""
+            otherStyles={styles.priceField}
+            inputTextStyle={styles.inputText}
+            labelStyle={styles.hiddenLabel}
+          />
+          <TouchableOpacity onPress={() => {
+            setIsModalOpen(true);
+            router.push("map-selection");
+          }}>
+            <View style={styles.iconButton}>
+              <Image resizeMode="contain" style={styles.iconImage} source={icons.crossIcon} />
+            </View>
           </TouchableOpacity>
         </View>
-      )}
+
+        <View style={{ height: 50 }} />
+
+        <View style={styles.section}>
+          <CustomText style={styles.label}>Keyword (Space Between Each)</CustomText>
+          <CustomFormField
+            placeholder="Keywords"
+            placeholderTextColor={"gray"}
+            label=""
+            otherStyles={styles.inputField}
+            inputTextStyle={styles.inputText}
+            labelStyle={styles.hiddenLabel}
+          />
+        </View>
+        <View style={styles.saveButtonContainer}>
+          <CustomButton
+            title="Save"
+            onPress={() => {
+              saveConfiguration(configuration);
+              closeModal();
+            }}
+            style={styles.saveButton}
+          />
+        </View>
+
+        {isSecondModalVisible && (
+          <View>
+            <TouchableOpacity onPress={closeSecondModal}>
+              <CustomText>Kapat</CustomText>
+            </TouchableOpacity>
+          </View>
+        )}
+
+      </View>
     </SafeAreaView>
   );
 };
@@ -156,8 +161,11 @@ const styles = StyleSheet.create({
   safeArea: {
     backgroundColor: 'black',
     flex: 1,
-    paddingTop: 60,
-    paddingHorizontal: 20,
+  },
+  viewContent: {
+    backgroundColor: 'black',
+    height: '100%',
+    padding: 30,
   },
   header: {
     flexDirection: 'row',
@@ -172,7 +180,6 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     fontSize: 16,
     marginTop: 3,
-    height: 25,
     textAlignVertical: "bottom",
     color: "white",
   },
@@ -184,7 +191,6 @@ const styles = StyleSheet.create({
   label: {
     color: "white",
     height: 30,
-    fontFamily: FONT.regular,
   },
   pickerContainer: {
     flexDirection: 'row',
@@ -212,7 +218,6 @@ const styles = StyleSheet.create({
   },
   inputText: {
     color: 'rgba(255, 255, 255, 0.2)',
-    fontFamily: FONT.regular,
   },
   hiddenLabel: {
     margin: 0,
@@ -249,7 +254,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "flex-end",
-    marginBottom: 80,
   },
   saveButton: {
     width: "100%",

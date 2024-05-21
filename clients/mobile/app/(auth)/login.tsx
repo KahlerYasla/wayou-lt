@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { StyleSheet, SafeAreaView, ScrollView, View, Text, TouchableOpacity, Image } from "react-native";
-import { Link, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import axios from "axios";
 
 // components
 import CustomButton from "../../components/shared/CustomButton";
 import CustomFormField from "../../components/shared/CustomFormField";
+import CustomText from "../../components/shared/CustomText";
 
 // constants
 import { FONT } from "../../constants";
@@ -90,9 +91,9 @@ const Login = () => {
             />
             <View style={{ height: 20 }} />
             <View style={styles.forgetPassword}>
-              <Link style={styles.forgetPasswordLink} href={"send-email"}>
-                Forget Password
-              </Link>
+              <CustomText style={styles.forgetPasswordLink} onPress={() => { router.push("send-email") }}>
+                Forgot Password?
+              </CustomText>
             </View>
             <View style={{ height: 20 }} />
             <CustomButton

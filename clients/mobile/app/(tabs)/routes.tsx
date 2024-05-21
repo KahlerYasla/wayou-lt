@@ -35,8 +35,8 @@ const Routes = () => {
                                 <View style={styles.infoContainer}>
                                     <CustomText style={styles.infoText}>Creator: KahlerYasla</CustomText>
                                     <CustomText style={styles.infoText}>Starts: 10/12/24 12:PM</CustomText>
-                                    <CustomText style={styles.infoText}>From : Kadiköy - Istanbul</CustomText>
-                                    <CustomText style={styles.infoText}>Estimated Need : 100-200$</CustomText>
+                                    <CustomText style={styles.infoText}>From: Kadiköy - Istanbul</CustomText>
+                                    <CustomText style={styles.infoText}>Estimated Need: 100-200$</CustomText>
                                 </View>
                             </View>
                         </View>
@@ -61,8 +61,8 @@ const Routes = () => {
                                 <View style={styles.infoContainer}>
                                     <CustomText style={styles.infoText}>Creator: KahlerYasla</CustomText>
                                     <CustomText style={styles.infoText}>Starts: 10/12/24 12:PM</CustomText>
-                                    <CustomText style={styles.infoText}>From : Kadiköy - Istanbul</CustomText>
-                                    <CustomText style={styles.infoText}>Estimated Need : 100-200$</CustomText>
+                                    <CustomText style={styles.infoText}>From: Kadiköy - Istanbul</CustomText>
+                                    <CustomText style={styles.infoText}>Estimated Need: 100-200$</CustomText>
                                 </View>
                             </View>
                         </View>
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        padding: 10,
+        padding: 30,
     },
     title: {
         alignSelf: "flex-start",
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
     },
     profileCard: {
-        padding: 10,
+        paddingVertical: 10,
     },
     cardTitle: {
         alignSelf: "center",
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
         color: "white",
     },
     infoContainer: {
-        padding: 20,
+        padding: 30,
     },
     infoText: {
         alignSelf: "flex-start",
@@ -141,25 +141,6 @@ const styles = StyleSheet.create({
         backgroundColor: "#000000",
         borderRadius: 20,
         width: "100%",
-    },
-    editButtonText: {
-    },
-    tagContainer: {
-        flex: 1,
-    },
-    tags: {
-        flex: 1,
-        flexDirection: "row",
-        margin: 5,
-    },
-    tag: {
-        fontSize: 18,
-        color: "white",
-        margin: 5,
-        backgroundColor: "blue",
-        borderRadius: 10,
-        height: 35,
-        padding: 5,
     },
     createButtonContainer: {
         position: 'absolute',

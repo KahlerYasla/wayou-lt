@@ -31,13 +31,15 @@ const Profile = () => {
             <View style={styles.buttonsContainer}>
                 <CustomButton
                     title="Change Password"
+                    style={styles.button}
                     textStyle={styles.buttonText}
-                    onPress={() => { router.push("change-pwd") }}
+                    onPress={() => { router.push("new-pwd") }}
                 />
                 <CustomButton
                     title="Register a Card"
+                    style={styles.button}
                     textStyle={styles.buttonText}
-                    onPress={() => { router.push("change-pwd") }}
+                    onPress={() => { alert("Register a Card is not implemented yet") }}
                 />
             </View>
         </View>
@@ -81,23 +83,20 @@ const Profile = () => {
 
     return (
         <SafeAreaView style={styles.safeArea}>
-            <Stack.Screen
-                options={{
-                    headerShown: false,
-                }}
-            />
-            <FlatList
-                ListHeaderComponent={() => (
-                    <>
-                        {renderProfile()}
-                        {renderStories()}
-                    </>
-                )}
-                data={items}
-                renderItem={null} // Empty render item since the actual items are rendered in separate sections
-                keyExtractor={(item, index) => index.toString()}
-                ListFooterComponent={renderDecks}
-            />
+            <View style={styles.container}>
+                <FlatList
+                    ListHeaderComponent={() => (
+                        <>
+                            {renderProfile()}
+                            {/* {renderStories()} */}
+                            {/* {renderDecks()} */}
+                        </>
+                    )}
+                    data={items}
+                    renderItem={null} // Empty render item since the actual items are rendered in separate sections
+                    keyExtractor={(item, index) => index.toString()}
+                />
+            </View>
         </SafeAreaView>
     );
 };
@@ -109,11 +108,10 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        padding: SIZES.medium,
+        padding: 30,
     },
     profileCard: {
         borderRadius: 20,
-        padding: 10,
     },
     profileCardTitle: {
         alignSelf: "center",
@@ -138,25 +136,27 @@ const styles = StyleSheet.create({
         alignSelf: "flex-start",
         borderRadius: 10,
         color: "white",
-        height: 25,
-        paddingHorizontal: 10,
+        paddingHorizontal: 0,
         textAlignVertical: "center",
     },
     profileInfoMargin: {
         marginVertical: 10,
     },
     buttonsContainer: {
-        marginTop: 10,
+        marginTop: 20,
         flex: 1,
         flexDirection: "row",
-        justifyContent: "space-around",
+        justifyContent: "space-between",
+    },
+    button: {
+        width: '48%',
     },
     buttonText: {
         color: "white",
     },
     storiesContainer: {
         borderRadius: 20,
-        padding: 10,
+        paddingVertical: 10,
         marginTop: 10,
     },
     storiesTitle: {
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
     },
     decksContainer: {
         borderRadius: 20,
-        padding: 10,
+        paddingVertical: 10,
     },
     decksTitle: {
         alignSelf: "flex-start",

@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
   },
   scrollViewContent: {
-    padding: 10,
+    padding: 30,
     height: '100%',
   },
   container: {
@@ -104,7 +104,6 @@ const styles = StyleSheet.create({
   },
   label: {
     color: "white",
-    width: '50%',
     textAlign: 'left',
     marginVertical: 10,
   },
