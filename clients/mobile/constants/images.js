@@ -9,6 +9,7 @@ import card2 from "../assets/images/mock/card2.png";
 import card3 from "../assets/images/mock/card3.png";
 import card4 from "../assets/images/mock/card4.png";
 import card5 from "../assets/images/mock/card5.png";
+import profileImage from "../assets/images/mock/profile-image.jpeg";
 
 export default {
     // images/app
@@ -21,5 +22,6 @@ export default {
     card2,
     card3,
     card4,
-    card5
+    card5,
+    profileImage,
 };

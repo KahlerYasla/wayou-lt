@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { SafeAreaView, ScrollView, View, Text, Image, FlatList, StyleSheet } from "react-native";
+import { SafeAreaView, View, Image, FlatList, StyleSheet, ScrollView } from "react-native";
 import { Stack, useRouter } from "expo-router";
-import { COLORS, FONT, SIZES } from "../../constants";
+import { FONT, SIZES } from "../../constants";
 import images from "../../constants/images";
 import CustomButton from "../../components/shared/CustomButton";
+import CustomText from "../../components/shared/CustomText";
 
 const Profile = () => {
     const router = useRouter();
-    const [searchTerm, setSearchTerm] = useState("");
 
     const items = [
         { id: '1', color: 'red', name: 'Item 1' },
@@ -18,6 +18,67 @@ const Profile = () => {
         { id: '6', color: 'orange', name: 'Item 6' },
     ];
 
+    const renderProfile = () => (
+        <View style={styles.profileCard}>
+            <View style={styles.profileDetails}>
+                <Image style={styles.profileImage} source={images.profileImage} resizeMode="cover" />
+                <View style={styles.profileInfo}>
+                    <CustomText style={styles.profileText}>Username: KahlerYasla</CustomText>
+                    <CustomText style={[styles.profileText, styles.profileInfoMargin]}>Created 6 Routes & 3 Cards</CustomText>
+                    <CustomText style={styles.profileText}>345 Followers & 123 Following</CustomText>
+                </View>
+            </View>
+            <View style={styles.buttonsContainer}>
+                <CustomButton
+                    title="Change Password"
+                    textStyle={styles.buttonText}
+                    onPress={() => { router.push("change-pwd") }}
+                />
+                <CustomButton
+                    title="Register a Card"
+                    textStyle={styles.buttonText}
+                    onPress={() => { router.push("change-pwd") }}
+                />
+            </View>
+        </View>
+    );
+
+    const renderStories = () => (
+        <View style={styles.storiesContainer}>
+            <CustomText style={styles.storiesTitle}>Stories</CustomText>
+            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={styles.storiesScroll}>
+                <View style={styles.stories}>
+                    <View style={[styles.story, { backgroundColor: 'red' }]} />
+                    <View style={[styles.story, { backgroundColor: 'green' }]} />
+                    <View style={[styles.story, { backgroundColor: 'blue' }]} />
+                    <View style={[styles.story, { backgroundColor: 'yellow' }]} />
+                    <View style={[styles.story, { backgroundColor: 'purple' }]} />
+                </View>
+            </ScrollView>
+        </View>
+    );
+
+    const renderDecks = () => (
+        <View style={styles.decksContainer}>
+            <CustomText style={styles.decksTitle}>
+                Listing Public Decks
+            </CustomText>
+            <FlatList
+                data={items}
+                renderItem={({ item }) => (
+                    <View style={styles.deckItem}>
+                        <View style={[styles.deckColor, { backgroundColor: item.color }]} />
+                        <CustomText style={styles.deckText}>{item.name}</CustomText>
+                    </View>
+                )}
+                keyExtractor={item => item.id}
+                numColumns={4}
+                columnWrapperStyle={styles.columnWrapper} // Adding this to adjust column styling
+                style={styles.decksList}
+            />
+        </View>
+    );
+
     return (
         <SafeAreaView style={styles.safeArea}>
             <Stack.Screen
@@ -25,62 +86,18 @@ const Profile = () => {
                     headerShown: false,
                 }}
             />
-            <ScrollView showsVerticalScrollIndicator={false}>
-                <View style={styles.container}>
-                    <View style={styles.profileCard}>
-                        <Text style={styles.profileCardTitle}>Profile Card</Text>
-                        <View style={styles.profileDetails}>
-                            <Image style={styles.profileImage} source={images.logo} resizeMode="contain" />
-                            <View style={styles.profileInfo}>
-                                <Text style={styles.profileText}>Username : KahlerYasla</Text>
-                                <Text style={[styles.profileText, styles.profileInfoMargin]}>Created 6 Routes/3 Cards</Text>
-                                <Text style={styles.profileText}>345 Followers/123 Following</Text>
-                            </View>
-                        </View>
-                        <View style={styles.buttonsContainer}>
-                            <CustomButton
-                                title="Change Password"
-                                style={styles.button}
-                                textStyle={styles.buttonText}
-                                onPress={() => { router.push("change-pwd") }}
-                            />
-                            <CustomButton
-                                title="Register a Card"
-                                style={styles.button}
-                                textStyle={styles.buttonText}
-                                onPress={() => { router.push("change-pwd") }}
-                            />
-                        </View>
-                    </View>
-                    <View style={styles.storiesContainer}>
-                        <Text style={styles.storiesTitle}>Stories</Text>
-                        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={styles.storiesScroll}>
-                            <View style={styles.stories}>
-                                <View style={[styles.story, { backgroundColor: 'red' }]} />
-                                <View style={[styles.story, { backgroundColor: 'green' }]} />
-                                <View style={[styles.story, { backgroundColor: 'blue' }]} />
-                                <View style={[styles.story, { backgroundColor: 'yellow' }]} />
-                                <View style={[styles.story, { backgroundColor: 'purple' }]} />
-                            </View>
-                        </ScrollView>
-                    </View>
-                    <View style={styles.decksContainer}>
-                        <Text style={styles.decksTitle}>Listing Public Decks</Text>
-                        <FlatList
-                            data={items}
-                            renderItem={({ item }) => (
-                                <View style={styles.deckItem}>
-                                    <View style={[styles.deckColor, { backgroundColor: item.color }]} />
-                                    <Text style={styles.deckText}>{item.name}</Text>
-                                </View>
-                            )}
-                            keyExtractor={item => item.id}
-                            numColumns={3}
-                            contentContainerStyle={styles.decksList}
-                        />
-                    </View>
-                </View>
-            </ScrollView>
+            <FlatList
+                ListHeaderComponent={() => (
+                    <>
+                        {renderProfile()}
+                        {renderStories()}
+                    </>
+                )}
+                data={items}
+                renderItem={null} // Empty render item since the actual items are rendered in separate sections
+                keyExtractor={(item, index) => index.toString()}
+                ListFooterComponent={renderDecks}
+            />
         </SafeAreaView>
     );
 };
@@ -95,14 +112,11 @@ const styles = StyleSheet.create({
         padding: SIZES.medium,
     },
     profileCard: {
-        borderRadius: 10,
-        borderColor: "white",
-        borderWidth: 1,
+        borderRadius: 20,
         padding: 10,
     },
     profileCardTitle: {
         alignSelf: "center",
-        fontFamily: FONT.regular,
         color: "white",
     },
     profileDetails: {
@@ -112,15 +126,16 @@ const styles = StyleSheet.create({
     profileImage: {
         width: 120,
         height: 120,
+        borderRadius: 20,
+        borderWidth: 1,
+        borderColor: "rgba(255, 255, 255, 0.3)",
     },
     profileInfo: {
         padding: 20,
         justifyContent: "center",
     },
     profileText: {
-        fontFamily: FONT.regular,
-        alignSelf: "center",
-        backgroundColor: "#121316",
+        alignSelf: "flex-start",
         borderRadius: 10,
         color: "white",
         height: 25,
@@ -134,32 +149,22 @@ const styles = StyleSheet.create({
         marginTop: 10,
         flex: 1,
         flexDirection: "row",
-        justifyContent: "space-between",
-    },
-    button: {
-        backgroundColor: "#101114",
-        borderColor: "white",
-        borderWidth: 1,
-        borderRadius: 20,
-        paddingHorizontal: 10,
+        justifyContent: "space-around",
     },
     buttonText: {
-        fontFamily: FONT.regular,
+        color: "white",
     },
     storiesContainer: {
-        borderRadius: 10,
-        borderColor: "white",
-        borderWidth: 1,
+        borderRadius: 20,
         padding: 10,
         marginTop: 10,
     },
     storiesTitle: {
         alignSelf: "flex-start",
-        fontFamily: FONT.regular,
         color: "white",
     },
     storiesScroll: {
-        marginTop: 20,
+        marginTop: 10,
     },
     stories: {
         flexDirection: 'row',
@@ -170,25 +175,23 @@ const styles = StyleSheet.create({
         marginRight: 10,
     },
     decksContainer: {
-        borderRadius: 10,
-        borderColor: "white",
-        borderWidth: 1,
+        borderRadius: 20,
         padding: 10,
-        marginTop: 10,
     },
     decksTitle: {
         alignSelf: "flex-start",
-        fontFamily: FONT.regular,
         color: "white",
         marginBottom: 10,
     },
     decksList: {
-        alignItems: 'center',
+    },
+    columnWrapper: {
+        justifyContent: 'space-between',
     },
     deckItem: {
-        width: 100,
-        margin: 5,
+        width: '23%', // Adjust to fit 4 columns with spacing
         alignItems: 'center',
+        marginBottom: 10, // Optional: add vertical spacing between rows
     },
     deckColor: {
         height: 100,
@@ -196,8 +199,7 @@ const styles = StyleSheet.create({
     },
     deckText: {
         color: 'white',
-        marginTop: 5,
-        fontFamily: FONT.regular,
+        marginTop: 10,
     },
 });
 

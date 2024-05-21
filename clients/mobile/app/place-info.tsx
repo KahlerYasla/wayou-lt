@@ -11,6 +11,7 @@ import { Marker, PROVIDER_DEFAULT } from 'react-native-maps';
 
 
 const CardInfos = () => {
+
     const centerCoordinate = {
         latitude: 41.0423,
         longitude: 29.0137,
@@ -19,7 +20,7 @@ const CardInfos = () => {
     const [center, setCenter] = useState(centerCoordinate)
 
     return (
-        <SafeAreaView style={{ backgroundColor: "#101114", width: "100%", height: "100%", paddingLeft: 10 }}>
+        <SafeAreaView style={{ backgroundColor: "black", width: "100%", height: "100%", paddingLeft: 10 }}>
             <ScrollView>
                 <View style={{ flex: 1 }}>
                     <Text style={{ marginTop: 20, fontFamily: FONT.regular, color: "white", justifyContent: "center" }}>

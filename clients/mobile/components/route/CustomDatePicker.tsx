@@ -3,6 +3,7 @@ import { View, Text } from "react-native";
 import { Button } from 'react-native-paper';
 import { DatePickerModal } from 'react-native-paper-dates';
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import CustomButton from "../shared/CustomButton";
 
 interface Range {
     startDate: Date | undefined;
@@ -31,10 +32,20 @@ export default function CustomDatePicker() {
 
     return (
         <SafeAreaProvider>
-            <View style={{ justifyContent: 'center', flex: 1, alignItems: 'center' }}>
-                <Button onPress={() => setOpen(true)} mode="outlined" textColor="white" color="white" style={{ borderColor: "white", borderWidth: 0.1 }}>
-                    Pick a date range
-                </Button>
+            <View style={{ justifyContent: 'flex-start', flex: 1, alignItems: 'flex-start' }}>
+
+                <CustomButton
+                    onPress={() => setOpen(true)}
+                    title="Press to Pick a date range"
+                    style={{
+                        marginTop: 10,
+                        backgroundColor: 'black',
+                        borderRadius: 10,
+                        borderWidth: .3,
+                        borderColor: 'white',
+                    }}
+                />
+
                 <DatePickerModal
                     locale="en"
                     mode="range"

@@ -1,6 +1,5 @@
 import { useFonts } from "expo-font";
 import { Redirect } from "expo-router";
-import { View } from "react-native";
 
 export default function Index() {
     const [fontsLoaded] = useFonts({

@@ -55,7 +55,7 @@ const Home = () => {
     const onSwipe = (direction: 'left' | 'right' | 'up' | 'down') => {
         console.log('You swiped: ' + direction);
         if (direction === "up") {
-            router.push("card-info");
+            router.push("place-info");
         } else if (direction === "right" || direction === "left") {
             fetchImage(); // Fetch a new image on swipe
         }
@@ -74,7 +74,7 @@ const Home = () => {
                 }}
             />
 
-            <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollViewContent}>
+            <View style={styles.viewContent}>
                 <View style={styles.container}>
 
                     {/* tinder card */}
@@ -108,7 +108,7 @@ const Home = () => {
                     </View>
                 </TouchableOpacity>
 
-            </ScrollView>
+            </View>
 
             {/* modal */}
             <Modal
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "black",
     },
-    scrollViewContent: {
+    viewContent: {
         height: '100%',
         paddingHorizontal: 10,
         paddingVertical: 10,
@@ -149,6 +149,8 @@ const styles = StyleSheet.create({
     },
     cardImage: {
         borderRadius: 50,
+        borderWidth: 1,
+        borderColor: "rgba(255, 255, 255, 0.3)",
         width: '100%',
         height: '100%',
     },

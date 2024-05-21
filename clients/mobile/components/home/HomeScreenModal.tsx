@@ -154,7 +154,7 @@ const ModalContent: React.FC<ModalContentProps> = ({ closeModal }) => {
 
 const styles = StyleSheet.create({
   safeArea: {
-    backgroundColor: 'rgba(0, 0, 0, 1)',
+    backgroundColor: 'black',
     flex: 1,
     paddingTop: 60,
     paddingHorizontal: 20,
