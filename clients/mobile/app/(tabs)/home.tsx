@@ -1,32 +1,48 @@
 import { useEffect, useState } from "react";
-import { SafeAreaView, ScrollView, View, TouchableOpacity, Image, TouchableWithoutFeedback } from "react-native";
+import { SafeAreaView, ScrollView, View, TouchableOpacity, Image, TouchableWithoutFeedback, StyleSheet } from "react-native";
 import { Stack, useRouter } from "expo-router";
-import { SIZES } from "../../constants";
 import { Modal } from "react-native";
-import ModalContent from "../../components/home/HomeScreenModal";
+
 import TinderCard from 'react-tinder-card';
+
+import ModalContent from "../../components/home/HomeScreenModal";
 import { useIsModalOpenStore } from "../../stores/BehavioursStore";
-import images from "../../constants/images";
+import icons from "../../constants/icons";
 
 const Home = () => {
     const router = useRouter();
-    const [searchTerm, setSearchTerm] = useState("");
     const [isModalVisible, setIsModalVisible] = useState(false);
 
-    type Direction = 'up' | 'down' | 'left' | 'right';
-    type MyIdentifier = string;
+    const [imageUrl, setImageUrl] = useState('');
     const [resetCard, setResetCard] = useState(false);
 
     const isModalOpen = useIsModalOpenStore((state) => state.isModalOpen);
 
-    // Kart dizisi ve mevcut kart indeksi
-    const cardArray = [images.card1, images.card2, images.card3, images.card4, images.card5]; // Gerekli tüm kartları buraya ekleyin
-    const [cardIndex, setCardIndex] = useState(0);
-
     useEffect(() => {
-
         setIsModalVisible(isModalOpen);
     }, [isModalOpen]);
+
+    useEffect(() => {
+        fetchImage();
+    }, []);
+
+    useEffect(() => {
+        if (imageUrl) {
+            setResetCard(true);
+        }
+    }, [imageUrl]);
+
+    const fetchImage = async () => {
+        try {
+            const response = await fetch('https://picsum.photos/800/1200');
+            if (response.ok) {
+                console.log('Image fetched successfully!');
+                setImageUrl(response.url);
+            }
+        } catch (error) {
+            alert('Error fetching image. Please check your internet connection.');
+        }
+    };
 
     const openModal = () => {
         setIsModalVisible(true);
@@ -36,70 +52,65 @@ const Home = () => {
         setIsModalVisible(false);
     };
 
-    const onSwipe = (direction: Direction) => {
+    const onSwipe = (direction: 'left' | 'right' | 'up' | 'down') => {
         console.log('You swiped: ' + direction);
         if (direction === "up") {
-            router.push("CardInfos");
+            router.push("card-info");
         } else if (direction === "right" || direction === "left") {
-            // Mevcut kart indeksini artır
-            if (cardIndex < cardArray.length - 1) {
-
-                if (direction === "right" || direction === "left") {
-                    setCardIndex(cardIndex + 1);
-                    setResetCard(true)
-                }
-            } else {
-                setCardIndex(0); // Döngüsel olarak tekrar başa dön
-                setResetCard(true)
-            }
+            fetchImage(); // Fetch a new image on swipe
         }
     };
 
     const handleCardReset = () => {
-        setResetCard(false); // Kartı sıfırla
-        setCardIndex(prevIndex => (prevIndex + 1) % cardArray.length); // Bir sonraki kartı göster
+        setResetCard(false);
     };
 
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: "#101114" }}>
+        <SafeAreaView style={styles.safeArea}>
+
             <Stack.Screen
                 options={{
                     headerShown: false,
                 }}
             />
-            <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ height: '100%', padding: 15 }}>
-                <View style={{ flex: 1, padding: 0, paddingRight: 0 }}>
+
+            <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollViewContent}>
+                <View style={styles.container}>
+
+                    {/* tinder card */}
                     <TinderCard
                         onSwipe={onSwipe}
                         key={resetCard ? "reset" : "notReset"}
                         onCardLeftScreen={handleCardReset}
                         preventSwipe={['down']}
                     >
-                        <View style={{ backgroundColor: 'white', height: "100%", justifyContent: 'center', alignItems: 'center' }}>
-                            <Image
-                                resizeMode="cover"
-                                source={cardArray[cardIndex]}
-                                style={{ width: '100%', height: '100%' }}
-                            />
+                        <View style={styles.card}>
+                            {imageUrl && (
+                                <Image
+                                    resizeMode="cover"
+                                    source={{ uri: imageUrl }}
+                                    style={styles.cardImage}
+                                />
+                            )}
                         </View>
                     </TinderCard>
-                    <TouchableOpacity onPress={openModal} style={{
-                        top: 150, position: "absolute", marginEnd: 0, paddingEnd: 0,
-                        justifyContent: "center", alignItems: "center",
-                        backgroundColor: 'rgba(19, 16, 20, 0.8)', right: -20,
-                        borderBottomLeftRadius: 20, borderTopLeftRadius: 20,
-                        width: 50, height: 50
-                    }}>
-                        <View style={{ position: "absolute", marginEnd: 0, paddingEnd: 0, justifyContent: "center", alignItems: "center", backgroundColor: 'rgba(19, 16, 20, 0.8)', alignSelf: "flex-end", borderBottomLeftRadius: 20, borderTopLeftRadius: 20, width: 50, height: 50 }}>
-                            <Image
-                                style={{}}
-                                source={images.bannerLogo}
-                            />
-                        </View>
-                    </TouchableOpacity>
+
                 </View>
+
+                {/* modal button */}
+                <TouchableOpacity onPress={openModal} style={styles.modalButton}>
+                    <View style={styles.modalButtonContent}>
+                        <Image
+                            style={styles.modalButtonImage}
+                            source={icons.configurationIcon}
+                            resizeMode="contain"
+                        />
+                    </View>
+                </TouchableOpacity>
+
             </ScrollView>
 
+            {/* modal */}
             <Modal
                 animationType="fade"
                 visible={isModalVisible}
@@ -111,8 +122,64 @@ const Home = () => {
                 <ModalContent closeModal={closeModal} />
             </Modal>
 
-        </SafeAreaView >
+        </SafeAreaView>
     );
 };
+
+const styles = StyleSheet.create({
+    safeArea: {
+        flex: 1,
+        backgroundColor: "black",
+    },
+    scrollViewContent: {
+        height: '100%',
+        paddingHorizontal: 10,
+        paddingVertical: 10,
+    },
+    container: {
+        flex: 1,
+        padding: 0,
+        paddingRight: 0,
+    },
+    card: {
+        backgroundColor: 'black',
+        height: "100%",
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    cardImage: {
+        borderRadius: 50,
+        width: '100%',
+        height: '100%',
+    },
+    modalButton: {
+        top: 150,
+        position: "absolute",
+        marginEnd: 0,
+        paddingEnd: 0,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: '#151515',
+        right: 0,
+        borderBottomLeftRadius: 15,
+        borderTopLeftRadius: 15,
+        width: 40,
+        height: 40,
+    },
+    modalButtonContent: {
+        position: "absolute",
+        marginEnd: 0,
+        paddingEnd: 0,
+        justifyContent: "center",
+        alignItems: "center",
+        alignSelf: "flex-end",
+        width: 40,
+        height: 40,
+    },
+    modalButtonImage: {
+        width: 17,
+        height: 17,
+    },
+});
 
 export default Home;

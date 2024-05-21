@@ -24,7 +24,7 @@ const Explorer = () => {
                     }}
                 >
                     <Text>
-                    Explorer Screen
+                        Explorer Screen
                     </Text>
                     <TouchableOpacity
                         onPress={() => { router.push("/login"); }}

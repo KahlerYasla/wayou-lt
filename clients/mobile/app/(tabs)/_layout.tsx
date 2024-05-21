@@ -4,9 +4,6 @@ import { Tabs } from 'expo-router';
 import icons from '../../constants/icons';
 import { FONT } from '../../constants';
 import { StatusBar } from 'expo-status-bar';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { Drawer } from 'expo-router/drawer';
-
 
 interface TabIconProps {
   icon: any; // icon'un tipini belirlemek için gerekli olan veri tipini buraya ekleyin
@@ -15,16 +12,17 @@ interface TabIconProps {
   focused: boolean;
 }
 
-const TabIcon: React.FC<TabIconProps> = ({ icon, color, name, focused }) => {
+const TabIcon: React.FC<TabIconProps> = ({ icon, color, name }) => {
   return (
-    <View style={{ alignItems: "center", justifyContent: "center", gap: 0.5 }}>
+    <View style={{ alignItems: "center", }}>
       <Image
         source={icon}
         resizeMode="contain"
         tintColor={color}
-        style={{ width: 24, height: 24 }}
+        style={{ width: 20, height: 20 }}
       />
-      <Text style={{ fontFamily: FONT.regular, fontSize: 12, color: color }}>
+      <View style={{ height: 5 }} />
+      <Text style={{ fontFamily: FONT.regular, fontSize: 14, color: color }}>
         {name}
       </Text>
     </View>
@@ -37,12 +35,15 @@ const TabLayout: React.FC = () => {
       <Tabs
         screenOptions={{
           tabBarShowLabel: false,
-          tabBarActiveTintColor: '#FCFF70',
-          tabBarInactiveTintColor: '#CDCDE0',
+          tabBarActiveTintColor: 'rgba(255, 255, 255, 1)',
+          tabBarInactiveTintColor: 'rgba(255, 255, 255, 0.5)',
           tabBarStyle: {
-            backgroundColor: 'rgba(0, 0, 0, 1)',
-            borderTopWidth: 1,
-            borderTopColor: 'black',
+            backgroundColor: '#000000',
+            borderTopWidth: 0,
+            height: 60,
+            paddingBottom: 10,
+            paddingTop: 10,
+            paddingHorizontal: 20,
           }
         }}
       >
@@ -53,7 +54,7 @@ const TabLayout: React.FC = () => {
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <TabIcon
-                icon={icons.ExplorerIcon}
+                icon={icons.explorerIcon}
                 color={color}
                 name="Explorer"
                 focused={focused}
@@ -69,7 +70,7 @@ const TabLayout: React.FC = () => {
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <TabIcon
-                icon={icons.RoutesIcon}
+                icon={icons.routesIcon}
                 color={color}
                 name="Routes"
                 focused={focused}
@@ -84,7 +85,7 @@ const TabLayout: React.FC = () => {
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <TabIcon
-                icon={icons.HomeIcon}
+                icon={icons.wayouHedgehogIcon}
                 color={color}
                 name="Home"
                 focused={focused}
@@ -99,7 +100,7 @@ const TabLayout: React.FC = () => {
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <TabIcon
-                icon={icons.DecksIcon}
+                icon={icons.decksIcon}
                 color={color}
                 name="Decks"
                 focused={focused}
@@ -114,7 +115,7 @@ const TabLayout: React.FC = () => {
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <TabIcon
-                icon={icons.ProfileIcon}
+                icon={icons.profileIcon}
                 color={color}
                 name="Profile"
                 focused={focused}
@@ -124,7 +125,7 @@ const TabLayout: React.FC = () => {
         />
 
       </Tabs>
-      <StatusBar backgroundColor="#000" style="light" />
+      <StatusBar backgroundColor="#000000" style="light" />
     </>
 
   );

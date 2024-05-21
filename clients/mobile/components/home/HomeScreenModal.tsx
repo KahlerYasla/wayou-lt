@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import { FONT } from "../../constants";
 import CustomButton from "../shared/CustomButton";
-import { Image } from "react-native";
-import images from "../../constants/images";
 import CustomFormField from "../shared/CustomFormField";
 import RNPickerSelect from 'react-native-picker-select';
 import { router } from "expo-router";
@@ -12,6 +10,7 @@ import { Entypo } from '@expo/vector-icons';
 import { useConfigurationStore } from "../../stores/ConfigurationStore";
 import { useIsModalOpenStore } from "../../stores/BehavioursStore";
 import icons from "../../constants/icons";
+import CustomText from "../shared/CustomText";
 
 interface ModalContentProps {
   closeModal: () => void;
@@ -35,36 +34,26 @@ const ModalContent: React.FC<ModalContentProps> = ({ closeModal }) => {
   };
 
   return (
-    <SafeAreaView style={{
-      backgroundColor: 'rgba(0, 0, 0, 1)', flex: 1, paddingTop: 60,
-      paddingHorizontal: 20
-    }}>
-      <View style={{
-        flexDirection: 'row', justifyContent: "flex-start",
-        alignItems: "flex-start", marginBottom: 50,
-      }}>
-        <Image style={{ width: 25, height: 25 }}
-          source={icons.configurationIcon}>
-        </Image>
-        <Text style={{
-          marginLeft: 10, fontFamily: FONT.regular, fontSize: 16,
-          marginTop: 4, height: 25, textAlignVertical: "bottom", color: "white"
-        }}>
+    <SafeAreaView style={styles.safeArea}>
+
+      <View style={styles.header}>
+        <Image style={styles.icon} source={icons.configurationIcon} />
+        <CustomText style={styles.headerText} boldness="bold">
           Configurations
-        </Text>
+        </CustomText>
       </View>
-      <View style={{
-        alignItems: "flex-start",
-        flexDirection: 'column', justifyContent: "space-between", marginBottom: 50
-      }}>
-        <Text style={{ color: "white", height: 30, fontFamily: FONT.regular }}>Selected Deck</Text>
-        <View style={{ flexDirection: 'row', justifyContent: "space-between", gap: 10, alignItems: "center" }}>
+
+      <View style={{ height: 50 }} />
+
+      <View style={styles.section}>
+        <Text style={styles.label}>Selected Deck</Text>
+        <View style={styles.pickerContainer}>
           <RNPickerSelect
-            placeholder={{ label: "Default Deck", value: null, }} // Placeholder
+            placeholder={{ label: "Default Deck", value: null }}
             style={{
-              inputIOS: { color: 'white', textAlign: 'left' }, // iOS için giriş stili ve metni ortalamak için textAlign
-              inputAndroid: { color: 'white', textAlign: 'left', justifyContent: "center" }, // Android için giriş stili ve metni ortalamak için textAlign
-              iconContainer: { position: 'absolute', right: 0 } // ikon container stili
+              inputIOS: styles.pickerInput,
+              inputAndroid: styles.pickerInput,
+              iconContainer: styles.pickerIconContainer,
             }}
             onValueChange={(value) => console.log(value)}
             items={[
@@ -73,159 +62,198 @@ const ModalContent: React.FC<ModalContentProps> = ({ closeModal }) => {
               { label: 'Hockey', value: 'hockey' },
             ]}
           />
-          <Entypo name="chevron-down" size={24} color="white" style={{ position: 'absolute', right: -30 }} />
+          <Entypo name="chevron-down" size={20} color="white" style={styles.pickerIcon} />
         </View>
       </View>
-      <View style={{
-        alignItems: "flex-start",
-        marginBottom: 50
-      }}>
-        <Text style={{ color: "white", height: 22, fontFamily: FONT.regular }}>Tags (or)</Text>
+
+      <View style={{ height: 50 }} />
+
+      <View style={styles.section}>
+        <Text style={styles.label}>Tags (or)</Text>
         <CustomFormField
           placeholder="Tags"
           placeholderTextColor={"gray"}
           label=""
-          otherStyles={{
-            borderBottomColor: "",
-            borderBottomWidth: 1,
-            borderColor: 'rgba(255, 255, 255, 0.2)', // Beyazın %20'si
-            width: "100%",
-            marginTop: 1,
-          }}
-          inputTextStyle={{
-            color: 'rgba(255, 255, 255, 0.2)',
-            fontFamily: FONT.regular
-          }}
-          labelStyle={{
-            margin: 0,
-            fontSize: 0,
-          }}
-        >
-        </CustomFormField>
+          otherStyles={styles.inputField}
+          inputTextStyle={styles.inputText}
+          labelStyle={styles.hiddenLabel}
+        />
       </View>
-      <View style={{
-        marginTop: 0, flexDirection: 'row',
-        alignItems: "center", justifyContent: "flex-start", gap: 60
-      }}>
-        <Text style={{ color: "white", height: 22, fontFamily: FONT.regular }}>Min Price</Text>
-        <Text style={{ color: "white", height: 22, fontFamily: FONT.regular }}>Max Price</Text>
-        <Text style={{ color: "white", height: 22, fontFamily: FONT.regular }}>Origin</Text>
+
+      <View style={{ height: 50 }} />
+
+      <View style={styles.row}>
+        <Text style={styles.label}>Min Price</Text>
+        <Text style={styles.label}>Max Price</Text>
+        <Text style={styles.label}>
+          <View style={{ width: 30 }} />
+          Origin
+        </Text>
       </View>
-      <View style={{
-        marginTop: 0, flexDirection: 'row', marginBottom: 50,
-        alignItems: "center", justifyContent: "flex-start", gap: 45
-      }}>
+      <View style={styles.row}>
         <CustomFormField
           placeholder="$ 0"
           placeholderTextColor={"gray"}
           label=""
-          otherStyles={{
-            borderBottomColor: "",
-            borderBottomWidth: 1,
-            borderColor: 'rgba(255, 255, 255, 0.2)', // Beyazın %20'si
-            width: "20%",
-            marginTop: 1,
-          }}
-          inputTextStyle={{
-            color: 'rgba(255, 255, 255, 0.2)',
-            fontFamily: FONT.regular
-          }}
-          labelStyle={{
-            margin: 0,
-            fontSize: 0,
-          }}
-        ></CustomFormField>
+          otherStyles={styles.priceField}
+          inputTextStyle={styles.inputText}
+          labelStyle={styles.hiddenLabel}
+        />
         <CustomFormField
           placeholder="$ 0"
           placeholderTextColor={"gray"}
           label=""
-          otherStyles={{
-            borderBottomColor: "",
-            borderBottomWidth: 1,
-            borderColor: 'rgba(255, 255, 255, 0.2)', // Beyazın %20'si
-            width: "20%",
-            marginTop: 1,
-          }}
-          inputTextStyle={{
-            color: 'rgba(255, 255, 255, 0.2)',
-            fontFamily: FONT.regular
-          }}
-          labelStyle={{
-            margin: 0,
-            fontSize: 0,
-          }}
-        ></CustomFormField>
+          otherStyles={styles.priceField}
+          inputTextStyle={styles.inputText}
+          labelStyle={styles.hiddenLabel}
+        />
         <TouchableOpacity onPress={() => {
           setIsModalOpen(true);
-          router.push("MapSelection");
+          router.push("map-selection");
         }}>
-          <View style={{ borderColor: "white", borderWidth: 1, borderRadius: 10, width: 45, height: 45, justifyContent: "center", alignItems: "center" }}>
-            <Image
-              resizeMode="contain"
-              style={{}} source={icons.crossIcon}
-            ></Image>
+          <View style={styles.iconButton}>
+            <Image resizeMode="contain" style={styles.iconImage} source={icons.crossIcon} />
           </View>
         </TouchableOpacity>
       </View>
-      <View style={{ alignItems: "flex-start" }}>
-        <Text style={{
-          color: "white", height: 22, fontFamily: FONT.regular,
-          marginBottom: 0
-        }}>Keyword (Space Between Each)</Text>
+
+      <View style={{ height: 50 }} />
+
+      <View style={styles.section}>
+        <Text style={styles.label}>Keyword (Space Between Each)</Text>
         <CustomFormField
           placeholder="Keywords"
           placeholderTextColor={"gray"}
           label=""
-          otherStyles={{
-            borderBottomColor: "",
-            borderBottomWidth: 1,
-            borderColor: 'rgba(255, 255, 255, 0.2)', // Beyazın %20'si
-            width: "100%",
-            marginTop: 1,
-          }}
-          inputTextStyle={{
-            color: 'rgba(255, 255, 255, 0.2)',
-            fontFamily: FONT.regular
-          }}
-          labelStyle={{
-            margin: 0,
-            fontSize: 0,
-          }}
-        >
-
-        </CustomFormField>
+          otherStyles={styles.inputField}
+          inputTextStyle={styles.inputText}
+          labelStyle={styles.hiddenLabel}
+        />
       </View>
-      <View style={{
-        flex: 1, alignItems: "center",
-        justifyContent: "flex-end", marginBottom: 80,
-      }}>
+      <View style={styles.saveButtonContainer}>
         <CustomButton
           title="Save"
           onPress={() => {
             saveConfiguration(configuration);
             closeModal();
           }}
-          style={{
-            width: "100%",
-          }}
-        ></CustomButton>
+          style={styles.saveButton}
+        />
       </View>
 
-      {/* İkinci modalın içeriği */}
-      {
-        isSecondModalVisible && (
-          <View>
-            <TouchableOpacity onPress={closeSecondModal}>
-              <Text>Kapat</Text>
-            </TouchableOpacity>
-            {/* İkinci modalın içeriği */}
-          </View>
-        )
-      }
-
-    </SafeAreaView >
-
+      {isSecondModalVisible && (
+        <View>
+          <TouchableOpacity onPress={closeSecondModal}>
+            <Text>Kapat</Text>
+          </TouchableOpacity>
+        </View>
+      )}
+    </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  safeArea: {
+    backgroundColor: 'rgba(0, 0, 0, 1)',
+    flex: 1,
+    paddingTop: 60,
+    paddingHorizontal: 20,
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
+  },
+  icon: {
+    width: 24,
+    height: 24,
+  },
+  headerText: {
+    marginLeft: 10,
+    fontSize: 16,
+    marginTop: 3,
+    height: 25,
+    textAlignVertical: "bottom",
+    color: "white",
+  },
+  section: {
+    alignItems: "flex-start",
+    flexDirection: 'column',
+    justifyContent: "space-between",
+  },
+  label: {
+    color: "white",
+    height: 30,
+    fontFamily: FONT.regular,
+  },
+  pickerContainer: {
+    flexDirection: 'row',
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  pickerInput: {
+    color: 'white',
+    textAlign: 'left',
+  },
+  pickerIconContainer: {
+    position: 'absolute',
+    right: 0,
+  },
+  pickerIcon: {
+    position: 'absolute',
+    right: -30,
+  },
+  inputField: {
+    borderBottomColor: "",
+    borderBottomWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.2)',
+    width: "100%",
+    marginTop: 1,
+  },
+  inputText: {
+    color: 'rgba(255, 255, 255, 0.2)',
+    fontFamily: FONT.regular,
+  },
+  hiddenLabel: {
+    margin: 0,
+    fontSize: 0,
+  },
+  row: {
+    marginTop: 0,
+    flexDirection: 'row',
+    alignItems: "center",
+    justifyContent: "flex-start",
+    gap: 50,
+  },
+  priceField: {
+    borderBottomColor: "",
+    borderBottomWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.2)',
+    width: "20%",
+    marginTop: 1,
+  },
+  iconButton: {
+    borderColor: "white",
+    borderWidth: 1,
+    borderRadius: 10,
+    width: 45,
+    height: 45,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  iconImage: {
+    width: 15,
+    height: 15,
+  },
+  saveButtonContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "flex-end",
+    marginBottom: 80,
+  },
+  saveButton: {
+    width: "100%",
+  },
+});
 
 export default ModalContent;

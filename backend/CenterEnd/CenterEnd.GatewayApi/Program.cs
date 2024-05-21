@@ -57,11 +57,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 builder.Services.AddAuthorization();
 
 // Allow Kestrel to listen on any IP address
-builder.WebHost.ConfigureKestrel(options =>
-{
-    options.ListenAnyIP(5296); // HTTP
-    options.ListenAnyIP(7217, listenOptions => listenOptions.UseHttps()); // HTTPS
-});
+// builder.WebHost.ConfigureKestrel(options =>
+// {
+//     options.ListenAnyIP(5296); // HTTP
+//     options.ListenAnyIP(7217, listenOptions => listenOptions.UseHttps()); // HTTPS
+// });
 
 builder.Services.AddCors(options =>
 {
