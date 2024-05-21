@@ -90,6 +90,6 @@ def generate_travel_plan(data_df, num_days=2):
 
 if __name__ == "__main__":
     # --- Example Usage (for testing in Python) ---
-    data_df = pd.read_csv("summarized_data.csv") 
+    data_df = pd.read_csv("id_summarized_data.csv") 
     travel_plan = generate_travel_plan(data_df, num_days=2)
     print(travel_plan)
