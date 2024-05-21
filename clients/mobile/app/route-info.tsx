@@ -1,119 +1,148 @@
-import { View, Text, SafeAreaView, ScrollView } from 'react-native'
-import React from 'react'
-import { FONT } from '../constants'
+import React from 'react';
+import { View, SafeAreaView, ScrollView, StyleSheet } from 'react-native';
+import { FONT } from '../constants';
 
-const ResultOfAI = () => {
+import CustomText from '../components/shared/CustomText';
+
+const RouteInfo = () => {
     return (
-        <SafeAreaView style={{ backgroundColor: "#101114", width: "100%", height: "100%" }}>
-            <ScrollView showsVerticalScrollIndicator={false} style={{}}>
-                <View style={{
-                    justifyContent: 'center', marginHorizontal: 18,
-                    flex: 1, width: "100%", height: "100%"
-                }}>
-                    <View style={{}}>
-                        <Text style={{
-                            marginTop: 10, fontFamily: FONT.regular,
-                            color: "white", justifyContent: 'flex-start',
-                            alignSelf: "flex-start", fontSize: 20,
-                            textDecorationLine: "underline"
-                        }}>AI Generated Trip</Text>
+        <SafeAreaView style={styles.safeArea}>
+            <ScrollView showsVerticalScrollIndicator={false}>
+                <View style={styles.container}>
+                    <View>
+                        <CustomText style={styles.title}>AI Generated Trip</CustomText>
                     </View>
-                    <View
-                        style={{
-                            borderBottomWidth: .2,
-                            borderColor: "white",
-                            width: "90%",
-                            paddingBottom: 10,
-                        }}
-                    >
-                        <Text style={{
-                            borderLeftWidth: 1,
-                            borderBottomWidth: 1,
-                            borderColor: "white", marginTop: 10,
-                            fontFamily: FONT.regular, color: "white",
-                            justifyContent: "center"
-                        }}>
+                    <View style={styles.descriptionContainer}>
+                        <CustomText style={styles.descriptionText}>
                             Description of the route will be here.
-                        </Text>
+                        </CustomText>
                     </View>
-                    <View >
-                        <Text style={{
-                            marginTop: 10, fontFamily: FONT.bold,
-                            color: "white", justifyContent: "center"
-                        }}>Day 1:</Text>
-                        <ScrollView horizontal={true}
-                            showsHorizontalScrollIndicator={false}
-                            style={{ marginTop: 10 }}>
-                            <View style={{ flexDirection: 'row' }}>
-                                {/* Örnek içerik */}
-                                <View style={{ width: 120, height: 120, backgroundColor: 'red', marginRight: 10 }} />
-                                <View style={{ width: 120, height: 120, backgroundColor: 'green', marginRight: 10 }} />
-                                <View style={{ width: 120, height: 120, backgroundColor: 'blue', marginRight: 10 }} />
-                                <View style={{ width: 120, height: 120, backgroundColor: 'yellow', marginRight: 10 }} />
-                                <View style={{ width: 120, height: 120, backgroundColor: 'purple', marginRight: 10 }} />
+                    <View>
+                        <CustomText style={styles.dayTitle}>Day 1:</CustomText>
+                        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={styles.horizontalScroll}>
+                            <View style={styles.horizontalContent}>
+                                {/* Example content */}
+                                <View style={[styles.box, styles.redBox]} />
+                                <View style={[styles.box, styles.greenBox]} />
+                                <View style={[styles.box, styles.blueBox]} />
+                                <View style={[styles.box, styles.yellowBox]} />
+                                <View style={[styles.box, styles.purpleBox]} />
                             </View>
                         </ScrollView>
                     </View>
-                    <View
-                        style={{
-                            borderBottomWidth: .2,
-                            borderColor: "white",
-                            width: "90%",
-                            paddingBottom: 10,
-                        }}
-                    >
-                        <Text style={{
-                            borderLeftWidth: 1,
-                            borderColor: "white", marginTop: 10, fontFamily: FONT.regular,
-                            color: "white", justifyContent: "center"
-                        }}>
+                    <View style={styles.planContainer}>
+                        <CustomText style={styles.planText}>
                             Plan of the day will be here.
-                        </Text>
+                        </CustomText>
                     </View>
                 </View>
 
-                <View style={{
-                    justifyContent: 'center', marginHorizontal: 18,
-                    flex: 1, width: "100%", height: "100%"
-                }}>
-                    <View >
-                        <Text style={{
-                            marginTop: 10, fontFamily: FONT.bold,
-                            color: "white", justifyContent: "center"
-                        }}>Day 2:</Text>
-                        <ScrollView horizontal={true}
-                            showsHorizontalScrollIndicator={false}
-                            style={{ marginTop: 10 }}>
-                            <View style={{ flexDirection: 'row' }}>
-                                {/* Örnek içerik */}
-                                <View style={{ width: 120, height: 120, backgroundColor: 'red', marginRight: 10 }} />
-                                <View style={{ width: 120, height: 120, backgroundColor: 'green', marginRight: 10 }} />
-                                <View style={{ width: 120, height: 120, backgroundColor: 'blue', marginRight: 10 }} />
-                                <View style={{ width: 120, height: 120, backgroundColor: 'yellow', marginRight: 10 }} />
-                                <View style={{ width: 120, height: 120, backgroundColor: 'purple', marginRight: 10 }} />
+                <View style={styles.container}>
+                    <View>
+                        <CustomText style={styles.dayTitle}>Day 2:</CustomText>
+                        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={styles.horizontalScroll}>
+                            <View style={styles.horizontalContent}>
+                                {/* Example content */}
+                                <View style={[styles.box, styles.redBox]} />
+                                <View style={[styles.box, styles.greenBox]} />
+                                <View style={[styles.box, styles.blueBox]} />
+                                <View style={[styles.box, styles.yellowBox]} />
+                                <View style={[styles.box, styles.purpleBox]} />
                             </View>
                         </ScrollView>
                     </View>
-                    <View
-                        style={{
-                            borderBottomWidth: .2,
-                            borderColor: "white",
-                            width: "90%",
-                            paddingBottom: 10,
-                        }}
-                    >
-                        <Text style={{
-                            borderLeftWidth: 1,
-                            borderColor: "white", marginTop: 10, fontFamily: FONT.regular,
-                            color: "white", justifyContent: "center"
-                        }}>
+                    <View style={styles.planContainer}>
+                        <CustomText style={styles.planText}>
                             Plan of the day will be here.
-                        </Text>
+                        </CustomText>
                     </View>
                 </View>
             </ScrollView>
         </SafeAreaView>
-    )
-}
+    );
+};
 
-export default ResultOfAI
+const styles = StyleSheet.create({
+    safeArea: {
+        backgroundColor: "black",
+        width: "100%",
+        height: "100%",
+    },
+    container: {
+        margin: 10,
+        flex: 1,
+        width: "100%",
+        height: "100%",
+    },
+    title: {
+        marginTop: 10,
+        fontFamily: FONT.regular,
+        color: "white",
+        alignSelf: "flex-start",
+        fontSize: 20,
+        textDecorationLine: "underline",
+    },
+    descriptionContainer: {
+        borderBottomWidth: 0.2,
+        borderColor: "white",
+        width: "90%",
+        paddingBottom: 10,
+    },
+    descriptionText: {
+        borderLeftWidth: 1,
+        borderBottomWidth: 1,
+        borderColor: "white",
+        marginTop: 10,
+        fontFamily: FONT.regular,
+        color: "white",
+        justifyContent: "center",
+    },
+    dayTitle: {
+        marginTop: 10,
+        fontFamily: FONT.bold,
+        color: "white",
+        justifyContent: "center",
+    },
+    horizontalScroll: {
+        marginTop: 10,
+    },
+    horizontalContent: {
+        flexDirection: 'row',
+    },
+    box: {
+        width: 120,
+        height: 120,
+        marginRight: 10,
+    },
+    redBox: {
+        backgroundColor: 'red',
+    },
+    greenBox: {
+        backgroundColor: 'green',
+    },
+    blueBox: {
+        backgroundColor: 'blue',
+    },
+    yellowBox: {
+        backgroundColor: 'yellow',
+    },
+    purpleBox: {
+        backgroundColor: 'purple',
+    },
+    planContainer: {
+        borderBottomWidth: 0.2,
+        borderColor: "white",
+        width: "90%",
+        paddingBottom: 10,
+    },
+    planText: {
+        borderLeftWidth: 1,
+        borderColor: "white",
+        marginTop: 10,
+        fontFamily: FONT.regular,
+        color: "white",
+        justifyContent: "center",
+    },
+});
+
+export default RouteInfo;

@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import MapView, { Marker } from 'react-native-maps';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+
+import { router } from 'expo-router';
+
 import { FONT } from '../constants';
 
+import CustomButton from '../components/shared/CustomButton';
 interface Coordinate {
   latitude: number;
   longitude: number;
@@ -17,8 +21,10 @@ export default function App() {
   };
 
   const takeCoordinate = () => {
-    console.log("takecoordinate")
-    console.log(coordinate)
+    console.log("takeCoordinate() and here are the y,x:")
+    console.log(coordinate!.latitude + ',' + coordinate!.longitude)
+
+    router.replace("home");
   }
   return (
     <View style={styles.container}>
@@ -44,11 +50,24 @@ export default function App() {
           </Text>
         </View>
       )}
-      <View style={{ position: 'absolute', left: "35%", bottom: 10 }}>
-        <TouchableOpacity onPress={takeCoordinate}>
-          <Text style={{ backgroundColor: "blue", fontSize: 30, borderRadius: 10, fontFamily: FONT.regular }}>CONFİRM </Text>
-        </TouchableOpacity>
+
+      <View style={{
+        position: 'absolute',
+        right: 16,
+        bottom: 16,
+      }}>
+        <CustomButton
+          onPress={takeCoordinate}
+          title='confirm'
+          style={{
+            backgroundColor: 'black',
+            borderRadius: 10,
+            borderWidth: .3,
+            borderColor: 'white',
+          }}
+        />
       </View>
+
     </View>
   );
 }
@@ -64,12 +83,12 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 16,
     left: 16,
-    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
     padding: 10,
     borderRadius: 8,
   },
   coordinateText: {
-    color: 'white',
+    color: 'rgba(255, 255, 255, 0.5)',
     fontWeight: 'bold',
   },
 });

@@ -1,18 +1,24 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet, TouchableOpacityProps, TextStyle, ViewStyle } from 'react-native';
-import { FONT } from '../../constants';
+
 import CustomText from './CustomText';
+
+import icons from "../../constants/icons";
+
+type icons = keyof typeof icons;
 
 interface CustomButtonProps extends TouchableOpacityProps {
   title: string;
+  onPress: () => void;
   style?: ViewStyle;
   textStyle?: TextStyle;
-  onPress: () => void;
+  icon?: icons;
 }
 
-const CustomButton: React.FC<CustomButtonProps> = ({ title, onPress, style, textStyle }) => {
+const CustomButton: React.FC<CustomButtonProps> = ({ title, onPress, style, textStyle, icon }) => {
   return (
     <TouchableOpacity style={[styles.button, style]} onPress={onPress}>
+      {/* {icon && <Image style={{ width: 20, height: 20, marginRight: 10 }} source={icons[icon]} />} */}
       <CustomText style={[styles.text, textStyle]} boldness="bold">
         {title}
       </CustomText>
