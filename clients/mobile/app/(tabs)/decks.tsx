@@ -1,5 +1,5 @@
 import React from "react";
-import { SafeAreaView, ScrollView, View, Text, Button, TouchableOpacity, StyleSheet } from "react-native";
+import { SafeAreaView, ScrollView, View, Image, StyleSheet } from "react-native";
 import { Stack, useRouter } from "expo-router";
 
 import { COLORS, SIZES } from "../../constants";
@@ -18,32 +18,41 @@ const Decks = () => {
     ];
 
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: "black" }}>
+        <SafeAreaView
+            style={styles.safeArea}>
             <Stack.Screen
                 options={{
                     headerShown: false,
                 }}
             />
 
-            <ScrollView>
+            <ScrollView style={styles.scrollView}>
 
-                {/* Map through decks and render each deck */}
-                {decks.map((deck) => (
-                    <View key={deck.id} style={styles.deckContainer}>
+                <View style={styles.container}>
+                    {/* Map through decks and render each deck */}
+                    {decks.map((deck) => (
+                        <View key={deck.id} style={styles.deckContainer}>
 
-                        <CustomText style={styles.deckTitle}>{deck.title}</CustomText>
+                            <View style={styles.cardContainer}>
 
-                        <View style={styles.cardContainer}>
+                                {/* Render three cards for each deck */}
+                                <View style={[styles.card, styles.firstCard]} >
+                                    <Image style={styles.cardImage} source={{ uri: "https://picsum.photos/90/140" }}></Image>
+                                </View>
+                                <View style={[styles.card, styles.secondCard]} >
+                                    <Image style={styles.cardImage} source={{ uri: "https://picsum.photos/90/140" }}></Image>
+                                </View>
+                                <View style={[styles.card, styles.thirdCard]} >
+                                    <Image style={styles.cardImage} source={{ uri: "https://picsum.photos/90/140" }}></Image>
+                                </View>
 
-                            {/* Render three cards for each deck */}
-                            <View style={[styles.card, styles.firstCard]} />
-                            <View style={[styles.card, styles.secondCard]} />
-                            <View style={[styles.card, styles.thirdCard]} />
+                                <CustomText style={styles.deckTitle}>{deck.title}</CustomText>
 
+                            </View>
                         </View>
+                    ))}
+                </View>
 
-                    </View>
-                ))}
             </ScrollView>
 
         </SafeAreaView>
@@ -51,50 +60,62 @@ const Decks = () => {
 };
 
 const styles = StyleSheet.create({
+    safeArea: {
+        backgroundColor: 'black',
+    },
+    scrollView: {
+        width: "100%",
+        height: "100%",
+    },
+    container: {
+        flexDirection: "row",
+        flexWrap: "wrap",
+        padding: 30,
+        justifyContent: "space-between",
+    },
     deckContainer: {
-        marginBottom: 12,
+        width: 112,
+        backgroundColor: COLORS.primary,
     },
     deckTitle: {
         color: "white",
-        backgroundColor: "blue",
-        fontSize: 12,
-        fontWeight: "bold",
-        marginBottom: 12,
-        paddingLeft: 12,
+        alignSelf: "center",
+        marginVertical: 10,
     },
     cardContainer: {
+        alignSelf: "flex-start",
         flexDirection: "row",
-        justifyContent: "center",
-        alignItems: "center",
+        backgroundColor: "red",
+        width: 112,
+    },
+    cardImage: {
+        flex: 1,
+        borderRadius: 20,
     },
     card: {
-        width: 2,
-        height: 2,
+        borderWidth: 1,
+        borderColor: "rgba(255, 255, 255, 0.3)",
         borderRadius: 20,
         position: "relative",
     },
     firstCard: {
-        backgroundColor: "white",
-        height: 200,
-        width: 150,
-        zIndex: 3,
-        left: 20,
+        backgroundColor: "blue",
+        height: 140,
+        width: 90,
+        zIndex: 1,
+        right: 0,
     },
     secondCard: {
-        backgroundColor: "darkgray",
-        height: 180,
-        width: 130,
+        height: 140,
+        width: 90,
         zIndex: 2,
-        marginLeft: 2,
-        left: 10,
+        right: 80,
     },
     thirdCard: {
-        backgroundColor: "gray",
-        height: 160,
-        width: 110,
-        zIndex: 1,
-        marginLeft: 2,
-        left: 0,
+        height: 140,
+        width: 90,
+        zIndex: 3,
+        right: 157,
     },
 });
 
