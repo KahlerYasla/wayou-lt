@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
 import { SafeAreaView, ScrollView, View, TouchableOpacity, Image, TouchableWithoutFeedback, StyleSheet } from "react-native";
-import { Stack, useRouter } from "expo-router";
+import { Stack } from "expo-router";
 import { Modal } from "react-native";
-
+import { LinearGradient } from 'expo-linear-gradient';
 import TinderCard from 'react-tinder-card';
 
-import ModalContent from "../../components/home/HomeScreenModal";
+import ConfigurationModal from "../../components/home/ConfigurationModal";
+import PlaceInfoModal from "../../components/home/PlaceInfoModal";
+
 import { useIsModalOpenStore } from "../../stores/BehavioursStore";
+
 import icons from "../../constants/icons";
+import CustomText from "../../components/shared/CustomText";
 
 const Home = () => {
     const [isConfigurationModalVisible, setIsConfigurationModalVisible] = useState(false);
@@ -23,22 +27,6 @@ const Home = () => {
         setIsPlaceInfoModalVisible(isModalOpen);
     }, [isModalOpen]);
 
-    // useEffect(() => {
-    //     fetchImage();
-    // }, []);
-
-
-    // const fetchImage = async () => {
-    //     try {
-    //         const response = await fetch('https://picsum.photos/800/1200');
-    //         if (response.ok) {
-    //             console.log('Image fetched successfully!');
-    //         }
-    //     } catch (error) {
-    //         alert('Error fetching image. Please check your internet connection.');
-    //     }
-    // };
-
     const openConfigurationModal = () => {
         setIsConfigurationModalVisible(true);
     };
@@ -46,6 +34,10 @@ const Home = () => {
     const closeConfigurationModal = () => {
         setIsConfigurationModalVisible(false);
     };
+
+    const closePlaceModal = () => {
+        setIsPlaceInfoModalVisible(false);
+    }
 
     const onSwipeDone = (direction: 'left' | 'right' | 'up' | 'down') => {
         console.log('You swiped: ' + direction);
@@ -81,20 +73,30 @@ const Home = () => {
                         key={resetCard ? "reset" : "notReset"}
                         preventSwipe={['down']}
                     >
-                        <View style={styles.card}>
-                            {imageUrl && (
-                                <Image
-                                    loadingIndicatorSource={icons.chatIcon}
-                                    onLoad={() => console.log('Image loaded')}
-                                    onLoadStart={() => console.log('Image loading')}
-                                    onError={() => console.log('Image loading error')}
-                                    onProgress={() => console.log('Image loading progress')}
-                                    resizeMode="cover"
-                                    source={{ uri: imageUrl }}
-                                    style={styles.cardImage}
-                                />
+                        {imageUrl &&
+                            (
+                                <View style={styles.card}>
+                                    <Image
+                                        loadingIndicatorSource={icons.chatIcon}
+                                        onLoad={() => console.log('Image loaded')}
+                                        onLoadStart={() => console.log('Image loading')}
+                                        onError={() => console.log('Image loading error')}
+                                        onProgress={() => console.log('Image loading progress')}
+                                        resizeMode="cover"
+                                        source={{ uri: imageUrl }}
+                                        style={styles.cardImage}
+                                    />
+                                    <LinearGradient
+                                        colors={['transparent', 'rgba(0,0,0,0.8)']}
+                                        style={styles.gradient}
+                                    />
+                                    <CustomText style={styles.cardText}>
+                                        Green Museum{"\n"}{"\n"}
+                                        Museum | Besiktas{"\n"}{"\n"}
+                                        9.1 / 10
+                                    </CustomText>
+                                </View>
                             )}
-                        </View>
                     </TinderCard>
 
                 </View>
@@ -121,19 +123,19 @@ const Home = () => {
                 <TouchableWithoutFeedback onPress={closeConfigurationModal}>
                     <View />
                 </TouchableWithoutFeedback>
-                <ModalContent closeModal={closeConfigurationModal} />
+                <ConfigurationModal closeModal={closeConfigurationModal} />
             </Modal>
 
             {/* place info modal */}
             <Modal
                 animationType="fade"
                 visible={isPlaceInfoModalVisible}
-                onRequestClose={closeConfigurationModal}
+                onRequestClose={closePlaceModal}
             >
-                <TouchableWithoutFeedback onPress={closeConfigurationModal}>
+                <TouchableWithoutFeedback onPress={closePlaceModal}>
                     <View />
                 </TouchableWithoutFeedback>
-                <ModalContent closeModal={closeConfigurationModal} />
+                <PlaceInfoModal closeModal={closePlaceModal} />
             </Modal>
 
         </SafeAreaView>
@@ -160,13 +162,31 @@ const styles = StyleSheet.create({
         height: "100%",
         justifyContent: 'center',
         alignItems: 'center',
+        position: 'relative', // added to position the gradient properly
     },
     cardImage: {
+        zIndex: 1,
         borderRadius: 50,
         borderWidth: 1,
         borderColor: "rgba(255, 255, 255, 0.3)",
         width: '100%',
         height: '100%',
+    },
+    gradient: {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        height: '50%',
+        zIndex: 2,
+        borderRadius: 50,
+    },
+    cardText: {
+        position: 'absolute',
+        zIndex: 3,
+        color: 'white',
+        left: 20,
+        bottom: 50,
     },
     modalButton: {
         top: 150,
