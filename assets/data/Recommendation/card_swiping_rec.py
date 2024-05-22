@@ -61,6 +61,11 @@ location_embeddings = model.predict(dummy_tags)
 
 # Function to generate recommendations for a list of tags
 def recommend_by_tags(tag_ids, k=20):
+    if not tag_ids:  # If input tag list is empty
+        # Recommend top-rated items
+        top_rated_indices = whole_data.nlargest(k, 'rating').index
+        return top_rated_indices
+    
     # Find indices of places with any of the given tags
     tagged_indices = set()
     for tag_id in tag_ids:
@@ -78,10 +83,9 @@ def recommend_by_tags(tag_ids, k=20):
     top_k_indices = np.array(tagged_indices)[similarities.argsort(axis=1)[0][-k:]][::-1]
     
     return top_k_indices
-
 # Example usage
-tag_inputs = [9,12]  # Example list of tags
-recommendations = recommend_by_tags(tag_inputs, k=20)
+tag_inputs = []  # Example list of tags
+recommendations = recommend_by_tags(tag_inputs, k=10)
 
 # Sort recommendations based on rating
 recommended_items = whole_data.iloc[recommendations].sort_values(by='rating', ascending=False)
