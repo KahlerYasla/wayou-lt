@@ -206,9 +206,11 @@ def ncf_recommend(user_id, model, place_data, user_id_to_index, k=10):
     
     return top_k_places
 
-def weighted_hybrid_recommend(input_features, user_id, content_model, cf_model, place_data, user_id_to_index, cb_weight=0.5, cf_weight=0.5, k=10):
+def weighted_hybrid_recommend(input_features, user_id, content_model, cf_model, place_data, user_id_to_index, cb_weight=0.5, cf_weight=0.5, k=10, food_tags=[13,14,15,16]):
+    # Get content-based recommendations
     cb_recommendations = recommend(input_features, content_model, place_data, k)
     
+    # Get collaborative filtering recommendations
     try:
         cf_recommendations = ncf_recommend(user_id, cf_model, place_data, user_id_to_index, k)
         cf_scores = cf_model.predict([np.full((len(place_data),), user_id_to_index[user_id]), place_data.index.values])
@@ -217,6 +219,7 @@ def weighted_hybrid_recommend(input_features, user_id, content_model, cf_model, 
         cf_recommendations = pd.DataFrame()
         cf_scores = np.zeros(len(place_data))
 
+    # Combine and mark the recommendations
     all_recommendations = pd.concat([place_data.iloc[cb_recommendations], cf_recommendations])
     all_recommendations['source'] = ['content-based'] * len(cb_recommendations) + ['collaborative-filtering'] * len(cf_recommendations)
 
@@ -225,6 +228,7 @@ def weighted_hybrid_recommend(input_features, user_id, content_model, cf_model, 
 
     all_recommendations = all_recommendations.drop_duplicates('place_id')
 
+    # Normalize the scores
     scaler = MinMaxScaler()
     cb_recommendations = all_recommendations.index[all_recommendations['source'] == 'content-based']
     cf_recommendations = all_recommendations.index[all_recommendations['source'] == 'collaborative-filtering']
@@ -241,22 +245,39 @@ def weighted_hybrid_recommend(input_features, user_id, content_model, cf_model, 
         ] + [cf_scores[cf_recommendations].reshape(-1, 1)])
     )
 
+    # Calculate the weighted scores
     all_recommendations['weighted_score'] = all_recommendations.apply(
         lambda row: row['score'] * cb_weight if row['source'] == 'content-based' else row['score'] * cf_weight,
         axis=1
     )
+
+    # Sort and limit to top k recommendations
+    top_recommendations = all_recommendations.sort_values('weighted_score', ascending=False).drop_duplicates('place_id').head(k)
+
+    # Limit food-tagged places to a maximum of 3
+    food_mask = top_recommendations['tags'].apply(lambda tags: any(tag in food_tags for tag in tags))
+    food_places = top_recommendations[food_mask].head(3)
+    non_food_places = top_recommendations[~food_mask]
+
+    final_recommendations = pd.concat([non_food_places, food_places])
+
+    # Ensure the final recommendations list has exactly 10 places
+    if len(final_recommendations) < k:
+        remaining_slots = k - len(final_recommendations)
+        additional_non_food_places = all_recommendations[~all_recommendations.index.isin(final_recommendations.index) & ~all_recommendations['tags'].apply(lambda tags: any(tag in food_tags for tag in tags))].head(remaining_slots)
+        final_recommendations = pd.concat([final_recommendations, additional_non_food_places])
     
-    return all_recommendations.sort_values('weighted_score', ascending=False).drop_duplicates('place_id').head(k)
+    return final_recommendations.head(k)
 
 # Main script
 if __name__ == "__main__":
-    # Preprocess data
+    # # Preprocess data
     whole_data, unique_tags = preprocess_data('data/whole_data_cleaned.xlsx')
     
-    # Create and train triplet model
-    triplet_model = create_triplet_model(unique_tags)
-    anchor_features, positive_features, negative_features = generate_triplets(whole_data)
-    train_triplet_model(triplet_model, anchor_features, positive_features, negative_features)
+    # # Create and train triplet model
+    # triplet_model = create_triplet_model(unique_tags)
+    # anchor_features, positive_features, negative_features = generate_triplets(whole_data)
+    # train_triplet_model(triplet_model, anchor_features, positive_features, negative_features)
     
     # Load user data
     user_data = pd.read_excel('data/generated_user_data.xlsx')
@@ -273,9 +294,9 @@ if __name__ == "__main__":
     num_users = user_data['user_index'].nunique()
     num_places = user_data['place_index'].nunique()
     
-    # Create and train NCF model
-    ncf_model = create_ncf_model(num_users, num_places)
-    train_ncf_model(ncf_model, user_data)
+    # # Create and train NCF model
+    # ncf_model = create_ncf_model(num_users, num_places)
+    # train_ncf_model(ncf_model, user_data)
     
     # Load trained models
     triplet_model = load_model('triplet_model.keras', custom_objects={'triplet_loss': triplet_loss})
@@ -283,10 +304,10 @@ if __name__ == "__main__":
     
     # Example usage
     input_features = {
-        'tags': [5, 7, 9],
+        'tags': [1,2,3,5,6,7,9,10,11,12,13,14],
         'rating': 4.5
     }
-    user_id = 0  # Replace with actual user_id
+    user_id = 100  # Replace with actual user_id
 
-    recommended_items = weighted_hybrid_recommend(input_features, user_id, triplet_model, ncf_model, whole_data, user_id_to_index, cb_weight=0.8, cf_weight=0.2, k=10)
+    recommended_items = weighted_hybrid_recommend(input_features, user_id, triplet_model, ncf_model, whole_data, user_id_to_index, cb_weight=0.75, cf_weight=0.25, k=10)
     print(recommended_items)

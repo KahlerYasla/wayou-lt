@@ -8,7 +8,7 @@ from sklearn.preprocessing import MultiLabelBinarizer
 
 # Load data
 whole_data = pd.read_excel('data/whole_data_cleaned.xlsx')
-whole_data.drop(["website", "place_links", "description", "territory_id.1"], axis=1, inplace=True)
+whole_data.drop(["website", "place_links", "description"], axis=1, inplace=True)
 
 # Preprocess whole_data: Convert 'tags' from comma-separated strings to lists of integers
 def safe_int_convert(tag_list):
@@ -80,7 +80,7 @@ def recommend_by_tags(tag_ids, k=20):
     return top_k_indices
 
 # Example usage
-tag_inputs = [1,2,3,4,5,6,7,9,12]  # Example list of tags
+tag_inputs = [9,12]  # Example list of tags
 recommendations = recommend_by_tags(tag_inputs, k=20)
 
 # Sort recommendations based on rating
