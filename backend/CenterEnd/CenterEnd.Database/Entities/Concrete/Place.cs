@@ -6,6 +6,7 @@ public class Place : BaseEntity
 {
     public required string PlaceName { get; set; }
     public string? PlaceDescription { get; set; }
+    public string? Summary { get; set; }
     public required string PlaceYX { get; set; }
     public string? Website { get; set; }
     public List<Tag>? Tags { get; set; }
