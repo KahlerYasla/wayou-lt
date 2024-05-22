@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MicroServices.TripGenerator")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b4c9a7c2da88b7b5d35491f20aa7c0d16b79a471")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1b5194225a85afcb57658310635259dc72ac088e")]
 [assembly: System.Reflection.AssemblyProductAttribute("MicroServices.TripGenerator")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MicroServices.TripGenerator")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
