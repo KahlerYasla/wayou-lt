@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
@@ -6,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CenterEnd.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class _0 : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -149,6 +150,7 @@ namespace CenterEnd.DataAccess.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     PlaceName = table.Column<string>(type: "text", nullable: false),
                     PlaceDescription = table.Column<string>(type: "text", nullable: true),
+                    Summary = table.Column<string>(type: "text", nullable: true),
                     PlaceYX = table.Column<string>(type: "text", nullable: false),
                     Website = table.Column<string>(type: "text", nullable: true),
                     Phone = table.Column<string>(type: "text", nullable: true),
@@ -253,15 +255,15 @@ namespace CenterEnd.DataAccess.Migrations
                 name: "PlaceTrip",
                 columns: table => new
                 {
-                    PlacesId = table.Column<int>(type: "integer", nullable: false),
+                    SortedPlaceListId = table.Column<int>(type: "integer", nullable: false),
                     TripsId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PlaceTrip", x => new { x.PlacesId, x.TripsId });
+                    table.PrimaryKey("PK_PlaceTrip", x => new { x.SortedPlaceListId, x.TripsId });
                     table.ForeignKey(
-                        name: "FK_PlaceTrip_Places_PlacesId",
-                        column: x => x.PlacesId,
+                        name: "FK_PlaceTrip_Places_SortedPlaceListId",
+                        column: x => x.SortedPlaceListId,
                         principalTable: "Places",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);

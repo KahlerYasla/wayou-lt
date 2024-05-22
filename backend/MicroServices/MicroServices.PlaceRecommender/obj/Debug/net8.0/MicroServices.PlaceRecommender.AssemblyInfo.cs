@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MicroServices.PlaceRecommender")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1b5194225a85afcb57658310635259dc72ac088e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9897884d7726a7913986ad309c62c99a7f400f41")]
 [assembly: System.Reflection.AssemblyProductAttribute("MicroServices.PlaceRecommender")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MicroServices.PlaceRecommender")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

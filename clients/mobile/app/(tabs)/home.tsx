@@ -87,7 +87,7 @@ const Home = () => {
                                         style={styles.cardImage}
                                     />
                                     <LinearGradient
-                                        colors={['transparent', 'rgba(0,0,0,0.8)']}
+                                        colors={['transparent', 'rgba(0,0,0,0.85)']}
                                         style={styles.gradient}
                                     />
                                     <CustomText style={styles.cardText}>
@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
         right: 0,
         height: '50%',
         zIndex: 2,
-        borderRadius: 50,
+        borderRadius: 10,
     },
     cardText: {
         position: 'absolute',

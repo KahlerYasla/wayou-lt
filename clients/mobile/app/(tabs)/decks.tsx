@@ -33,7 +33,7 @@ const Decks = () => {
                     {decks.map((deck) => (
                         <View key={deck.id} style={styles.deckContainer}>
 
-                            <View style={styles.cardContainer}>
+                            <View style={styles.innerDeckContainer}>
 
                                 {/* Render three cards for each deck */}
                                 <View style={[styles.card, styles.firstCard]} >
@@ -46,8 +46,10 @@ const Decks = () => {
                                     <Image style={styles.cardImage} source={{ uri: "https://picsum.photos/90/140" }}></Image>
                                 </View>
 
-                                <CustomText style={styles.deckTitle}>{deck.title}</CustomText>
+                            </View>
 
+                            <View style={styles.innerDeckContainer}>
+                                <CustomText style={styles.deckTitle}>{deck.title}</CustomText>
                             </View>
                         </View>
                     ))}
@@ -71,51 +73,47 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         flexWrap: "wrap",
         padding: 30,
-        justifyContent: "space-between",
+        gap: 20,
     },
     deckContainer: {
-        width: 112,
-        backgroundColor: COLORS.primary,
+        width: "29%",
+    },
+    innerDeckContainer: {
+        flexDirection: "row",
+        width: "100%",
+        alignItems: "center",
     },
     deckTitle: {
         color: "white",
-        alignSelf: "center",
-        marginVertical: 10,
-    },
-    cardContainer: {
-        alignSelf: "flex-start",
-        flexDirection: "row",
-        backgroundColor: "red",
-        width: 112,
+        width: "100%",
+        textAlign: "center",
+        marginTop: 10,
+        marginBottom: 25,
     },
     cardImage: {
         flex: 1,
         borderRadius: 20,
     },
     card: {
+        width: "90%",
         borderWidth: 1,
         borderColor: "rgba(255, 255, 255, 0.3)",
         borderRadius: 20,
         position: "relative",
     },
     firstCard: {
-        backgroundColor: "blue",
-        height: 140,
-        width: 90,
+        height: "100%",
         zIndex: 1,
-        right: 0,
     },
     secondCard: {
-        height: 140,
-        width: 90,
+        height: "100%",
         zIndex: 2,
-        right: 80,
+        right: 90,
     },
     thirdCard: {
         height: 140,
-        width: 90,
         zIndex: 3,
-        right: 157,
+        right: 180,
     },
 });
 

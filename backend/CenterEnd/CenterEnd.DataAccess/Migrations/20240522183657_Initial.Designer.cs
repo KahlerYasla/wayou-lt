@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CenterEnd.DataAccess.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240512162413_0")]
-    partial class _0
+    [Migration("20240522183657_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -101,6 +101,9 @@ namespace CenterEnd.DataAccess.Migrations
 
                     b.Property<int?>("Status")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Summary")
+                        .HasColumnType("text");
 
                     b.Property<int>("TerritoryId")
                         .HasColumnType("integer");
@@ -315,13 +318,13 @@ namespace CenterEnd.DataAccess.Migrations
 
             modelBuilder.Entity("PlaceTrip", b =>
                 {
-                    b.Property<int>("PlacesId")
+                    b.Property<int>("SortedPlaceListId")
                         .HasColumnType("integer");
 
                     b.Property<int>("TripsId")
                         .HasColumnType("integer");
 
-                    b.HasKey("PlacesId", "TripsId");
+                    b.HasKey("SortedPlaceListId", "TripsId");
 
                     b.HasIndex("TripsId");
 
@@ -423,7 +426,7 @@ namespace CenterEnd.DataAccess.Migrations
                 {
                     b.HasOne("CenterEnd.Database.Entities.Concrete.Place", null)
                         .WithMany()
-                        .HasForeignKey("PlacesId")
+                        .HasForeignKey("SortedPlaceListId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
