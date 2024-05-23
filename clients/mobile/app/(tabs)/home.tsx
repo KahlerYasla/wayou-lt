@@ -40,7 +40,8 @@ const Home = () => {
     }
 
     const onSwipeDone = (direction: 'left' | 'right' | 'up' | 'down') => {
-        console.log('You swiped: ' + direction);
+        console.log('====================================');
+        console.log('Swiped: ' + direction);
         if (direction === "up") {
             setIsPlaceInfoModalVisible(true);
             setResetCard(!resetCard);

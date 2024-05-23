@@ -6,6 +6,7 @@ import RNPickerSelect from 'react-native-picker-select';
 import CustomButton from '../components/shared/CustomButton';
 import CustomDatePicker from '../components/route/CustomDatePicker';
 import CustomText from '../components/shared/CustomText';
+import CustomFormField from '../components/shared/CustomFormField';
 
 import icons from '../constants/icons';
 
@@ -24,34 +25,37 @@ const CreateRoute = () => {
             <RNPickerSelect
               placeholder={{
                 label: "Default Deck",
-                value: null
+                value: "default"
               }}
               onValueChange={(value) => console.log(value)}
               items={[
-                { label: 'Football', value: 'football' },
-                { label: 'Baseball', value: 'baseball' },
-                { label: 'Hockey', value: 'hockey' },
+
               ]}
             />
 
           </View>
 
           <View style={styles.section}>
+
             <CustomText style={styles.label}>Who Are You Going With:</CustomText>
+
             <RNPickerSelect
-              placeholder={{ label: "Alone", value: null }}
+              placeholder={{
+                label: "Alone",
+                value: "alone"
+              }}
               onValueChange={(value) => console.log(value)}
               items={[
-                { label: 'Alone', value: 'football' },
-                { label: 'Baseball', value: 'baseball' },
-                { label: 'Hockey', value: 'hockey' },
+                { label: 'Partner', value: 'partner' },
+                { label: 'Group', value: 'group' },
               ]}
             />
+
           </View>
 
           <View style={styles.section}>
 
-            <CustomText style={styles.label}>Pick The Start Point:</CustomText>
+            <CustomText style={styles.label}>Pick The Near Start Point:</CustomText>
 
             <TouchableOpacity onPress={() => router.push("select-origin")}>
               <View style={styles.iconContainer}>
@@ -65,23 +69,45 @@ const CreateRoute = () => {
 
           </View>
 
-          <CustomDatePicker />
+          {/* <CustomDatePicker /> */}
+
+          {/* how many days will you be on the trip */}
+          <View style={styles.section}>
+            <CustomFormField
+              placeholder="Enter Number of Days"
+              keyboardType="numeric"
+              label="How Many Days:"
+            />
+          </View>
 
           <View style={styles.buttonContainer}>
-            <CustomButton
+
+            {/* <CustomButton
               title='Create Yourself'
               onPress={() => router.push("select-origin")}
               style={styles.button}
-            />
+            /> */}
+
             <CustomButton
               title='Create Using AI'
               onPress={() => router.push("route-info")}
               style={styles.button}
             />
+
           </View>
 
         </View>
       </ScrollView>
+
+      {/* floating button */}
+      <View style={styles.backButtonContainer}>
+        <CustomButton
+          title="<"
+          onPress={() => router.replace("routes")}
+        // icon={icons.chatIcon}
+        />
+      </View>
+
     </SafeAreaView>
   );
 };
@@ -93,6 +119,7 @@ const styles = StyleSheet.create({
   },
   scrollViewContent: {
     padding: 30,
+    paddingVertical: 60,
     height: '100%',
   },
   container: {
@@ -139,6 +166,12 @@ const styles = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
     justifyContent: "center",
+  },
+  backButtonContainer: {
+    position: 'absolute',
+    top: 30,
+    left: 30,
+    zIndex: 10,
   },
 });
 

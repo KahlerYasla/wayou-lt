@@ -18,6 +18,7 @@ import moneyIcon from "../assets/icons/other/money-icon.png";
 import phoneIcon from "../assets/icons/other/phone-icon.png";
 import timeIcon from "../assets/icons/other/time-icon.png";
 import webIcon from "../assets/icons/other/web-icon.png";
+import coffeeIcon from "../assets/icons/other/coffee-icon.png";
 
 export default {
     // images/app
@@ -39,5 +40,6 @@ export default {
     moneyIcon,
     phoneIcon,
     timeIcon,
-    webIcon
+    webIcon,
+    coffeeIcon,
 };

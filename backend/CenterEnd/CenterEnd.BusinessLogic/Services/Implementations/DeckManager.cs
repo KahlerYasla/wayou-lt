@@ -16,17 +16,20 @@ public class DeckManager(IGenericRepository<Deck> deckRepository, IGenericReposi
         User? user = await _userRepository.SingleOrDefaultAsync(u => u.Id == request.OwnerUserId) ?? null;
         List<Place>? places = [];
 
-        foreach (var placeId in request.PlacesOfDeckByIds)
-        {
-            Place? place = await _placeRepository.SingleOrDefaultAsync(p => p.Id == placeId) ?? null;
+        if (user == null) return new BaseResponse<CreateDeckResponse>(success: false, message: "The userId can not be matched. Send me a vaild userId", data: null);
 
-            if (place != null)
+        if (request.PlacesOfDeckByIds != null)
+        {
+            foreach (var placeId in request.PlacesOfDeckByIds)
             {
-                places.Add(place);
+                Place? place = await _placeRepository.SingleOrDefaultAsync(p => p.Id == placeId) ?? null;
+
+                if (place != null)
+                {
+                    places.Add(place);
+                }
             }
         }
-
-        if (user == null) return new BaseResponse<CreateDeckResponse>(success: false, message: "The userId can not be matched. Send me a vaild userId", data: null);
 
         Deck deck = new() { DeckName = request.Name, OwnerUser = user, PlacesOfDeck = places };
 

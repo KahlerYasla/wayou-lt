@@ -4,6 +4,7 @@ import { Stack, useRouter } from "expo-router";
 
 import CustomText from "../../components/shared/CustomText";
 import CustomButton from "../../components/shared/CustomButton";
+import { LinearGradient } from "expo-linear-gradient";
 
 const Decks = () => {
     const router = useRouter();
@@ -49,13 +50,25 @@ const Decks = () => {
 
                                 {/* Render three cards for each deck */}
                                 <View style={[styles.card, styles.firstCard]} >
-                                    <Image style={styles.cardImage} source={{ uri: "https://picsum.photos/100/140" }}></Image>
+                                    <Image style={styles.cardImage} source={{ uri: "https://picsum.photos/100/140" }} />
+                                    <LinearGradient
+                                        colors={['transparent', 'rgba(0,0,0,.96)']}
+                                        style={styles.gradient}
+                                    />
                                 </View>
                                 <View style={[styles.card, styles.secondCard]} >
-                                    <Image style={styles.cardImage} source={{ uri: "https://picsum.photos/110/141" }}></Image>
+                                    <Image style={styles.cardImage} source={{ uri: "https://picsum.photos/110/141" }} />
+                                    <LinearGradient
+                                        colors={['transparent', 'rgba(0,0,0,.96)']}
+                                        style={styles.gradient}
+                                    />
                                 </View>
                                 <View style={[styles.card, styles.thirdCard]} >
-                                    <Image style={styles.cardImage} source={{ uri: "https://picsum.photos/110/200" }}></Image>
+                                    <Image style={styles.cardImage} source={{ uri: "https://picsum.photos/110/200" }} />
+                                    <LinearGradient
+                                        colors={['transparent', 'rgba(0,0,0,.96)']}
+                                        style={styles.gradient}
+                                    />
                                 </View>
 
                             </View>
@@ -130,6 +143,15 @@ const styles = StyleSheet.create({
     },
     cardImage: {
         flex: 1,
+        borderRadius: 20,
+    },
+    gradient: {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        height: '60%',
+        zIndex: 2,
         borderRadius: 20,
     },
     card: {

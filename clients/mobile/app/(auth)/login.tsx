@@ -27,8 +27,8 @@ const Login = () => {
 
   useEffect(() => {
     // if user is already logged in, redirect to home page
-    if (authCredentials.token) {
-      console.log("User is already logged in with credentials: ", authCredentials);
+    if (authCredentials.auth) {
+      console.log("User is already logged in with credentials: ", authCredentials.auth);
       router.push("home");
     }
     else {
@@ -43,7 +43,10 @@ const Login = () => {
     } else {
       requestLogin(userName, password).then((success: boolean) => {
         if (success) {
-          console.warn("Login successful\n");
+          console.log("====================================");
+          console.log("Login successful");
+          console.log("User credentials:", authCredentials.auth);
+          console.log("====================================");
           router.push("home");
         } else {
           console.warn("Login failed\n");

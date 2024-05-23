@@ -1,63 +1,118 @@
 import React from 'react';
-import { View, SafeAreaView, ScrollView, StyleSheet } from 'react-native';
-import { FONT } from '../constants';
+import { View, SafeAreaView, ScrollView, StyleSheet, Image } from 'react-native';
+import { router } from 'expo-router';
 
+// components
 import CustomText from '../components/shared/CustomText';
+import CustomButton from '../components/shared/CustomButton';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const RouteInfo = () => {
     return (
         <SafeAreaView style={styles.safeArea}>
-            <ScrollView showsVerticalScrollIndicator={false}>
-                <View style={styles.container}>
-                    <View>
-                        <CustomText style={styles.title}>AI Generated Trip</CustomText>
-                    </View>
-                    <View style={styles.descriptionContainer}>
-                        <CustomText style={styles.descriptionText}>
-                            Description of the route will be here.
-                        </CustomText>
-                    </View>
-                    <View>
-                        <CustomText style={styles.dayTitle}>Day 1:</CustomText>
-                        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={styles.horizontalScroll}>
-                            <View style={styles.horizontalContent}>
-                                {/* Example content */}
-                                <View style={[styles.box, styles.redBox]} />
-                                <View style={[styles.box, styles.greenBox]} />
-                                <View style={[styles.box, styles.blueBox]} />
-                                <View style={[styles.box, styles.yellowBox]} />
-                                <View style={[styles.box, styles.purpleBox]} />
-                            </View>
-                        </ScrollView>
-                    </View>
-                    <View style={styles.planContainer}>
-                        <CustomText style={styles.planText}>
-                            Plan of the day will be here.
-                        </CustomText>
-                    </View>
-                </View>
+            <View style={styles.outerContainer}>
 
-                <View style={styles.container}>
-                    <View>
-                        <CustomText style={styles.dayTitle}>Day 2:</CustomText>
-                        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={styles.horizontalScroll}>
-                            <View style={styles.horizontalContent}>
-                                {/* Example content */}
-                                <View style={[styles.box, styles.redBox]} />
-                                <View style={[styles.box, styles.greenBox]} />
-                                <View style={[styles.box, styles.blueBox]} />
-                                <View style={[styles.box, styles.yellowBox]} />
-                                <View style={[styles.box, styles.purpleBox]} />
+                <ScrollView showsVerticalScrollIndicator={false}>
+
+                    <View style={styles.innerContainer}>
+
+                        <View style={styles.descriptionContainer}>
+                            <CustomText style={styles.title}>AI Generated Trip</CustomText>
+                            <CustomText style={styles.descriptionText}>
+                                Miami Beach is a vibrant destination that perfectly matches your interests. With its stunning beaches, crystal-clear turquoise waters, and warm weather in June, it offers the perfect setting for a solo adventure. Must-see attractions in Miami Beach include iconic Art Deco architecture, which can be explored through guided walking tours or simply by strolling along the lively streets. The city's vibrant nightlife scene is also a must-experience, with trendy clubs and bars offering a diverse range of entertainment options. Indulge in delicious cuisine at the various restaurants, ranging from international flavors to fresh seafood. Miami Beach is the ideal destination to explore, relax, and immerse yourself in the vibrant culture.
+                            </CustomText>
+                        </View>
+
+                        {/* day 1 */}
+                        <View style={styles.container}>
+                            <View>
+                                <CustomText style={styles.dayTitle}>Day 1:</CustomText>
+                                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={styles.horizontalScroll}>
+                                    <View style={styles.horizontalContent}>
+
+                                        {/* Example content */}
+                                        <View style={styles.card} >
+                                            <Image style={styles.cardImage} source={{ uri: "https://picsum.photos/201/202" }} />
+                                            <LinearGradient
+                                                colors={['transparent', 'rgba(0,0,0,.96)']}
+                                                style={styles.gradient}
+                                            />
+                                            <CustomText style={styles.cardText}>Example Place</CustomText>
+                                        </View>
+
+                                        <View style={styles.card} >
+                                            <Image style={styles.cardImage} source={{ uri: "https://picsum.photos/400/200" }} />
+                                            <LinearGradient
+                                                colors={['transparent', 'rgba(0,0,0,.96)']}
+                                                style={styles.gradient}
+                                            />
+                                        </View>
+
+                                        <View style={styles.card} >
+                                            <Image style={styles.cardImage} source={{ uri: "https://picsum.photos/250/200" }} />
+                                            <LinearGradient
+                                                colors={['transparent', 'rgba(0,0,0,.96)']}
+                                                style={styles.gradient}
+                                            />
+                                        </View>
+
+                                    </View>
+                                </ScrollView>
                             </View>
-                        </ScrollView>
+                            <View style={styles.planContainer}>
+                                <CustomText style={styles.planText}>
+                                    Welcome to Miami Beach, Florida! Get ready for an exciting first day of your trip. Based on your preferences, we have put together an amazing itinerary for you. First, visit the Holocaust Memorial Miami Beach, a must-see attraction that pays tribute to the millions of lives lost during the Holocaust. Take your time to reflect and learn about this important historical event. For lunch, head to Havana 1957 Cuban Cuisine Lincoln Road. Indulge in delicious Cuban cuisine and experience the vibrant flavors of the island. Next, explore the Art Deco Historic District, known for its stunning architecture. Take a leisurely stroll and admire the beautiful buildings from the 1920s and 1930s. Afterward, relax at Lummus Park Beach, a picturesque stretch of sand with crystal-clear waters. Enjoy the sun, take a dip, or simply unwind and soak in the breathtaking views. For dinner, try La Sandwicherie Miami Beach, a local favorite known for its mouthwatering sandwiches. Grab a quick bite and satisfy your taste buds. We hope you have a fantastic first day in Miami Beach! Enjoy your trip!
+                                </CustomText>
+                            </View>
+                        </View>
+
+                        {/* day 2 */}
+                        <View style={styles.container}>
+                            <View>
+                                <CustomText style={styles.dayTitle}>Day 2:</CustomText>
+                                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={styles.horizontalScroll}>
+                                    <View style={styles.horizontalContent}>
+
+                                        {/* Example content */}
+                                        <View style={styles.card} >
+                                            <Image style={styles.cardImage} source={{ uri: "https://picsum.photos/200/200" }} />
+                                            <LinearGradient
+                                                colors={['transparent', 'rgba(0,0,0,.96)']}
+                                                style={styles.gradient}
+                                            />
+                                        </View>
+
+                                        <View style={styles.card} >
+                                            <Image style={styles.cardImage} source={{ uri: "https://picsum.photos/201/200" }} />
+                                            <LinearGradient
+                                                colors={['transparent', 'rgba(0,0,0,.96)']}
+                                                style={styles.gradient}
+                                            />
+                                        </View>
+
+                                    </View>
+                                </ScrollView>
+                            </View>
+                            <View style={styles.planContainer}>
+                                <CustomText style={styles.planText}>
+                                    On the second day of your trip to Miami Beach, you have an exciting itinerary ahead. Start your day by visiting Lincoln Road, a must-see attraction known for its vibrant atmosphere and variety of shops and restaurants. Enjoy exploring the unique boutiques and art galleries that line this pedestrian-friendly street. For lunch, head to CRAFT South Beach - Espanola Way, a popular eatery known for its delicious food and charming ambiance. After lunch, take a leisurely stroll along the Miami Beach Boardwalk, where you can soak in the beautiful ocean views and feel the refreshing sea breeze. For dinner, try Arkadia Grill, a fantastic eatery that offers a diverse menu with options to satisfy any craving. Finally, end your day by visiting Surfside Beach, a picturesque attraction where you can relax and unwind on the sandy shores. Enjoy the sun, surf, and breathtaking views. Have a fantastic day!
+                                </CustomText>
+                            </View>
+                        </View>
+
                     </View>
-                    <View style={styles.planContainer}>
-                        <CustomText style={styles.planText}>
-                            Plan of the day will be here.
-                        </CustomText>
-                    </View>
-                </View>
-            </ScrollView>
+                </ScrollView>
+            </View>
+
+            {/* floating button */}
+            <View style={styles.backButtonContainer}>
+                <CustomButton
+                    title="<"
+                    onPress={() => router.replace("routes")}
+                // icon={icons.chatIcon}
+                />
+            </View>
+
         </SafeAreaView>
     );
 };
@@ -68,24 +123,36 @@ const styles = StyleSheet.create({
         width: "100%",
         height: "100%",
     },
-    container: {
-        margin: 10,
+    outerContainer: {
         flex: 1,
         width: "100%",
         height: "100%",
+        marginTop: 80,
+        paddingHorizontal: 30,
+    },
+    container: {
+        flex: 1,
+        width: "100%",
+        height: "100%",
+        borderBottomWidth: 0.3,
+        borderColor: "white",
+        paddingBottom: 10,
+    },
+    innerContainer: {
+        flex: 1,
+        width: "100%",
+        height: "100%",
+        gap: 30,
     },
     title: {
         marginTop: 10,
-        fontFamily: FONT.regular,
         color: "white",
         alignSelf: "flex-start",
         fontSize: 20,
-        textDecorationLine: "underline",
     },
     descriptionContainer: {
-        borderBottomWidth: 0.2,
+        borderBottomWidth: 0.3,
         borderColor: "white",
-        width: "90%",
         paddingBottom: 10,
     },
     descriptionText: {
@@ -93,13 +160,11 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderColor: "white",
         marginTop: 10,
-        fontFamily: FONT.regular,
         color: "white",
         justifyContent: "center",
     },
     dayTitle: {
         marginTop: 10,
-        fontFamily: FONT.bold,
         color: "white",
         justifyContent: "center",
     },
@@ -108,40 +173,49 @@ const styles = StyleSheet.create({
     },
     horizontalContent: {
         flexDirection: 'row',
+        gap: 15,
     },
-    box: {
-        width: 120,
-        height: 120,
-        marginRight: 10,
+    card: {
+        width: 130,
+        height: 180,
+        borderWidth: 1,
+        marginVertical: 10,
+        borderColor: "rgba(255, 255, 255, 0.3)",
+        borderRadius: 20,
+        position: "relative",
     },
-    redBox: {
-        backgroundColor: 'red',
+    cardImage: {
+        flex: 1,
+        borderRadius: 20,
     },
-    greenBox: {
-        backgroundColor: 'green',
+    cardText: {
+        zIndex: 2,
+        color: "rgba(255, 255, 255, 0.6)",
+        fontSize: 12,
+        position: "absolute",
+        bottom: 20,
+        left: 6,
     },
-    blueBox: {
-        backgroundColor: 'blue',
-    },
-    yellowBox: {
-        backgroundColor: 'yellow',
-    },
-    purpleBox: {
-        backgroundColor: 'purple',
+    gradient: {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        height: '60%',
+        zIndex: 2,
+        borderRadius: 20,
     },
     planContainer: {
-        borderBottomWidth: 0.2,
-        borderColor: "white",
-        width: "90%",
-        paddingBottom: 10,
     },
     planText: {
-        borderLeftWidth: 1,
-        borderColor: "white",
         marginTop: 10,
-        fontFamily: FONT.regular,
         color: "white",
         justifyContent: "center",
+    },
+    backButtonContainer: {
+        position: 'absolute',
+        top: 30,
+        left: 30,
     },
 });
 

@@ -58,7 +58,8 @@ public class AuthManager(IGenericRepository<User> userRepository) : IAuthService
             success: true, message: "User logged in successfully",
             data: new LoginResponse
             {
-                Token = JwtTokenGenerator.GenerateToken(user.UserName, user.Email)
+                Token = JwtTokenGenerator.GenerateToken(user.UserName, user.Email),
+                UserId = user.Id
             }
         );
     }

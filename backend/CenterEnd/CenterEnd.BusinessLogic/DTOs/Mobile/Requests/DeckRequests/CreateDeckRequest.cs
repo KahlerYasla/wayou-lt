@@ -9,5 +9,5 @@ public class CreateDeckRequest
     [JsonPropertyName("ownerUserId")]
     public required int OwnerUserId { get; set; }
     [JsonPropertyName("placesOfDeckByIds")]
-    public required List<int> PlacesOfDeckByIds { get; set; }
+    public List<int>? PlacesOfDeckByIds { get; set; }
 }
