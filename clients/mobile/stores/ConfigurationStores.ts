@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-interface Configuration {
+export interface Configuration {
     selectedDeckId: number;
     tags: string[];
     originYX: string;
@@ -27,6 +27,10 @@ export const useConfigurationStore = create<ConfigurationStore>((set) => ({
         set({ configuration });
         try {
             await AsyncStorage.setItem('configuration', JSON.stringify(configuration));
+
+            // check if the configuration is saved
+            const savedConfiguration = await AsyncStorage.getItem('configuration');
+            console.log('\nSaved configuration:', savedConfiguration);
         } catch (error) {
             console.error('Failed to save configuration:', error);
         }
