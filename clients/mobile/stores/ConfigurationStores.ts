@@ -1,7 +1,20 @@
 import { create } from 'zustand';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export const useConfigurationStore = create((set) => ({
+interface Configuration {
+    selectedDeckId: number;
+    tags: string[];
+    originYX: string;
+}
+
+interface ConfigurationStore {
+    configuration: Configuration;
+    setConfiguration: (configuration: Configuration) => void;
+    saveConfiguration: (configuration: Configuration) => Promise<void>;
+    loadConfiguration: () => Promise<void>;
+}
+
+export const useConfigurationStore = create<ConfigurationStore>((set) => ({
     configuration: {
         selectedDeckId: 0,
         tags: [],

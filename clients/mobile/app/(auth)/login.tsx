@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { StyleSheet, SafeAreaView, ScrollView, View, Text, TouchableOpacity, Image } from "react-native";
 import { useRouter } from "expo-router";
-import axios from "axios";
 
 // components
 import CustomButton from "../../components/shared/CustomButton";
@@ -10,53 +9,46 @@ import CustomText from "../../components/shared/CustomText";
 
 // constants
 import { FONT } from "../../constants";
-import { API_BASE_URL } from "../../constants";
 import images from "../../constants/images";
 import icons from "../../constants/icons";
 
+// stores
+import { useAuthCredentials } from "../../stores/AuthStores";
+
 const Login = () => {
   const router = useRouter();
+
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+
+  // stores
+  const authCredentials = useAuthCredentials((state) => state);
+  const requestLogin = useAuthCredentials((state) => state.requestLogin);
+
+  useEffect(() => {
+    // if user is already logged in, redirect to home page
+    if (authCredentials.token) {
+      console.log("User is already logged in with credentials: ", authCredentials);
+      router.push("home");
+    }
+    else {
+      console.log("First login proccess!");
+    }
+  }, []);
 
   // ===============================================================================
   const validateLogin = () => {
     if (userName === "" || password === "") {
       alert("Please fill all fields");
     } else {
-      console.log("Login request sent with username: " + userName + " and password: " + password);
-
-      axios.post(`${API_BASE_URL}/auth/login`, {
-        username: userName,
-        password: password,
-      })
-        .then((response) => {
-          if (response.status === 200) {
-            alert("Login Successful");
-            router.push("home");
-          }
-        })
-        .catch((error) => {
-          console.error('Error:', error);
-
-          if (error.response) {
-            // The request was made and the server responded with a status code
-            // that falls out of the range of 2xx
-            console.error('Response data:', error.response.data);
-            console.error('Response status:', error.response.status);
-            console.error('Response headers:', error.response.headers);
-          } else if (error.request) {
-            // The request was made but no response was received
-            console.error('Request data:', error.request);
-          } else {
-            // Something happened in setting up the request that triggered an Error
-            console.error('Error message:', error.message);
-          }
-
-          // Log any additional error information
-          console.error('Error config:', error.config);
-          alert("Login Failed");
-        });
+      requestLogin(userName, password).then((success: boolean) => {
+        if (success) {
+          console.warn("Login successful\n");
+          router.push("home");
+        } else {
+          console.warn("Login failed\n");
+        }
+      });
     }
   };
 
@@ -64,6 +56,7 @@ const Login = () => {
   const handleGoogleLogin = () => {
     alert("Google login is not implemented yet");
   }
+
   // ===============================================================================
   return (
     <View style={styles.container}>
@@ -110,7 +103,6 @@ const Login = () => {
                 </Text>
               </TouchableOpacity>
             </View>
-
           </View>
           <View style={styles.signUp}>
             <TouchableOpacity onPress={() => { router.push("register") }} style={styles.signUpButton}>
@@ -146,8 +138,7 @@ const styles = StyleSheet.create({
     marginRight: "10%",
     alignSelf: "flex-end",
   },
-  inputText: {
-  },
+  inputText: {},
   inputContainer: {
     marginBottom: 0,
     width: "80%",

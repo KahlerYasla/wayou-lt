@@ -8,7 +8,7 @@ import TinderCard from 'react-tinder-card';
 import ConfigurationModal from "../../components/home/ConfigurationModal";
 import PlaceInfoModal from "../../components/home/PlaceInfoModal";
 
-import { useIsModalOpenStore } from "../../stores/BehavioursStore";
+import { useIsModalOpen } from "../../stores/BehavioursStores";
 
 import icons from "../../constants/icons";
 import CustomText from "../../components/shared/CustomText";
@@ -20,7 +20,7 @@ const Home = () => {
     const [imageUrl, setImageUrl] = useState('https://picsum.photos/800/1200');
     const [resetCard, setResetCard] = useState(false);
 
-    const isModalOpen = useIsModalOpenStore((state) => state.isModalOpen);
+    const isModalOpen = useIsModalOpen((state) => state.isModalOpen);
 
     useEffect(() => {
         setIsConfigurationModalVisible(isModalOpen);
@@ -69,7 +69,7 @@ const Home = () => {
                     <TinderCard
                         onSwipeRequirementFulfilled={onSwipeDone}
                         swipeRequirementType="position"
-                        swipeThreshold={175}
+                        swipeThreshold={100}
                         key={resetCard ? "reset" : "notReset"}
                         preventSwipe={['down']}
                     >

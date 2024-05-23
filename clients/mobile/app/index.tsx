@@ -13,9 +13,7 @@ export default function Index() {
         return null;
     }
 
-    // if logged in before redirect to "/home" otherwise "/login"
-
     return (
-        <Redirect href="/home" />
+        <Redirect href="/login" />
     );
 }

@@ -5,8 +5,8 @@ import { Entypo } from '@expo/vector-icons';
 
 import RNPickerSelect from 'react-native-picker-select';
 
-import { useConfigurationStore } from "../../stores/ConfigurationStore";
-import { useIsModalOpenStore } from "../../stores/BehavioursStore";
+import { useConfigurationStore } from "../../stores/ConfigurationStores";
+import { useIsModalOpen } from "../../stores/BehavioursStores";
 
 import icons from "../../constants/icons";
 
@@ -25,7 +25,7 @@ const ModalContent: React.FC<ModalContentProps> = ({ closeModal }) => {
   const saveConfiguration = useConfigurationStore((state) => state.saveConfiguration);
   const loadConfiguration = useConfigurationStore((state) => state.loadConfiguration);
 
-  const setIsModalOpen = useIsModalOpenStore((state) => state.setIsModalOpen);
+  const setIsModalOpen = useIsModalOpen((state) => state.setIsModalOpen);
 
   const openSecondModal = () => {
     setIsSecondModalVisible(true);
