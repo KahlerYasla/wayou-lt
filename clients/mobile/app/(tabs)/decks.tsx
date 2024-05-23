@@ -1,20 +1,16 @@
 import React from "react";
-import { SafeAreaView, ScrollView, View, Image, StyleSheet } from "react-native";
+import { SafeAreaView, ScrollView, View, Image, StyleSheet, Alert, TouchableOpacity } from "react-native";
 import { Stack, useRouter } from "expo-router";
 
-import { COLORS, SIZES } from "../../constants";
 import CustomText from "../../components/shared/CustomText";
+import CustomButton from "../../components/shared/CustomButton";
 
 const Decks = () => {
     const router = useRouter();
 
     // Mock data for decks
     const decks = [
-        { id: 1, title: "Deck 1" },
-        { id: 2, title: "Deck 2" },
-        { id: 3, title: "Deck 3" },
-        { id: 4, title: "Deck 4" },
-        { id: 5, title: "Deck 5" },
+        { id: 1, title: "Default Deck" },
     ];
 
     return (
@@ -31,19 +27,35 @@ const Decks = () => {
                 <View style={styles.container}>
                     {/* Map through decks and render each deck */}
                     {decks.map((deck) => (
-                        <View key={deck.id} style={styles.deckContainer}>
+                        <TouchableOpacity
+                            key={deck.id}
+                            style={styles.deckContainer}
+
+                            // list all places of the deck pressed
+                            onPress={() =>
+                                Alert.alert(
+                                    "List of places from this deck:",
+                                    "",
+                                    [
+                                        {
+                                            text: "Done",
+                                            onPress: () => console.log("Done Pressed"),
+                                            style: "default"
+                                        },
+                                    ],
+                                )}>
 
                             <View style={styles.innerDeckContainer}>
 
                                 {/* Render three cards for each deck */}
                                 <View style={[styles.card, styles.firstCard]} >
-                                    <Image style={styles.cardImage} source={{ uri: "https://picsum.photos/90/140" }}></Image>
+                                    <Image style={styles.cardImage} source={{ uri: "https://picsum.photos/100/140" }}></Image>
                                 </View>
                                 <View style={[styles.card, styles.secondCard]} >
-                                    <Image style={styles.cardImage} source={{ uri: "https://picsum.photos/90/140" }}></Image>
+                                    <Image style={styles.cardImage} source={{ uri: "https://picsum.photos/110/141" }}></Image>
                                 </View>
                                 <View style={[styles.card, styles.thirdCard]} >
-                                    <Image style={styles.cardImage} source={{ uri: "https://picsum.photos/90/140" }}></Image>
+                                    <Image style={styles.cardImage} source={{ uri: "https://picsum.photos/110/200" }}></Image>
                                 </View>
 
                             </View>
@@ -51,11 +63,37 @@ const Decks = () => {
                             <View style={styles.innerDeckContainer}>
                                 <CustomText style={styles.deckTitle}>{deck.title}</CustomText>
                             </View>
-                        </View>
+                        </TouchableOpacity>
                     ))}
                 </View>
 
             </ScrollView>
+
+            {/* floating button */}
+            <View style={styles.createButtonContainer}>
+                <CustomButton
+                    title="Create Deck"
+
+                    // get the new deck's name
+                    onPress={() => Alert.prompt(
+                        "Enter new deck's name",
+                        "",
+                        [
+                            {
+                                text: "Cancel",
+                                onPress: () => console.log("Cancel Pressed"),
+                                style: "cancel"
+                            },
+                            {
+                                text: "OK",
+                                onPress: newDeckName => console.log("New dekc's name: " + newDeckName)
+                            }
+                        ],
+                        "plain-text"
+                    )}
+
+                />
+            </View>
 
         </SafeAreaView>
     );
@@ -114,6 +152,13 @@ const styles = StyleSheet.create({
         height: 140,
         zIndex: 3,
         right: 180,
+    },
+    createButtonContainer: {
+        position: 'absolute',
+        bottom: 20,
+        right: 20,
+        borderRadius: 50,
+        padding: 10,
     },
 });
 

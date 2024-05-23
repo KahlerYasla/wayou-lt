@@ -17,7 +17,7 @@ const Home = () => {
     const [isConfigurationModalVisible, setIsConfigurationModalVisible] = useState(false);
     const [isPlaceInfoModalVisible, setIsPlaceInfoModalVisible] = useState(false);
 
-    const [imageUrl, setImageUrl] = useState('https://picsum.photos/800/1200');
+    const [imageUrl, setImageUrl] = useState('https://picsum.photos/800/1300');
     const [resetCard, setResetCard] = useState(false);
 
     const isModalOpen = useIsModalOpen((state) => state.isModalOpen);
@@ -46,7 +46,7 @@ const Home = () => {
             setResetCard(!resetCard);
         } else if (direction === "right" || direction === "left") {
             setTimeout(() => {
-                setImageUrl('https://picsum.photos/800/130' + Math.floor(Math.random() * 10));
+                setImageUrl('https://picsum.photos/800/140' + Math.floor(Math.random() * 10));
                 setResetCard(!resetCard);
             },
                 600);
