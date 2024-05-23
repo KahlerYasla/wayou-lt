@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { View, SafeAreaView, ScrollView, StyleSheet } from 'react-native';
 
-import { AntDesign, MaterialCommunityIcons, FontAwesome, Fontisto, Entypo } from '@expo/vector-icons';
 import MapView, { Marker, PROVIDER_DEFAULT } from 'react-native-maps';
 
 import CustomText from '../shared/CustomText';
@@ -9,24 +8,13 @@ import CustomButton from '../shared/CustomButton';
 
 const infoSections = [
     {
-        icon: <AntDesign name="infocirlceo" size={20} color="white" />,
         CustomText: 'Restored 14th-century museum and former prison overlooking the Bosphorus with a top-floor restaurant. See More',
     },
     {
-        icon: <MaterialCommunityIcons name="web" size={20} color="white" />,
         CustomText: 'www.bomontigreenmuesum.com',
     },
     {
-        icon: <FontAwesome name="phone" size={20} color="white" />,
         CustomText: '0212 667 66 31',
-    },
-    {
-        icon: <Fontisto name="dollar" size={20} color="white" />,
-        CustomText: 'Between: $100 - $200 See All Prices',
-    },
-    {
-        icon: <Entypo name="back-in-time" size={20} color="white" />,
-        CustomText: 'Open Between: 06:00 AM - 02:00 AM See All',
     },
 ];
 

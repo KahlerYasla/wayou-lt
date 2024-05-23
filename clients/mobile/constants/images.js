@@ -10,6 +10,8 @@ import card3 from "../assets/images/mock/card3.png";
 import card4 from "../assets/images/mock/card4.png";
 import card5 from "../assets/images/mock/card5.png";
 import profileImage from "../assets/images/mock/profile-image.jpeg";
+import taha from "../assets/images/mock/taha.png";
+import sinanur from "../assets/images/mock/sinanur.png";
 
 export default {
     // images/app
@@ -24,4 +26,6 @@ export default {
     card4,
     card5,
     profileImage,
+    taha,
+    sinanur,
 };

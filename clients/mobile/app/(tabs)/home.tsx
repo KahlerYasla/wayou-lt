@@ -1,15 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SafeAreaView, ScrollView, View, TouchableOpacity, Image, TouchableWithoutFeedback, StyleSheet } from "react-native";
 import { Stack } from "expo-router";
 import { Modal } from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 import TinderCard from 'react-tinder-card';
 
+// components
 import ConfigurationModal from "../../components/home/ConfigurationModal";
 import PlaceInfoModal from "../../components/home/PlaceInfoModal";
 
+// stores
 import { useIsModalOpen } from "../../stores/BehavioursStores";
+import { usePlaceStore } from "../../stores/PlaceStores";
 
+// constants
 import icons from "../../constants/icons";
 import CustomText from "../../components/shared/CustomText";
 
@@ -20,11 +24,22 @@ const Home = () => {
     const [imageUrl, setImageUrl] = useState('https://picsum.photos/800/1300');
     const [resetCard, setResetCard] = useState(false);
 
+    // behaviors
     const isModalOpen = useIsModalOpen((state) => state.isModalOpen);
 
+    // places
+    const fetchTenRandomPlaces = usePlaceStore((state) => state.fetchTenRandomPlaces);
+    const places = usePlaceStore((state) => state.places);
+
+    const currentCardIndex = useRef(0);
+
     useEffect(() => {
+
         setIsConfigurationModalVisible(isModalOpen);
         setIsPlaceInfoModalVisible(isModalOpen);
+
+        fetchTenRandomPlaces();
+
     }, [isModalOpen]);
 
     const openConfigurationModal = () => {
@@ -46,6 +61,17 @@ const Home = () => {
             setIsPlaceInfoModalVisible(true);
             setResetCard(!resetCard);
         } else if (direction === "right" || direction === "left") {
+
+            currentCardIndex.current++;
+
+            if (currentCardIndex.current === 10) {
+                currentCardIndex.current = 0;
+
+                fetchTenRandomPlaces();
+            }
+
+            console.log('Current card index: ' + currentCardIndex.current);
+
             setTimeout(() => {
                 setImageUrl('https://picsum.photos/800/140' + Math.floor(Math.random() * 10));
                 setResetCard(!resetCard);
@@ -92,9 +118,11 @@ const Home = () => {
                                         style={styles.gradient}
                                     />
                                     <CustomText style={styles.cardText}>
-                                        Green Museum{"\n"}{"\n"}
-                                        Museum | Besiktas{"\n"}{"\n"}
-                                        9.1 / 10
+                                        {places[currentCardIndex.current]?.name}
+                                        {"\n"}{"\n"}
+                                        {places[currentCardIndex.current]?.id}
+                                        {"\n"}{"\n"}
+                                        {places[currentCardIndex.current]?.rating} / 5
                                     </CustomText>
                                 </View>
                             )}

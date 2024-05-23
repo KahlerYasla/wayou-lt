@@ -1,9 +1,11 @@
+using System.Text.Json.Serialization;
 using CenterEnd.Database.Entities.Enums;
 
 namespace CenterEnd.Database.Entities.Abstract;
 
 public abstract class BaseEntity
 {
+    [JsonPropertyName("id")]
     public int Id { get; set; }
     public DateTime CreatedDate { get; set; }
     public DateTime? ModifiedDate { get; set; }

@@ -63,4 +63,11 @@ public class PlaceController : ControllerBase
 
         return Ok(response);
     }
+    //=======================================================================================================
+    [HttpPost("get-ten-random-places")]
+    public async Task<IActionResult> GetTenRandomPlacesAsync()
+    {
+        var response = await _placeService.GetTenRandomPlacesAsync();
+        return Ok(response);
+    }
 }

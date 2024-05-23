@@ -88,7 +88,6 @@ public class PlaceManager(IGenericRepository<Place> placeRepository) : IPlaceSer
 
         return new BaseResponse<GetPlaceRecommendationResponse>(success: true, message: "Recommendation fetched", data: getPlaceRecommendationResponse);
     }
-
     //=======================================================================================================
     public async Task<BaseResponse<UpdatePlaceResponse>> UpdatePlaceAsync(UpdatePlaceRequest request)
     {
@@ -103,5 +102,27 @@ public class PlaceManager(IGenericRepository<Place> placeRepository) : IPlaceSer
         await _placeRepository.UpdateAsync(place);
 
         return new BaseResponse<UpdatePlaceResponse>(success: true, message: "Place has been updated", data: null);
+    }
+    //=======================================================================================================
+    public async Task<BaseResponse<GetTenRandomPlacesResponse>> GetTenRandomPlacesAsync()
+    {
+        List<Place> places = (await _placeRepository.GetAllAsync())!.ToList();
+
+        if (places.Count < 10) return new BaseResponse<GetTenRandomPlacesResponse>(success: false, message: "There are not enough places to fetch", data: null);
+
+        List<Place> randomPlaces = [];
+
+        Random random = new();
+
+        for (int i = 0; i < 10; i++)
+        {
+            int randomIndex = random.Next(0, places.Count);
+            randomPlaces.Add(places[randomIndex]);
+            places.RemoveAt(randomIndex);
+        }
+
+        GetTenRandomPlacesResponse getTenRandomPlacesResponse = new() { PlaceList = randomPlaces, };
+
+        return new BaseResponse<GetTenRandomPlacesResponse>(success: true, message: "Random places has been fetched", data: getTenRandomPlacesResponse);
     }
 }

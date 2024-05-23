@@ -12,4 +12,5 @@ public interface IPlaceService
     Task<BaseResponse<GetAllPlacesByUserIdResponse>> GetAllPlacesByUserIdAsync(int userId);
     Task<BaseResponse<GetPlaceByIdResponse>> GetPlaceByIdAsync(int placeId);
     Task<BaseResponse<GetPlaceRecommendationResponse>> GetPlaceRecommendationAsync(GetPlaceRecommendationRequest request);
+    Task<BaseResponse<GetTenRandomPlacesResponse>> GetTenRandomPlacesAsync();
 }

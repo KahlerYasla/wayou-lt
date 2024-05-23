@@ -24,22 +24,46 @@ const Explorer = () => {
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.container}>
 
-                    <CustomText style={styles.title}>Explorer</CustomText>
-
                     <CustomText style={styles.subtitle}>Discover new places from our Community</CustomText>
                     <CustomText style={styles.subtitle}>
-                        This feature will be available as soon as we have big enough community
+                        This feature will be available as soon as we have big enough community. Keep in touch! Here is the gang behind this project:
                     </CustomText>
 
-                    <Image style={styles.image} source={images.profileImage} resizeMode="cover" />
+                    <View style={styles.profile}>
+                        <Image style={styles.image} source={images.profileImage} resizeMode="cover" />
+
+                        <View style={styles.profileInfo}>
+                            <CustomText style={styles.title}>Berkay Aslan</CustomText>
+                            <CustomText style={styles.title}>Full Stack Developer</CustomText>
+                            <CustomText style={styles.title}>GitHub: @KahlerYasla</CustomText>
+                        </View>
+                    </View>
+
+                    <View style={styles.profile}>
+                        <Image style={styles.image} source={images.taha} resizeMode="cover" />
+
+                        <View style={styles.profileInfo}>
+                            <CustomText style={styles.title}>Taha Apak</CustomText>
+                            <CustomText style={styles.title}>Data & AI Developer</CustomText>
+                            <CustomText style={styles.title}>GitHub: @Kebab-kun</CustomText>
+                        </View>
+                    </View>
+
+                    <View style={styles.profile}>
+                        <Image style={styles.image} source={images.sinanur} resizeMode="cover" />
+
+                        <View style={styles.profileInfo}>
+                            <CustomText style={styles.title}>Sinaur</CustomText>
+                            <CustomText style={styles.title}>AI Developer</CustomText>
+                            <CustomText style={styles.title}>GitHub: @supaCoolSinanur</CustomText>
+                        </View>
+                    </View>
 
                     <CustomButton
                         title="Buy me a coffee"
                         style={styles.button}
                         onPress={() => router.push("decks")}
                     />
-
-                    <Image style={styles.icon} source={icons.coffeeIcon} resizeMode="cover" />
 
                 </View>
             </ScrollView>
@@ -65,10 +89,20 @@ const styles = StyleSheet.create({
         textAlign: "left",
         color: "white",
     },
+    profile: {
+        flexDirection: "row",
+        alignItems: "center",
+        gap: 20,
+    },
+    profileInfo: {
+        flex: 1,
+        justifyContent: "center",
+        gap: 10,
+    },
     button: {
     },
     image: {
-        width: "100%",
+        width: "40%",
         height: 200,
         borderRadius: 20,
     },
