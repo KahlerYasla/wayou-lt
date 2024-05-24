@@ -25,9 +25,8 @@ public class TripManager(
     {
         try
         {
-            #region textGenerator --------------------------------------------------------------------------
             // Set the URL of your Flask endpoint
-            string textGeneratorUrl = "http://localhost:3232/generate_travel_plan";
+            string generateTripUrl = "http://localhost:6565/generate_travel_plan";
 
             int howManyDays = request.HowManyDays;
 
@@ -40,7 +39,7 @@ public class TripManager(
             var content = new StringContent(jsonPayload, System.Text.Encoding.UTF8, "application/json");
 
             // Send POST request to the endpoint
-            HttpResponseMessage response = await client.PostAsync(textGeneratorUrl, content);
+            HttpResponseMessage response = await client.PostAsync(generateTripUrl, content);
 
             // Check if the request was successful
             if (!response.IsSuccessStatusCode)
@@ -62,58 +61,28 @@ public class TripManager(
             {
                 TripDescription = responseContent,
             };
-            #endregion -------------------------------------------------------------------------------------
 
-            #region placeRecommendation -----------------------------------------------------------------------
-            string recommendPlaceIdListUrl = "http://localhost:3232/recommend_places";
+            // Deserialize the JSON response
+            ResponseData? responseData = JsonSerializer.Deserialize<ResponseData>(responseContent)!;
 
-            // Create HttpClient instance
-            using HttpClient recommendPlaceIdListClient = new();
-            // Define the JSON payload
-            string recommendPlaceIdListJsonPayload = "{}";
-
-            // Create StringContent from JSON
-            var recommendPlaceIdListContent = new StringContent(recommendPlaceIdListJsonPayload, System.Text.Encoding.UTF8, "application/json");
-
-            // Send POST request to the endpoint
-            HttpResponseMessage recommendPlaceIdListResponse = await recommendPlaceIdListClient.PostAsync(recommendPlaceIdListUrl, recommendPlaceIdListContent);
-
-            // Check if the request was successful
-            if (!recommendPlaceIdListResponse.IsSuccessStatusCode)
+            if (responseData == null)
             {
-                // Output error message if request failed
-                Console.WriteLine($"Error: {recommendPlaceIdListResponse.StatusCode} - {recommendPlaceIdListResponse.ReasonPhrase}");
-
                 return new BaseResponse<GenerateTripResponse>(success: false, message: "Failed to generate trip", data: null);
             }
 
-            // Read response content
-            string recommendPlaceIdListResponseContent = await recommendPlaceIdListResponse.Content.ReadAsStringAsync();
+            List<Place>? sortedPlaceList = [];
 
-            // Output the travel plan
-            Console.WriteLine("Received recommended place id list:");
-            Console.WriteLine(recommendPlaceIdListResponseContent);
-
-            // Parse the JSON response
-            ResponseData data = JsonSerializer.Deserialize<ResponseData>(recommendPlaceIdListResponseContent)!;
-
-            List<int>? recommendedPlaceIdList = data.RecommendedItems;
-
-            #endregion -------------------------------------------------------------------------------------
-
-            List<Place>? lastPlaceList = [];
-
-            foreach (int placeId in recommendedPlaceIdList!)
+            foreach (int placeId in responseData.RecommendedPlaceIdList!)
             {
                 Place? place = await _placeRepository.GetByIdAsync(placeId);
 
                 if (place != null)
                 {
-                    lastPlaceList.Add(place);
+                    sortedPlaceList.Add(place);
                 }
             }
 
-            generateTripResponse.SortedPlaceList = lastPlaceList;
+            generateTripResponse.SortedPlaceList = sortedPlaceList;
 
             return new BaseResponse<GenerateTripResponse>(success: true, message: "Trip has been generated", data: generateTripResponse);
         }
@@ -163,6 +132,9 @@ public class TripManager(
 
 class ResponseData
 {
-    [JsonPropertyName("recommended_items")]
-    public List<int>? RecommendedItems { get; set; }
+    [JsonPropertyName("tripText")]
+    public string? TripText { get; set; }
+    [JsonPropertyName("placeIdList")]
+    public List<int>? RecommendedPlaceIdList { get; set; }
+
 }

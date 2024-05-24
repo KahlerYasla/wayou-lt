@@ -25,4 +25,4 @@ def recommend_places_route():
     return jsonify({"recommendedItems": recommended_items})
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=6363)
+    app.run(host='0.0.0.0', port=6565)

@@ -18,10 +18,13 @@ const CreateRoute = () => {
 
   const generateRoute = useRouteStore((state) => state.generateRoute);
 
+  const days = React.useRef(2);
+
   const handleCreateRoute = async () => {
     try {
+      console.log("Generating route for", days.current, "days...");
       // Call generateRoute function and wait for its response
-      await generateRoute(2);
+      await generateRoute(days.current);
       // After generateRoute completes successfully, navigate to "route-info" screen
       router.replace("route-info");
     } catch (error) {
@@ -93,6 +96,8 @@ const CreateRoute = () => {
               placeholder="Enter Number of Days"
               keyboardType="numeric"
               label="How Many Days:"
+              value={days.current.toString()}
+              onChangeText={(text) => days.current = parseInt(text)}
             />
           </View>
 
@@ -120,7 +125,6 @@ const CreateRoute = () => {
         <CustomButton
           title="<"
           onPress={() => router.replace("routes")}
-        // icon={icons.chatIcon}
         />
       </View>
 
