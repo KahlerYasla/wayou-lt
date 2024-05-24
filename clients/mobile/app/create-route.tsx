@@ -3,14 +3,32 @@ import { View, SafeAreaView, ScrollView, Image, TouchableOpacity, StyleSheet } f
 import { router } from 'expo-router';
 import RNPickerSelect from 'react-native-picker-select';
 
+// components
 import CustomButton from '../components/shared/CustomButton';
-import CustomDatePicker from '../components/route/CustomDatePicker';
 import CustomText from '../components/shared/CustomText';
 import CustomFormField from '../components/shared/CustomFormField';
 
+// constants
 import icons from '../constants/icons';
 
+// stores
+import { useRouteStore } from '../stores/RouteStores';
+
 const CreateRoute = () => {
+
+  const generateRoute = useRouteStore((state) => state.generateRoute);
+
+  const handleCreateRoute = async () => {
+    try {
+      // Call generateRoute function and wait for its response
+      await generateRoute(2);
+      // After generateRoute completes successfully, navigate to "route-info" screen
+      router.replace("route-info");
+    } catch (error) {
+      console.error("Error generating route:", error);
+    }
+  };
+
   return (
     <SafeAreaView style={styles.safeArea}>
 
@@ -28,9 +46,7 @@ const CreateRoute = () => {
                 value: "default"
               }}
               onValueChange={(value) => console.log(value)}
-              items={[
-
-              ]}
+              items={[]}
             />
 
           </View>
@@ -90,7 +106,7 @@ const CreateRoute = () => {
 
             <CustomButton
               title='Create Using AI'
-              onPress={() => router.push("route-info")}
+              onPress={handleCreateRoute}
               style={styles.button}
             />
 

@@ -309,7 +309,5 @@ if __name__ == "__main__":
     }
     user_id = 100  # Replace with actual user_id
 
-    recommended_items = weighted_hybrid_recommend(input_features, user_id, triplet_model, ncf_model, whole_data, user_id_to_index, cb_weight=0.75, cf_weight=0.25, k=10)
+    recommended_items = weighted_hybrid_recommend(input_features, user_id, triplet_model, ncf_model, whole_data, user_id_to_index, cb_weight=0.75, cf_weight=0.2, k=10)
     print(recommended_items)
-
-    

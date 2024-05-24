@@ -7,7 +7,12 @@ import CustomText from '../components/shared/CustomText';
 import CustomButton from '../components/shared/CustomButton';
 import { LinearGradient } from 'expo-linear-gradient';
 
+// stores
+import { useRouteStore } from '../stores/RouteStores';
+
 const RouteInfo = () => {
+    const routes = useRouteStore((state) => state.routes);
+
     return (
         <SafeAreaView style={styles.safeArea}>
             <View style={styles.outerContainer}>
@@ -19,7 +24,8 @@ const RouteInfo = () => {
                         <View style={styles.descriptionContainer}>
                             <CustomText style={styles.title}>AI Generated Trip</CustomText>
                             <CustomText style={styles.descriptionText}>
-                                Miami Beach is a vibrant destination that perfectly matches your interests. With its stunning beaches, crystal-clear turquoise waters, and warm weather in June, it offers the perfect setting for a solo adventure. Must-see attractions in Miami Beach include iconic Art Deco architecture, which can be explored through guided walking tours or simply by strolling along the lively streets. The city's vibrant nightlife scene is also a must-experience, with trendy clubs and bars offering a diverse range of entertainment options. Indulge in delicious cuisine at the various restaurants, ranging from international flavors to fresh seafood. Miami Beach is the ideal destination to explore, relax, and immerse yourself in the vibrant culture.
+                                {/* display the description of the latest added trip here */}
+                                {routes[0].tripDescription}
                             </CustomText>
                         </View>
 

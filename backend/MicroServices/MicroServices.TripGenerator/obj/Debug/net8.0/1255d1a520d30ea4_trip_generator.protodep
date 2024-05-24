@@ -1,2 +1,0 @@
-obj/Debug/net8.0/Protos/TripGenerator.cs \
-obj/Debug/net8.0/Protos/TripGeneratorGrpc.cs: Protos/trip_generator.proto
