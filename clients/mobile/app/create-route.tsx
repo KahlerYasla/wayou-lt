@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, SafeAreaView, ScrollView, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, SafeAreaView, ScrollView, Image, TouchableOpacity, ActivityIndicator, StyleSheet } from 'react-native';
 import { router } from 'expo-router';
 import RNPickerSelect from 'react-native-picker-select';
 
@@ -18,10 +18,12 @@ const CreateRoute = () => {
 
   const generateRoute = useRouteStore((state) => state.generateRoute);
 
+  const [loading, setLoading] = useState(false); // Add loading state
   const days = React.useRef(2);
 
   const handleCreateRoute = async () => {
     try {
+      setLoading(true); // Set loading to true before calling generateRoute
       console.log("Generating route for", days.current, "days...");
       // Call generateRoute function and wait for its response
       await generateRoute(days.current);
@@ -29,20 +31,19 @@ const CreateRoute = () => {
       router.replace("route-info");
     } catch (error) {
       console.error("Error generating route:", error);
+    } finally {
+      setLoading(false); // Set loading to false after the function completes
     }
   };
 
   return (
     <SafeAreaView style={styles.safeArea}>
-
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollViewContent}>
         <View style={styles.container}>
 
           <View style={styles.section}>
-
             <CustomText style={styles.label}>Select a Deck to Create From:</CustomText>
 
-            {/* RN picker  */}
             <RNPickerSelect
               placeholder={{
                 label: "Default Deck",
@@ -51,11 +52,9 @@ const CreateRoute = () => {
               onValueChange={(value) => console.log(value)}
               items={[]}
             />
-
           </View>
 
           <View style={styles.section}>
-
             <CustomText style={styles.label}>Who Are You Going With:</CustomText>
 
             <RNPickerSelect
@@ -69,11 +68,9 @@ const CreateRoute = () => {
                 { label: 'Group', value: 'group' },
               ]}
             />
-
           </View>
 
           <View style={styles.section}>
-
             <CustomText style={styles.label}>Pick The Near Start Point:</CustomText>
 
             <TouchableOpacity onPress={() => router.push("select-origin")}>
@@ -85,12 +82,8 @@ const CreateRoute = () => {
                 />
               </View>
             </TouchableOpacity>
-
           </View>
 
-          {/* <CustomDatePicker /> */}
-
-          {/* how many days will you be on the trip */}
           <View style={styles.section}>
             <CustomFormField
               placeholder="Enter Number of Days"
@@ -101,25 +94,20 @@ const CreateRoute = () => {
           </View>
 
           <View style={styles.buttonContainer}>
-
-            {/* <CustomButton
-              title='Create Yourself'
-              onPress={() => router.push("select-origin")}
-              style={styles.button}
-            /> */}
-
-            <CustomButton
-              title='Create Using AI'
-              onPress={handleCreateRoute}
-              style={styles.button}
-            />
-
+            {loading ? ( // Display loading indicator if loading is true
+              <ActivityIndicator size="large" color="tomato" />
+            ) : (
+              <CustomButton
+                title='Create Using AI'
+                onPress={handleCreateRoute}
+                style={styles.button}
+              />
+            )}
           </View>
 
         </View>
       </ScrollView>
 
-      {/* floating button */}
       <View style={styles.backButtonContainer}>
         <CustomButton
           title="<"
@@ -175,8 +163,6 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     width: '100%',
   },
-
-  // date picker styles
   inputIOS: {
     color: 'white',
     textAlign: 'center',
