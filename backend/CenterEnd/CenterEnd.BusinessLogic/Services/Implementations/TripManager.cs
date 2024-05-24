@@ -26,7 +26,7 @@ public class TripManager(
         try
         {
             // Set the URL of your Flask endpoint
-            string generateTripUrl = "http://localhost:6666/generate_travel_plan";
+            string generateTripUrl = "http://localhost:3334/generate_travel_plan";
 
             int howManyDays = request.HowManyDays;
 

@@ -156,7 +156,7 @@ def create_ncf_model(num_users, num_places, embedding_dim=50, hidden_layers=[64,
     
     return model
 
-def train_ncf_model(model, user_data, batch_size=32, epochs=15):
+def train_ncf_model(model, user_data, batch_size=32, epochs=5):
     if 'user_index' not in user_data.columns or 'place_index' not in user_data.columns or 'score' not in user_data.columns:
         raise ValueError("user_data must contain 'user_index', 'place_index', and 'score' columns.")
 
@@ -295,16 +295,16 @@ def recommend_places(user_id):
     num_places = user_data['place_index'].nunique()
     
     # # Create and train NCF model
-    # ncf_model = create_ncf_model(num_users, num_places)
-    # train_ncf_model(ncf_model, user_data)
+    ncf_model = create_ncf_model(num_users, num_places)
+    train_ncf_model(ncf_model, user_data)
     
     # Load trained models
     triplet_model = load_model('triplet_model.keras', custom_objects={'triplet_loss': triplet_loss})
     ncf_model = load_model('ncf_model.keras')
     
     # Randomly generate input features for recommendation. Tags are between 1 and 14 at least 3 many, rating is between 1 and 5.
-    tags = np.random.choice(unique_tags, size=3, replace=False).tolist()
-    rating = np.random.randint(1, 6)
+    tags = np.random.choice(unique_tags, size=5, replace=False).tolist()
+    rating = 4.5
 
     print("Input features:")
     print("Tags:", tags)
@@ -317,7 +317,7 @@ def recommend_places(user_id):
 
     print("Recommending places for user", user_id)
 
-    recommended_items = weighted_hybrid_recommend(input_features, user_id, triplet_model, ncf_model, whole_data, user_id_to_index, cb_weight=0.75, cf_weight=0.2, k=10)
+    recommended_items = weighted_hybrid_recommend(input_features, user_id, triplet_model, ncf_model, whole_data, user_id_to_index, cb_weight=0.8, cf_weight=0.05, k=10)
     print(recommended_items)
 
     return recommended_items["place_id"].tolist()
