@@ -75,7 +75,7 @@ def generate_travel_plan(data_df, num_days=2):
     np.random.shuffle(day_assignment)
     data_df['day'] = day_assignment
 
-    filtered_data = pd.concat([data_df[data_df['day'] == day].sample(n=5, replace=False) for day in days])
+    filtered_data = pd.concat([data_df[data_df['day'] == day].sample(n=int(10 / num_days), replace=False) for day in days])
 
     # Combine and Improve Summaries
     final_summaries = filtered_data.groupby('day').apply(combine_summaries).reset_index()

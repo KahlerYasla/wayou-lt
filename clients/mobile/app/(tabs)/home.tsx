@@ -30,6 +30,7 @@ const Home = () => {
     // places
     const fetchTenRandomPlaces = usePlaceStore((state) => state.fetchTenRandomPlaces);
     const places = usePlaceStore((state) => state.places);
+    const setPlaceIndex = usePlaceStore((state) => state.setPlaceIndex);
 
     const currentCardIndex = useRef(0);
 
@@ -58,6 +59,8 @@ const Home = () => {
         console.log('====================================');
         console.log('Swiped: ' + direction);
         if (direction === "up") {
+            setPlaceIndex(currentCardIndex.current);
+
             setIsPlaceInfoModalVisible(true);
             setResetCard(!resetCard);
         } else if (direction === "right" || direction === "left") {

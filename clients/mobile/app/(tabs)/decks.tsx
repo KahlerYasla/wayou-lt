@@ -1,13 +1,19 @@
 import React from "react";
 import { SafeAreaView, ScrollView, View, Image, StyleSheet, Alert, TouchableOpacity } from "react-native";
 import { Stack, useRouter } from "expo-router";
+import { LinearGradient } from "expo-linear-gradient";
 
+// components
 import CustomText from "../../components/shared/CustomText";
 import CustomButton from "../../components/shared/CustomButton";
-import { LinearGradient } from "expo-linear-gradient";
+
+// stores
+import { useRouteStore } from "../../stores/RouteStores";
 
 const Decks = () => {
     const router = useRouter();
+
+    const routes = useRouteStore((state) => state.routes);
 
     // Mock data for decks
     const decks = [
@@ -36,7 +42,11 @@ const Decks = () => {
                             onPress={() =>
                                 Alert.alert(
                                     "List of places from this deck:",
-                                    "",
+                                    routes.map((route, index) => {
+                                        return route.sortedPlaceList!.map((place, index) => {
+                                            return place.name;
+                                        });
+                                    }).join("\n "),
                                     [
                                         {
                                             text: "Done",

@@ -14,6 +14,10 @@ export interface Place {
 
 interface PlaceState {
     places: Place[];
+    placeIndex: number;
+    likedPlaces: Place[];
+    dislikedPlaces: Place[];
+    setPlaceIndex: (index: number) => void;
     fetchPlacesByThisUser: () => Promise<void>;
     fetchPlacesByRecommendation: () => Promise<void>;
     fetchTenRandomPlaces: () => Promise<void>;
@@ -24,6 +28,15 @@ interface PlaceState {
 export const usePlaceStore = create<PlaceState>((set) => ({
 
     places: [],
+    placeIndex: 0,
+    likedPlaces: [],
+    dislikedPlaces: [],
+
+    //----------------------------------------------
+
+    setPlaceIndex: (index: number) => {
+        set({ placeIndex: index });
+    },
 
     //----------------------------------------------
 
@@ -73,7 +86,8 @@ export const usePlaceStore = create<PlaceState>((set) => ({
 
     likePlace: async (placeId: number) => {
         try {
-            await axios.post(`${API_BASE_URL}/place/${placeId}/like`);
+            // await axios.post(`${API_BASE_URL}/place/${placeId}/like`);
+            // set({ likedPlaces: [...this.likedPlaces, this.places[this.placeIndex]] })
         } catch (error) {
             console.error(error);
         }

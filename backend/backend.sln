@@ -15,12 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CenterEnd.Database", "Cente
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CenterEnd.GatewayApi", "CenterEnd\CenterEnd.GatewayApi\CenterEnd.GatewayApi.csproj", "{91E37176-15A2-41A1-9EDA-6F54DF5A9727}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MicroServices", "MicroServices", "{F5A6990C-AF2E-4B34-97BF-2DEEEC3397AA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroServices.PlaceRecommender", "MicroServices\MicroServices.PlaceRecommender\MicroServices.PlaceRecommender.csproj", "{296AA8EF-2C1A-4AEC-B6C5-26B96BC096F3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroServices.TripGenerator", "MicroServices\MicroServices.TripGenerator\MicroServices.TripGenerator.csproj", "{EBABF4D8-7C6E-485E-9E15-FE6301120DEE}"
-EndProject
+
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

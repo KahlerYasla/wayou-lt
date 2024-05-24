@@ -1,32 +1,41 @@
 import React, { useState } from 'react';
 import { View, SafeAreaView, ScrollView, StyleSheet } from 'react-native';
 
+// third party
 import MapView, { Marker, PROVIDER_DEFAULT } from 'react-native-maps';
 
+// components
 import CustomText from '../shared/CustomText';
 import CustomButton from '../shared/CustomButton';
 
-const infoSections = [
-    {
-        CustomText: 'Restored 14th-century museum and former prison overlooking the Bosphorus with a top-floor restaurant. See More',
-    },
-    {
-        CustomText: 'www.bomontigreenmuesum.com',
-    },
-    {
-        CustomText: '0212 667 66 31',
-    },
-];
+// stores
+import { usePlaceStore } from '../../stores/PlaceStores';
 
 interface ModalContentProps {
     closeModal: () => void;
 }
 
 const PlaceInfoModal: React.FC<ModalContentProps> = ({ closeModal }) => {
+
+    const places = usePlaceStore((state) => state.places);
+    const placeIndex = usePlaceStore((state) => state.placeIndex);
+
     const centerCoordinate = {
-        latitude: 41.0423,
-        longitude: 29.0137,
+        latitude: places[placeIndex].placeYX.split(',')[0],
+        longitude: places[placeIndex].placeYX.split(',')[1],
     };
+
+    const infoSections = [
+        {
+            CustomText: places[placeIndex].description,
+        },
+        {
+            CustomText: places[placeIndex].rating,
+        },
+        {
+            CustomText: places[placeIndex].website,
+        },
+    ];
 
     const [center, setCenter] = useState(centerCoordinate);
 

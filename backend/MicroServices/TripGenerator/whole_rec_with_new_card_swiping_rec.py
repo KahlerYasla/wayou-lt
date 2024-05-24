@@ -270,7 +270,7 @@ def weighted_hybrid_recommend(input_features, user_id, content_model, cf_model, 
     return final_recommendations.head(k)
 
 # Main script
-def recommend_places():
+def recommend_places(user_id):
     # # Preprocess data
     whole_data, unique_tags = preprocess_data('./whole_data_cleaned.xlsx')
     
@@ -302,12 +302,20 @@ def recommend_places():
     triplet_model = load_model('triplet_model.keras', custom_objects={'triplet_loss': triplet_loss})
     ncf_model = load_model('ncf_model.keras')
     
-    # Example usage
+    # Randomly generate input features for recommendation. Tags are between 1 and 14 at least 3 many, rating is between 1 and 5.
+    tags = np.random.choice(unique_tags, size=3, replace=False).tolist()
+    rating = np.random.randint(1, 6)
+
+    print("Input features:")
+    print("Tags:", tags)
+    print("Rating:", rating)
+
     input_features = {
-        'tags': [1,2,3,5,6,7,9,10,11,12,13,14],
-        'rating': 4.5
+        'tags': tags,
+        'rating': rating
     }
-    user_id = 100  # Replace with actual user_id
+
+    print("Recommending places for user", user_id)
 
     recommended_items = weighted_hybrid_recommend(input_features, user_id, triplet_model, ncf_model, whole_data, user_id_to_index, cb_weight=0.75, cf_weight=0.2, k=10)
     print(recommended_items)

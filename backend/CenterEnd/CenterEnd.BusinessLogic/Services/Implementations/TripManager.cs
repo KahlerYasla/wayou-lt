@@ -26,14 +26,14 @@ public class TripManager(
         try
         {
             // Set the URL of your Flask endpoint
-            string generateTripUrl = "http://localhost:6565/generate_travel_plan";
+            string generateTripUrl = "http://localhost:6666/generate_travel_plan";
 
             int howManyDays = request.HowManyDays;
 
             // Create HttpClient instance
             using HttpClient client = new();
             // Define the JSON payload
-            string jsonPayload = "{\"num_days\": " + howManyDays + "}";
+            string jsonPayload = "{\"numDays\": " + howManyDays + ", \"userId\": " + request.UserId + "}";
 
             // Create StringContent from JSON
             var content = new StringContent(jsonPayload, System.Text.Encoding.UTF8, "application/json");

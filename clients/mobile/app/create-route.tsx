@@ -96,7 +96,6 @@ const CreateRoute = () => {
               placeholder="Enter Number of Days"
               keyboardType="numeric"
               label="How Many Days:"
-              value={days.current.toString()}
               onChangeText={(text) => days.current = parseInt(text)}
             />
           </View>

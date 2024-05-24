@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CenterEnd.GatewayApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0b96bc1af97e47052e1f3a6a1f85ea7606c8bb1b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1d2a1b9eaeba576b2a282ac895a3ccc9cd5c23af")]
 [assembly: System.Reflection.AssemblyProductAttribute("CenterEnd.GatewayApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CenterEnd.GatewayApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
