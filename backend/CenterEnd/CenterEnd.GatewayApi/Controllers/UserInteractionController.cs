@@ -11,7 +11,7 @@ public class UserInteractionController(IUserInteractionService userInteractionSe
 {
     private readonly IUserInteractionService _userInteractionService = userInteractionService;
     //=======================================================================================================
-    [HttpPost("user-interaction")]
+    [HttpPost("/interact")]
     public async Task<IActionResult> UpdateOrCreateUserInteractionAsync(UserInteractionRequest request)
     {
         var response = await _userInteractionService.UpdateOrCreateUserInteractionAsync(request);

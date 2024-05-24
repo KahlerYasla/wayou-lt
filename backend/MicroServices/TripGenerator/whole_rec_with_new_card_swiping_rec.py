@@ -280,7 +280,7 @@ def recommend_places(user_id):
     # train_triplet_model(triplet_model, anchor_features, positive_features, negative_features)
     
     # Load user data
-    user_data = pd.read_excel('./generated_user_data.xlsx')
+    user_data = pd.read_excel('./historical_interactions.xlsx')
     
     # Preprocess user_data
     user_data['user_id'] = user_data.index

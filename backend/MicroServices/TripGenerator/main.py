@@ -29,5 +29,25 @@ def recommend_places_route():
 
     return jsonify({"recommendedItems": recommended_items})
 
+@app.route('/interact', methods=['POST'])
+def interact_route():
+    user_id = request.json.get('userId', 100)
+    place_id = request.json.get('placeId', 1)
+    score = request.json.get('isLike', 0)
+    
+    user_gender = "Recommender"
+    continent = -1
+    user_age = -1
+
+    # insert user-item interaction into the historical_interactions.xlsx
+    historical_interactions = pd.read_csv("historical_interactions.csv")
+
+    new_row = {"user_id": user_id, "place_id": place_id, "score": score, "user_gender": user_gender, "continent": continent, "user_age": user_age}
+    historical_interactions = historical_interactions.append(new_row, ignore_index=True)
+
+    historical_interactions.to_csv("historical_interactions.csv", index=False)
+
+    return jsonify({"status": "success"})
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=3334)

@@ -4,6 +4,8 @@ using CenterEnd.BusinessLogic.DTOs.Mobile.Responses;
 using CenterEnd.DataAccess.Generic;
 using CenterEnd.Database.Entities.Concrete;
 
+
+
 namespace CenterEnd.BusinessLogic.Services;
 
 public class UserInteractionManager(
@@ -18,46 +20,77 @@ public class UserInteractionManager(
     //=======================================================================================================
     public async Task<BaseResponse<UserInteractionResponse>> UpdateOrCreateUserInteractionAsync(UserInteractionRequest request)
     {
-        User? user = await _userRepository.GetByIdAsync(request.UserId);
+        // Set the URL of your Flask endpoint
+        string generateTripUrl = "http://localhost:3334/interact";
 
-        if (user == null) return new BaseResponse<UserInteractionResponse>(success: false, message: "The userId can not be matched. Send me a vaild userId", data: null);
+        // Create HttpClient instance
+        using HttpClient client = new();
 
-        UserInteraction? userInteraction = user.UserInteraction;
+        int isLike = request.IsLikedNorPassed ? 1 : 0;
 
-        if (userInteraction == null)
+        // Define the JSON payload
+        string jsonPayload = "{\"userId\": " + request.UserId
+        + ", \"isLike\": " + isLike
+        + ", \"placeId\": " + request.PlaceId + "}";
+
+        // Create StringContent from JSON
+        var content = new StringContent(jsonPayload, System.Text.Encoding.UTF8, "application/json");
+
+        // Send POST request to the endpoint
+        HttpResponseMessage response = await client.PostAsync(generateTripUrl, content);
+
+        // Check if the request was successful
+        if (!response.IsSuccessStatusCode)
         {
-            userInteraction = new UserInteraction();
-            await _userInteractionRepository.AddAsync(userInteraction);
+            // Output error message if request failed
+            Console.WriteLine($"Error: {response.StatusCode} - {response.ReasonPhrase}");
+
+            return new BaseResponse<UserInteractionResponse>(success: false, message: "Failed to update user interaction", data: null);
         }
 
-        if (request.IsLikedNorPassed) // Liked
-        {
-            Place? place = await _placeRepository.GetByIdAsync(request.PlaceId);
+        return new BaseResponse<UserInteractionResponse>(success: true, message: "User interaction updated", data: null);
 
-            if (place == null) return new BaseResponse<UserInteractionResponse>(success: false, message: "The placeId can not be matched. Send me a vaild placeId", data: null);
 
-            if (request.IsLikedNorPassed) userInteraction.LikedPlaces!.Add(place);
+        //     User? user = await _userRepository.GetByIdAsync(request.UserId);
 
-            else userInteraction.PassedPlaces!.Add(place);
+        //     if (user == null) return new BaseResponse<UserInteractionResponse>(success: false, message: "The userId can not be matched. Send me a vaild userId", data: null);
 
-            await _userInteractionRepository.UpdateAsync(userInteraction);
+        //     UserInteraction? userInteraction = user.UserInteraction;
 
-            return new BaseResponse<UserInteractionResponse>(success: true, message: "The place is liked", data: null);
-        }
-        else // Passed
-        {
-            Place? place = await _placeRepository.GetByIdAsync(request.PlaceId);
+        //     if (userInteraction == null)
+        //     {
+        //         userInteraction = new UserInteraction();
+        //         await _userInteractionRepository.AddAsync(userInteraction);
+        //     }
 
-            if (place == null) return new BaseResponse<UserInteractionResponse>(success: false, message: "The placeId can not be matched. Send me a vaild placeId", data: null);
+        //     if (request.IsLikedNorPassed) // Liked
+        //     {
+        //         Place? place = await _placeRepository.GetByIdAsync(request.PlaceId);
 
-            if (request.IsLikedNorPassed) userInteraction.LikedPlaces!.Add(place);
+        //         if (place == null) return new BaseResponse<UserInteractionResponse>(success: false, message: "The placeId can not be matched. Send me a vaild placeId", data: null);
 
-            else userInteraction.PassedPlaces!.Add(place);
+        //         if (request.IsLikedNorPassed) userInteraction.LikedPlaces!.Add(place);
 
-            await _userInteractionRepository.UpdateAsync(userInteraction);
+        //         else userInteraction.PassedPlaces!.Add(place);
 
-            return new BaseResponse<UserInteractionResponse>(success: true, message: "The place is passed", data: null);
-        }
+        //         await _userInteractionRepository.UpdateAsync(userInteraction);
+
+        //         return new BaseResponse<UserInteractionResponse>(success: true, message: "The place is liked", data: null);
+        //     }
+        //     else // Passed
+        //     {
+        //         Place? place = await _placeRepository.GetByIdAsync(request.PlaceId);
+
+        //         if (place == null) return new BaseResponse<UserInteractionResponse>(success: false, message: "The placeId can not be matched. Send me a vaild placeId", data: null);
+
+        //         if (request.IsLikedNorPassed) userInteraction.LikedPlaces!.Add(place);
+
+        //         else userInteraction.PassedPlaces!.Add(place);
+
+        //         await _userInteractionRepository.UpdateAsync(userInteraction);
+
+        //         return new BaseResponse<UserInteractionResponse>(success: true, message: "The place is passed", data: null);
+        //     }
     }
 
 }

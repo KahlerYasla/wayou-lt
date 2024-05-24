@@ -32,6 +32,9 @@ const Home = () => {
     const places = usePlaceStore((state) => state.places);
     const setPlaceIndex = usePlaceStore((state) => state.setPlaceIndex);
 
+    const likePlace = usePlaceStore((state) => state.likePlace);
+    const dislikePlace = usePlaceStore((state) => state.dislikePlace);
+
     const currentCardIndex = useRef(0);
 
     useEffect(() => {
@@ -64,6 +67,13 @@ const Home = () => {
             setIsPlaceInfoModalVisible(true);
             setResetCard(!resetCard);
         } else if (direction === "right" || direction === "left") {
+            if (direction === "right") {
+                console.log('Liked place id: ' + places[currentCardIndex.current]?.id);
+                likePlace(places[currentCardIndex.current]?.id);
+            } else {
+                console.log('Disliked place id: ' + places[currentCardIndex.current]?.id);
+                dislikePlace(places[currentCardIndex.current]?.id);
+            }
 
             currentCardIndex.current++;
 

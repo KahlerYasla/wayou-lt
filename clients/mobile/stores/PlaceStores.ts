@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import axios from 'axios';
 import { API_BASE_URL } from '../constants';
+import { useAuthCredentials } from './AuthStores';
 
 export interface Place {
     id: number;
@@ -86,8 +87,17 @@ export const usePlaceStore = create<PlaceState>((set) => ({
 
     likePlace: async (placeId: number) => {
         try {
-            // await axios.post(`${API_BASE_URL}/place/${placeId}/like`);
-            // set({ likedPlaces: [...this.likedPlaces, this.places[this.placeIndex]] })
+            const userId = useAuthCredentials.getState().auth?.userId;
+
+            console.log('Liked place ID: ' + placeId);
+            console.log('User ID: ' + userId);
+            console.log('====================================');
+
+            const response = await axios.post(`${API_BASE_URL}/user-interaction/interact`,
+                { placeId: placeId, userId: userId, isLikedNorPassed: true }
+            );
+
+            console.log(response.data);
         } catch (error) {
             console.error(error);
         }
@@ -97,7 +107,17 @@ export const usePlaceStore = create<PlaceState>((set) => ({
 
     dislikePlace: async (placeId: number) => {
         try {
-            await axios.post(`${API_BASE_URL}/place/${placeId}/dislike`);
+            const userId = useAuthCredentials.getState().auth?.userId;
+
+            console.log('Disliked place ID: ' + placeId);
+            console.log('User ID: ' + userId);
+            console.log('====================================');
+
+            const response = await axios.post(`${API_BASE_URL}/user-interaction/interact`,
+                { placeId: placeId, userId: userId, isLikedNorPassed: false }
+            );
+
+            console.log(response.data);
         } catch (error) {
             console.error(error);
         }
