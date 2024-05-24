@@ -32,11 +32,12 @@ export const useRouteStore = create<RouteState>((set) => ({
 
             console.log(response.data);
             console.log(response.data.data.tripDescription);
+            console.log(response.data.data.sortedPlaceList[0].name);
 
             const newRoute: Route = {
                 id: -1,
                 tripDescription: response.data.data.tripDescription,
-                sortedPlaceList: null,
+                sortedPlaceList: response.data.data.sortedPlaceList,
                 placeSeparatorsByDay: null
             }
 

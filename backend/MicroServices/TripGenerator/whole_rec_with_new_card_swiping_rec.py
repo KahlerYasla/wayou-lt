@@ -280,7 +280,7 @@ def recommend_places():
     # train_triplet_model(triplet_model, anchor_features, positive_features, negative_features)
     
     # Load user data
-    user_data = pd.read_excel('data/generated_user_data.xlsx')
+    user_data = pd.read_excel('./generated_user_data.xlsx')
     
     # Preprocess user_data
     user_data['user_id'] = user_data.index
@@ -311,3 +311,5 @@ def recommend_places():
 
     recommended_items = weighted_hybrid_recommend(input_features, user_id, triplet_model, ncf_model, whole_data, user_id_to_index, cb_weight=0.75, cf_weight=0.2, k=10)
     print(recommended_items)
+
+    return recommended_items["place_id"].tolist()

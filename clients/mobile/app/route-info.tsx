@@ -36,28 +36,15 @@ const RouteInfo = () => {
                                 <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={styles.horizontalScroll}>
                                     <View style={styles.horizontalContent}>
 
-                                        {/* Example content */}
-                                        <View style={styles.card} >
-                                            <Image style={styles.cardImage} source={{ uri: "https://picsum.photos/201/202" }} />
-                                            <LinearGradient
-                                                colors={['transparent', 'rgba(0,0,0,.96)']}
-                                                style={styles.gradient}
-                                            />
-                                            <CustomText style={styles.cardText}>Example Place</CustomText>
-                                        </View>
-
-                                        <View style={styles.card} >
-                                            <Image style={styles.cardImage} source={{ uri: "https://picsum.photos/400/200" }} />
-                                            <LinearGradient
-                                                colors={['transparent', 'rgba(0,0,0,.96)']}
-                                                style={styles.gradient}
-                                            />
-                                        </View>
+                                        {/* create as many cards as the number of places in the first day */}
+                                        {(routes[0].sortedPlaceList!).map(place => {
+                                            return card(place.name, place.id, place.rating);
+                                        })}
 
                                         <View style={styles.card} >
                                             <Image style={styles.cardImage} source={{ uri: "https://picsum.photos/250/200" }} />
                                             <LinearGradient
-                                                colors={['transparent', 'rgba(0,0,0,.96)']}
+                                                colors={['transparent', 'rgba(0,0,0,.99)']}
                                                 style={styles.gradient}
                                             />
                                         </View>
@@ -199,7 +186,7 @@ const styles = StyleSheet.create({
         color: "rgba(255, 255, 255, 0.6)",
         fontSize: 12,
         position: "absolute",
-        bottom: 20,
+        bottom: 15,
         left: 6,
     },
     gradient: {
@@ -226,3 +213,18 @@ const styles = StyleSheet.create({
 });
 
 export default RouteInfo;
+
+function card(placeName: string, placeId: number, placeRating: number) {
+    return <View style={styles.card}>
+        <Image style={styles.cardImage} source={{ uri: "https://picsum.photos/201/202" }} />
+        <LinearGradient
+            colors={['transparent', 'rgba(0,0,0,.96)']}
+            style={styles.gradient} />
+        <CustomText style={styles.cardText}>
+            {placeName}{"\n"}
+            {placeId}{"\n"}
+            {placeRating}
+        </CustomText>
+    </View>;
+}
+

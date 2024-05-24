@@ -7,7 +7,7 @@ from nltk.tokenize import sent_tokenize
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 
 # Load SpaCy and NLTK data (download if necessary)
-nltk.download('punkt')
+# nltk.download('punkt')
 
 # Load models
 nlp = spacy.load("en_core_web_sm")
