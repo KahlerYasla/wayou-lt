@@ -34,20 +34,28 @@ def interact_route():
     user_id = request.json.get('userId', 100)
     place_id = request.json.get('placeId', 1)
     score = request.json.get('isLike', 0)
-    
+
     user_gender = "Recommender"
     continent = -1
     user_age = -1
 
     # insert user-item interaction into the historical_interactions.xlsx
-    historical_interactions = pd.read_csv("historical_interactions.csv")
+    historical_interactions = pd.read_excel("historical_interactions.xlsx")
 
-    new_row = {"user_id": user_id, "place_id": place_id, "score": score, "user_gender": user_gender, "continent": continent, "user_age": user_age}
-    historical_interactions = historical_interactions.append(new_row, ignore_index=True)
+    new_row = pd.DataFrame([{
+        "user_id": user_id,
+        "place_id": place_id,
+        "score": score,
+        "user_gender": user_gender,
+        "continent": continent,
+        "user_age": user_age
+    }])
 
-    historical_interactions.to_csv("historical_interactions.csv", index=False)
+    historical_interactions = pd.concat([historical_interactions, new_row], ignore_index=True)
+
+    historical_interactions.to_excel("historical_interactions.xlsx", index=False)
 
     return jsonify({"status": "success"})
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=3334)
+    app.run(host='0.0.0.0', port=5353)

@@ -21,7 +21,7 @@ public class UserInteractionManager(
     public async Task<BaseResponse<UserInteractionResponse>> UpdateOrCreateUserInteractionAsync(UserInteractionRequest request)
     {
         // Set the URL of your Flask endpoint
-        string generateTripUrl = "http://localhost:3334/interact";
+        string generateTripUrl = "http://localhost:5353/interact";
 
         // Create HttpClient instance
         using HttpClient client = new();

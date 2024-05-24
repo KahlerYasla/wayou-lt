@@ -93,7 +93,7 @@ export const usePlaceStore = create<PlaceState>((set) => ({
             console.log('User ID: ' + userId);
             console.log('====================================');
 
-            const response = await axios.post(`${API_BASE_URL}/user-interaction/interact`,
+            const response = await axios.post(`${API_BASE_URL}/userinteraction/interact`,
                 { placeId: placeId, userId: userId, isLikedNorPassed: true }
             );
 
@@ -113,7 +113,7 @@ export const usePlaceStore = create<PlaceState>((set) => ({
             console.log('User ID: ' + userId);
             console.log('====================================');
 
-            const response = await axios.post(`${API_BASE_URL}/user-interaction/interact`,
+            const response = await axios.post(`${API_BASE_URL}/userinteraction/interact`,
                 { placeId: placeId, userId: userId, isLikedNorPassed: false }
             );
 

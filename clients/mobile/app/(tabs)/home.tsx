@@ -67,12 +67,15 @@ const Home = () => {
             setIsPlaceInfoModalVisible(true);
             setResetCard(!resetCard);
         } else if (direction === "right" || direction === "left") {
-            if (direction === "right") {
-                console.log('Liked place id: ' + places[currentCardIndex.current]?.id);
-                likePlace(places[currentCardIndex.current]?.id);
-            } else {
-                console.log('Disliked place id: ' + places[currentCardIndex.current]?.id);
-                dislikePlace(places[currentCardIndex.current]?.id);
+
+            if (currentCardIndex.current !== 0) {
+                if (direction === "right") {
+                    console.log('Liked place id: ' + places[currentCardIndex.current]?.id);
+                    likePlace(places[currentCardIndex.current]?.id);
+                } else {
+                    console.log('Disliked place id: ' + places[currentCardIndex.current]?.id);
+                    dislikePlace(places[currentCardIndex.current]?.id);
+                }
             }
 
             currentCardIndex.current++;

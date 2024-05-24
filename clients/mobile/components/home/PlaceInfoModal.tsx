@@ -30,9 +30,6 @@ const PlaceInfoModal: React.FC<ModalContentProps> = ({ closeModal }) => {
             CustomText: places[placeIndex].description,
         },
         {
-            CustomText: places[placeIndex].rating,
-        },
-        {
             CustomText: places[placeIndex].website,
         },
     ];
@@ -46,11 +43,17 @@ const PlaceInfoModal: React.FC<ModalContentProps> = ({ closeModal }) => {
 
                 <View style={styles.container}>
                     <CustomText style={styles.headerText}>
-                        <CustomText boldness='bold'>Green Museum </CustomText>
-                        <CustomText style={styles.highlightText}>Museum</CustomText>
-                        <CustomText> | </CustomText>
-                        <CustomText style={styles.subduedText}>Besiktas</CustomText>
-                        <CustomText> 9.1/10</CustomText>
+                        <CustomText boldness='bold'>
+                            {places[placeIndex].name}
+                            {"\n"}
+                        </CustomText>
+                        <CustomText style={styles.highlightText}>
+                            {places[placeIndex].placeYX}
+                            {"\n"}
+                        </CustomText>
+                        <CustomText style={styles.subduedText}>
+                            Rating: {places[placeIndex].rating}/5
+                        </CustomText>
                     </CustomText>
                 </View>
 
@@ -126,6 +129,7 @@ const styles = StyleSheet.create({
     },
     headerText: {
         marginTop: 20,
+        width: 380,
         color: "white",
         justifyContent: "center",
     },
