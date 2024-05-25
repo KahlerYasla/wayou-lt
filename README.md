@@ -19,7 +19,7 @@ For Each MicroService:
 cd backend/Microservices/\[name of the microservice\]
 if the microservice powered by flask: cd python3 pip install python3 src/main.py
 
-## Screenshots
+## Some Screenshots
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
     <img src="./assets/screenshots/ss-login.jpeg" alt="login" height="300"/>
     <img src="./assets/screenshots/ss-home.jpeg" alt="home" height="300"/>
