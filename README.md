@@ -27,7 +27,7 @@ if the microservice powered by flask: cd python3 pip install python3 src/main.py
 <img src="./assets/screenshots/ss-create-route.jpeg" alt="create-route" height="300"/>
 <img src="./assets/screenshots/ss-route-info.jpeg" alt="route-info" height="300"/>
 
-## Some technical backend shit
+## Backend diagrams
 ### CenterEnd Project 
 <img src="./assets/diagrams/center-end-structure.svg" alt="center-end-structure" height="500"/>
 ### Software Architecture
