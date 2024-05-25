@@ -3,7 +3,7 @@
 # Wayou
 The AI powered route planner for the visually impaired.
 
-## What yo neaad to run tha shit
+## How to run
 Mobile:
 cd clients/mobile
 npm i
@@ -18,22 +18,21 @@ dotnet run
 For Each MicroService:
 cd backend/Microservices/\[name of the microservice\]
 if the microservice powered by flask: cd python3 pip install python3 src/main.py
-if naaaa then cry some
 
-## Some Screenshots yo
-![login](./assets/screenshots/ss-login.jpeg)
-![home](./assets/screenshots/ss-home.jpeg)
-![decks](./assets/screenshots/ss-decks.jpeg)
-![place-info](./assets/screenshots/ss-place-info.jpeg)
-![create-route](./assets/screenshots/ss-create-route.jpeg)
-![route-info](./assets/screenshots/ss-route-info.jpeg)
+## Screenshots
+<img src="./assets/screenshots/ss-login.jpeg" alt="login" height="300"/>
+<img src="./assets/screenshots/ss-home.jpeg" alt="home" height="300"/>
+<img src="./assets/screenshots/ss-decks.jpeg" alt="decks" height="300"/>
+<img src="./assets/screenshots/ss-place-info.jpeg" alt="place-info" height="300"/>
+<img src="./assets/screenshots/ss-create-route.jpeg" alt="create-route" height="300"/>
+<img src="./assets/screenshots/ss-route-info.jpeg" alt="route-info" height="300"/>
 
 ## Some technical backend shit
 ### CenterEnd Project 
-![center-end-structure](./assets/diagrams/center-end-structure.svg)
+<img src="./assets/diagrams/center-end-structure.svg" alt="center-end-structure" height="500"/>
 ### Software Architecture
-![software-architecture](./assets/diagrams/software-architecture.svg)
+<img src="./assets/diagrams/software-architecture.svg" alt="software-architecture" height="500"/>
 ### Request-Response Flow
-![request-response](./assets/diagrams/request-response.drawio.svg)
+<img src="./assets/diagrams/request-response.drawio.svg" alt="request-response" height="500"/>
 
 </body>
