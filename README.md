@@ -1,23 +1,32 @@
-<body style="background: #fff;">
+<body style="background: #fff; font-family: Arial, sans-serif; line-height: 1.6;">
 
 # Wayou
-The AI powered route planner for the visually impaired.
+The recommender-engine, AI powered route generator.
 
 ## How to run
-Mobile:
+
+### Mobile
+```sh
 cd clients/mobile
 npm i
 npx expo start
+```
 
-Center End Backend:
+### Center End Backend:
+```sh
 cd backend 
 dotnet build
 cd CenterEnd/CenterEnd.GatewayApi
 dotnet run
+```
 
-For Each MicroService:
+### For Each MicroService:
+```sh
 cd backend/Microservices/\[name of the microservice\]
-if the microservice powered by flask: cd python3 pip install python3 src/main.py
+if the microservice powered by flask: python3 pip install python3 src/main.py
+if the microservice powered by node: npm install node src/index.js
+if the microservice powered by dotnet: dotnet build dotnet run
+```
 
 ## Some Screenshots
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
