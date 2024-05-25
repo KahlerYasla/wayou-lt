@@ -3,7 +3,14 @@
 # Wayou
 The recommender-engine, AI powered route generator.
 
+The project is divided into 4 main parts:
+- CenterEnd: The main backend that handles the requests and responses.
+- Microservices: The services that are responsible for the AI and the recommendation engine.
+- Clients: The clients that are responsible for the user interface.
+- Data: The data, fetch and some operations that is related with the AI.
+
 ## How to run
+Sorry for the inconvenience, but the project is not yet dockerized, so you have to run each part separately.
 
 ### Mobile
 ```sh
