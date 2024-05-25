@@ -27,7 +27,7 @@ export const useRouteStore = create<RouteState>((set) => ({
     generateRoute: async (howManyDays: number) => {
         try {
             // const userId = useAuthCredentials.getState().auth?.userId;
-            const userId = 50;
+            const userId = 100;
 
             const response = await axios.post(`${API_BASE_URL}/trip/generate-trip`, { userId, howManyDays });
 
