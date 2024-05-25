@@ -46,14 +46,9 @@ if the microservice powered by dotnet: dotnet build dotnet run
 </div>
 
 ## Backend diagrams
-### CenterEnd Project 
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
     <img src="./assets/diagrams/center-end-structure.svg" alt="center-end-structure" height="300"/>
-
-### Software Architecture
     <img src="./assets/diagrams/software-architecture.svg" alt="software-architecture" height="300"/>
-
-### Request-Response Flow
     <img src="./assets/diagrams/request-response.drawio.svg" alt="request-response" height="300"/>
 </div>
 
