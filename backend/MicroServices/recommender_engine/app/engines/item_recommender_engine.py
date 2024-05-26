@@ -139,7 +139,7 @@ def train_triplet_model(model, anchor_features, positive_features, negative_feat
             if step % 100 == 0:
                 print(f"Epoch {epoch + 1}, Step {step}, Loss: {loss.numpy()}")
 
-    model.save('./trained_models/triplet_model.keras')
+    model.save('./app/engines/.models/triplet_model.keras')
 
 
 # Create and Train NCF Model
@@ -183,7 +183,7 @@ def train_ncf_model(model, user_data, batch_size=32, epochs=5):
         validation_split=0.2
     )
 
-    model.save('./trained_models/ncf_model.keras')
+    model.save('./app/engines/.models/ncf_model.keras')
 
 
 # Generate Recommendations
@@ -314,8 +314,8 @@ def recommend_places(user_id):
     train_ncf_model(ncf_model, user_data)
     
     # Load trained models
-    triplet_model = load_model('./trained_models/triplet_model.keras', custom_objects={'triplet_loss': triplet_loss})
-    ncf_model = load_model('./trained_models/ncf_model.keras')
+    triplet_model = load_model('./app/engines/.models/triplet_model.keras', custom_objects={'triplet_loss': triplet_loss})
+    ncf_model = load_model('./app/engines/.models/ncf_model.keras')
     
     # Randomly generate input features for recommendation. Tags are between 1 and 14 at least 3 many, rating is between 1 and 5.
     tags = np.random.choice(unique_tags, size=5, replace=False).tolist()
