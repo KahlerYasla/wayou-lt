@@ -330,7 +330,7 @@ def recommend_places(user_id):
         'rating': rating
     }
 
-    print("Recommending places for user", user_id)
+    print("Recommending places for user with id:", user_id)
 
     recommended_items = weighted_hybrid_recommend(input_features, user_id, triplet_model, ncf_model, whole_data, user_id_to_index, cb_weight=0.8, cf_weight=0.05, k=10)
     print(recommended_items)
