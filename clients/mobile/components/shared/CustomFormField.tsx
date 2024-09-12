@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, TextInput, StyleSheet, ViewStyle, TextStyle, TextInputProps } from 'react-native';
-import { FONT } from '../../constants';
 
 interface CustomFormFieldProps extends TextInputProps {
   label: string;
@@ -53,13 +52,11 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 14,
     marginBottom: 4,
-    fontFamily: FONT.bold,
     color: '#fff',
   },
   input: {
     padding: 10,
     fontSize: 13,
-    fontFamily: FONT.regular,
     color: '#fff',
   },
   placeholder: {

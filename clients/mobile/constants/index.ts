@@ -1,10 +1,9 @@
-import { COLORS, FONT, SIZES, SHADOWS } from "./theme";
-import { API_BASE_URL } from "./strings";
+import { COLORS, FONT, SHADOWS } from "./Theme";
+import { API_BASE_URL } from "./Strings";
 
 export {
     COLORS,
     FONT,
-    SIZES,
     SHADOWS,
     API_BASE_URL,
 };

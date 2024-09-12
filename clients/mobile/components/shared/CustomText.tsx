@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, TextProps, StyleSheet } from 'react-native';
-import { FONT } from '../../constants/theme';
+import { FONT } from '../../constants/Theme';
 
 type FontWeight = 'regular' | 'bold' | 'italic' | 'boldItalic';
 
